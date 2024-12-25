@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Hechizo;
 use App\Models\Libro;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class LibroController extends Controller
     public function create()
     {
         $hechizos = Hechizo::all();
-        return view('libros.create', ['hechizos' => $hechizos]);
+        $categorias = Categoria::all();
+        return view('libros.create', ['hechizos' => $hechizos, 'categorias' => $categorias]);
 
     }
 
@@ -34,17 +36,29 @@ class LibroController extends Controller
      */
     public function store(Request $request)
     {
-        $libro = new Libro();
-        $libro->titulo = $request->titulo;
-        $libro->idioma = $request->idioma;
-        $libro->descripcion = $request->descripcion;
-        $libro->coste_cordura = $request->coste_cordura;
-        $libro->coste_tiempo = $request->coste_tiempo;
-        $libro->mitos = $request->mitos;
-        $libro->puntuacion = $request->puntuacion;
-        $libro->autor = $request->autor;
-        $libro->anyo = $request->anyo;
+        $validated = $request->validate([
+            'titulo' => 'required|string|max:255',
+            'idioma' => 'required|string|max:50',
+            'descripcion' => 'required|string|max:2000',
+            'coste_cordura' => 'required',
+            'coste_tiempo' => 'required',
+            'mitos' => 'required',
+            'autor' => 'required',
+            'anyo' => 'required'
+        ]);
 
+        $libro = new Libro();
+        $validated['titulo'] = $request->titulo;
+        $validated['idioma'] = $request->idioma;
+        $validated['descripcion'] = $request->descripcion;
+        $validated['coste_cordura'] = $request->coste_cordura;
+        $validated['coste_tiempo'] = $request->coste_tiempo;
+        $validated['mitos'] = $request->mitos;
+        $validated['autor'] = $request->autor;
+        $validated['anyo'] = $request->anyo;
+
+        $libro = new Libro();
+        $libro->fill($validated);
         $libro->save();
 
         if ($request->has('hechizos')) {

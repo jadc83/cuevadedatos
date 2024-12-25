@@ -22,35 +22,31 @@
 
                 <div class="flex flex-col">
                     <label for="idioma" class="text-gray-300">Idioma</label>
-                    <input type="text" name="idioma" id="idioma" required placeholder="Idioma" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                    <input type="text" name="idioma" id="idioma" placeholder="Idioma" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
                 </div>
             </div>
 
             <div class="flex flex-col">
                 <label for="descripcion" class="text-gray-300">Descripción</label>
-                <textarea name="descripcion" id="descripcion" required placeholder="Descripción" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                <textarea name="descripcion" id="descripcion" placeholder="Descripción" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="flex flex-col">
                     <label for="coste_cordura" class="text-gray-300">Coste de Cordura</label>
-                    <input type="text" name="coste_cordura" id="coste_cordura" required placeholder="Coste en cordura" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                    <input type="text" name="coste_cordura" id="coste_cordura" placeholder="Coste en cordura" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
                 </div>
 
                 <div class="flex flex-col">
                     <label for="coste_tiempo" class="text-gray-300">Coste de Tiempo</label>
-                    <input type="text" name="coste_tiempo" id="coste_tiempo" required placeholder="Coste en tiempo" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                    <input type="text" name="coste_tiempo" id="coste_tiempo" placeholder="Coste en tiempo" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
                 </div>
 
                 <div class="flex flex-col">
                     <label for="mitos" class="text-gray-300">+Mitos de Cthulhu</label>
-                    <input type="text" name="mitos" id="mitos" required placeholder="Mitos ganados" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                    <input type="text" name="mitos" id="mitos" placeholder="Mitos ganados" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
                 </div>
 
-                <div class="flex flex-col">
-                    <label for="puntuacion" class="text-gray-300">Puntuación Mitos</label>
-                    <input type="text" name="puntuacion" id="puntuacion" required placeholder="Puntuación" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
-                </div>
             </div>
 
             <div>

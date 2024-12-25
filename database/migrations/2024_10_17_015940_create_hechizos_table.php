@@ -16,9 +16,11 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('efecto');
+            $table->text('intensificada');
             $table->string('turnos');
             $table->string('coste');
             $table->string('coste_cordura');
+            $table->foreignId('categoria_id')->constrained();
             $table->timestamps();
         });
     }

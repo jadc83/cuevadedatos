@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('coste_cordura');
             $table->integer('coste_tiempo');
             $table->integer('mitos');
-            $table->integer('puntuacion');
             $table->timestamps();
         });
     }

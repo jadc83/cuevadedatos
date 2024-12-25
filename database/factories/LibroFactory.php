@@ -50,7 +50,7 @@ class LibroFactory extends Factory
             'idioma' => $this->faker->randomElement(['Español', 'Inglés', 'Francés', 'Alemán']),
             'autor' => $this->faker->name(),
             'anyo' => $this->faker->optional()->numberBetween(1800, 2024),
-            'descripcion' => $this->faker->paragraph(),
+            'descripcion' => $this->faker->paragraph(3),
             'coste_cordura' => $this->faker->randomElement(array_merge(
                 [$this->faker->numberBetween(1, 100)],
                 array_map(fn($faces) => $this->faker->numberBetween(1, 10) . 'D' . $faces, [2, 3, 4, 5, 6, 8, 12, 20, 100])
