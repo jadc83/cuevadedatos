@@ -7,9 +7,9 @@
                 </div>
             @endif
 
-            @if (session('success'))
+            @if (session('exito'))
                 <div class="p-4 mb-4 bg-green-800 text-white rounded-md shadow-md">
-                    {{ session('success') }}
+                    {{ session('exito') }}
                 </div>
             @endif
 
@@ -31,9 +31,17 @@
                 </div>
 
                 <div>
-                    <h3 class="text-xl font-semibold text-purple-300">Coste</h3>
+                    <h3 class="text-xl font-semibold text-purple-300">Coste magico</h3>
                     <ul class="mt-1 p-3 bg-gray-700 text-purple-300 rounded-md">
-                        <li>{{ ucfirst($hechizo->coste) }}</li>
+                        <li>{{ strtoupper($hechizo->coste) }}</li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-300">Coste en cordura</h3>
+                    <ul class="mt-1 p-3 bg-gray-700 text-purple-300 rounded-md">
+                        <li>{{ strtoupper($hechizo->coste_cordura) }}</li>
                     </ul>
                 </div>
 

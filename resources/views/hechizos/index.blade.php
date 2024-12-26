@@ -6,21 +6,21 @@
             </div>
         @endif
 
-        <div class="bg-gray-800 bg-opacity-90 shadow-lg rounded-lg p-6 border border-purple-700 w-full max-w-3xl">
-            <h1 class="text-center text-3xl font-bold text-purple-400 mb-6">Hechizos</h1>
-            <div class="space-y-4">
+        <div class="bg-gray-800 bg-opacity-95 shadow-lg rounded-lg p-8 border border-indigo-700 w-full max-w-xl">
+            <h1 class="text-center text-5xl font-serif font-bold text-indigo-300 mb-8">Hechizos</h1>
+            <div class="space-y-6">
                 @foreach ($hechizos as $hechizo)
-                    <a href="{{ route('hechizos.show', $hechizo) }}" class="block p-4 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 transition duration-200">
+                    <a href="{{ route('hechizos.show', $hechizo) }}" class="block p-5 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
                         <div class="flex justify-between items-center">
-                            <p class="text-xl font-semibold text-purple-300">{{ ucfirst($hechizo->nombre) }}</p>
+                            <p class="text-xl font-semibold text-white">{{ ucfirst($hechizo->nombre) }}</p>
                             <span class="text-sm text-gray-400">Contenido en: {{ $hechizo->libros->pluck('titulo')->implode(', ') }}</span>
                         </div>
                     </a>
                 @endforeach
             </div>
 
-            <div class="mt-6 text-center">
-                <a href="{{ route('hechizos.create') }}" class="px-6 py-3 bg-purple-600 text-white font-bold rounded-md shadow-lg hover:bg-purple-700 transition duration-200">
+            <div class="mt-8 text-center">
+                <a href="{{ route('hechizos.create') }}" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-md shadow-lg hover:bg-indigo-500 transition duration-300 transform hover:-translate-y-1">
                     {{ ucwords('Desatar un nuevo poder arcano') }}
                 </a>
             </div>
