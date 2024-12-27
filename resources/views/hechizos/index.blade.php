@@ -10,7 +10,7 @@
             <h1 class="text-center text-5xl font-serif font-bold text-indigo-300 mb-8">Hechizos</h1>
             <div class="space-y-6">
                 @foreach ($hechizos as $hechizo)
-                    <a href="{{ route('hechizos.show', $hechizo) }}" class="block p-5 bg-gray-700 rounded-lg shadow-md hover:bg-gray-600 transition duration-300 transform hover:-translate-y-1">
+                    <a href="{{ route('hechizos.show', $hechizo) }}" class="block p-5 bg-gray-700 rounded-lg shadow-md transition duration-300 transform hover:-translate-y-1">
                         <div class="flex justify-between items-center">
                             <p class="text-xl font-semibold text-white">{{ ucfirst($hechizo->nombre) }}</p>
                             <span class="text-sm text-gray-400">Contenido en: {{ $hechizo->libros->pluck('titulo')->implode(', ') }}</span>

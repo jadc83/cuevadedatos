@@ -50,13 +50,13 @@ new class extends Component
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate class="hover:bg-gray-700">
+                        <x-dropdown-link :href="route('profile')" wire:navigate class="hover:bg-red-500">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
                         <button wire:click="logout" class="w-full text-start">
-                            <x-dropdown-link class="hover:bg-gray-700">
+                            <x-dropdown-link class="hover:bg-red-500">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </button>
