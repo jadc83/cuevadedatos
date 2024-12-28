@@ -57,7 +57,6 @@ class LibroFactory extends Factory
             )),
             'coste_tiempo' => $this->faker->numberBetween(1, 20),
             'mitos' => $this->faker->numberBetween(0, 10),
-            'puntuacion' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

@@ -11,23 +11,12 @@
 
                 <h1 class="text-4xl font-bold text-center text-green-500 mb-6 font-serif tracking-wide">Biblioteca</h1>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="flex flex-col gap-6 text-center">
                     @foreach ($libros as $libro)
                         <a href="{{ route('libros.show', $libro) }}" class="bg-gray-700 border border-gray-600 rounded-lg p-6 shadow-md hover:bg-gray-600 transition duration-200">
-                            <div class="font-semibold text-blue-400 text-lg mb-3">{{ $libro->titulo }}</div>
-                            <div class="text-sm text-gray-300 space-y-2">
-                                <div class="flex justify-between items-center">
-                                    <span>+ {{ $libro->mitos }}% Mitos de Cthulhu</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span>Coste de lectura: -{{ $libro->coste_cordura }} COR</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span>Semanas de estudio: {{ $libro->coste_tiempo }}</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span>Año de publicación: {{ $libro->anyo }}</span>
-                                </div>
+                            <div class="font-semibold text-blue-400 text-lg mb-4">{{ $libro->titulo }}</div>
+                            <div class="text-sm text-gray-300">
+                                +{{ $libro->mitos }}% Mitos de Cthulhu | Coste de lectura: -{{ $libro->coste_cordura }} COR | Semanas de estudio: {{ $libro->coste_tiempo }} | Año de publicación: {{ $libro->anyo }}
                             </div>
                         </a>
                     @endforeach
