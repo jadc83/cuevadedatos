@@ -1,31 +1,49 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gray-900 p-6">
-        <div class="w-full max-w-5xl mx-auto p-6 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg border border-green-700">
-            <main>
-                @if (session()->has('error'))
-                    <div class="mb-4 p-4 text-red-800 rounded-lg bg-red-100 border border-red-300">
-                        <strong>¡Advertencia!</strong>
-                        <span>{{ session()->get('error') }}</span>
-                    </div>
-                @endif
+    <div class="min-h-screen bg-gray-900 p-6" style="background-image: url('/images/libreria.jpg'); background-size: cover; background-position: center;">
+        <div class="w-full max-w-5xl mx-auto p-6 bg-gradient-to-r from-indigo-700 to-purple-800 rounded-lg shadow-lg border border-green-700">
+            <main class="bg-transparent">
+                <!-- Título y mensaje de advertencia -->
+                <div class="text-center mb-6">
+                    <h1 class="text-3xl font-semibold text-white">Explora los Tomos Arcanos</h1>
+                    @if (session()->has('error'))
+                        <div class="mt-4 p-4 text-red-800 rounded-lg bg-red-100 border border-red-300">
+                            <strong>¡Advertencia!</strong>
+                            <span>{{ session()->get('error') }}</span>
+                        </div>
+                    @endif
+                </div>
 
-                <h1 class="text-4xl font-bold text-center text-green-500 mb-6 font-serif tracking-wide">Biblioteca</h1>
-
-                <div class="flex flex-col gap-6 text-center">
+                <!-- Lista de libros -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($libros as $libro)
-                        <a href="{{ route('libros.show', $libro) }}" class="bg-gray-700 border border-gray-600 rounded-lg p-6 shadow-md hover:bg-gray-600 transition duration-200">
-                            <div class="font-semibold text-blue-400 text-lg mb-4">{{ $libro->titulo }}</div>
-                            <div class="text-sm text-gray-300">
-                                +{{ $libro->mitos }}% Mitos de Cthulhu | Coste de lectura: -{{ $libro->coste_cordura }} COR | Semanas de estudio: {{ $libro->coste_tiempo }} | Año de publicación: {{ $libro->anyo }}
+                        <a href="{{ route('libros.show', $libro) }}" class="flex flex-col bg-gray-800 border border-gray-600 rounded-lg p-6 shadow-lg hover:bg-gray-700 transition duration-300">
+                            <div class="flex-grow text-left mb-4">
+                                <div class="font-semibold text-blue-400 text-xl">{{ $libro->titulo }}</div>
+                            </div>
+                            <div class="text-sm text-gray-300 space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-book mr-2"></i><span>+{{ $libro->mitos }}% Mitos de Cthulhu</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-brain mr-2"></i><span>Coste de cordura -{{ $libro->coste_cordura }} COR</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock mr-2"></i><span>Tiempo de estudio {{ $libro->coste_tiempo }} semanas</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i><span>{{ $libro->anyo }}</span>
+                                </div>
                             </div>
                         </a>
                     @endforeach
                 </div>
 
-                <div class="mt-8">
+                <!-- Paginación -->
+                <div class="mt-8 text-white">
                     {{ $libros->links('pagination::tailwind') }}
                 </div>
 
+                <!-- Botón para crear nuevo libro -->
                 <div class="mt-8 text-center">
                     <a href="{{ route('libros.create') }}" class="px-6 py-3 text-white bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-bold focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-200">
                         Invocar Nuevo Tomo
