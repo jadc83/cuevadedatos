@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gray-900 p-6" style="background-image: url('/images/libreria.jpg'); background-size: cover; background-position: center;">
-        <div class="w-full max-w-5xl mx-auto p-6 bg-gradient-to-r from-indigo-700 to-purple-800 rounded-lg shadow-lg border border-green-700">
+    <div class="min-h-screen bg-gray-900 p-6" style="background-image: url('/images/cthulhu.jpg'); background-size: cover; background-position: center;">
+        <div class="w-full max-w-5xl mx-auto p-6 bg-transparent rounded-lg">
             <main class="bg-transparent">
                 <!-- Título y mensaje de advertencia -->
                 <div class="text-center mb-6">
@@ -41,13 +41,6 @@
                 <!-- Paginación -->
                 <div class="mt-8 text-white">
                     {{ $libros->links('pagination::tailwind') }}
-                </div>
-
-                <!-- Botón para crear nuevo libro -->
-                <div class="mt-8 text-center">
-                    <a href="{{ route('libros.create') }}" class="px-6 py-3 text-white bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-bold focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-200">
-                        Invocar Nuevo Tomo
-                    </a>
                 </div>
             </main>
         </div>

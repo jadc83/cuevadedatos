@@ -19,11 +19,6 @@
                 @endforeach
             </div>
 
-            <div class="mt-8 text-center">
-                <a href="{{ route('hechizos.create') }}" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-md shadow-lg hover:bg-indigo-500 transition duration-300 transform hover:-translate-y-1">
-                    {{ ucwords('Desatar un nuevo poder arcano') }}
-                </a>
-            </div>
         </div>
     </div>
 </x-app-layout>
