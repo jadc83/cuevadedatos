@@ -5,6 +5,13 @@
                 <!-- Título y mensaje de advertencia -->
                 <div class="text-center mb-6">
                     <h1 class="text-3xl font-semibold text-white">Explora los Tomos Arcanos</h1>
+
+                    <form method="GET" action="{{ route('libros.index') }}" class="mb-4">
+                        <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar libros..." class="form-input">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </form>
+
+
                     @if (session()->has('error'))
                         <div class="mt-4 p-4 text-red-800 rounded-lg bg-red-100 border border-red-300">
                             <strong>¡Advertencia!</strong>

@@ -11,10 +11,17 @@ class HechizoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $hechizos = Hechizo::all();
-        return view('hechizos.index', compact('hechizos'));
+        $consulta = Hechizo::query();
+
+        if ($busqueda = $request->input('busqueda')) {
+            $consulta->where('nombre', 'ilike', "%{$busqueda}%");
+        }
+
+        $hechizos = $consulta->paginate(10);
+
+        return view('hechizos.index', ['hechizos' => $hechizos]);
     }
 
     /**

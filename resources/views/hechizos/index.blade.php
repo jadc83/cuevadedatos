@@ -8,6 +8,10 @@
 
         <div class="bg-gray-800 bg-opacity-95 shadow-lg rounded-lg p-8 border border-indigo-700 w-full max-w-xl">
             <h1 class="text-center text-5xl font-serif font-bold text-indigo-300 mb-8">Hechizos</h1>
+            <form method="GET" action="{{ route('hechizos.index') }}" class="mb-4">
+                <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar hechizos..." class="form-input">
+                <x-primary-button>Buscar</x-primary-buttonx>
+            </form>
             <div class="space-y-6">
                 @foreach ($hechizos as $hechizo)
                     <a href="{{ route('hechizos.show', $hechizo) }}" class="block p-5 bg-gray-700 rounded-lg shadow-md transition duration-300 transform hover:-translate-y-1">

@@ -12,12 +12,18 @@ class LibroController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $libros = Libro::paginate(15);
+        $query = Libro::query();
 
+        if ($busqueda = $request->input('busqueda')) {
+            $query->where('titulo', 'ilike', "%{$busqueda}%")
+                  ->orWhere('autor', 'ilike', "%{$busqueda}%");
+        }
 
-        return view('libros.index', compact('libros'));
+        $libros = $query->paginate(10);
+
+        return view('libros.index', ['libros' => $libros]);
     }
 
     /**
@@ -43,7 +49,7 @@ class LibroController extends Controller
             'coste_cordura' => 'required',
             'coste_tiempo' => 'required',
             'mitos' => 'required',
-            'autor' => 'required',
+            'autor' => 'required|string|max:50',
             'anyo' => 'required'
         ]);
 
