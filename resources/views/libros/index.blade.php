@@ -4,13 +4,10 @@
             <main class="bg-transparent">
                 <!-- Título y mensaje de advertencia -->
                 <div class="text-center mb-6">
-                    <h1 class="text-3xl font-semibold text-white">Explora los Tomos Arcanos</h1>
-
                     <form method="GET" action="{{ route('libros.index') }}" class="mb-4 mt-4">
                         <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar libros..." class="form-input">
                         <x-primary-button>Buscar</x-primary-buttonx>
                     </form>
-
 
                     @if (session()->has('error'))
                         <div class="mt-4 p-4 text-red-800 rounded-lg bg-red-100 border border-red-300">
@@ -38,7 +35,7 @@
                                     <i class="fas fa-clock mr-2"></i><span>Tiempo de estudio {{ $libro->coste_tiempo }} semanas</span>
                                 </div>
                                 <div class="flex items-center">
-                                    <i class="fas fa-calendar-alt mr-2"></i><span>{{ $libro->anyo }}</span>
+                                    <i class="fas fa-calendar-alt mr-2"></i><span>Escrito en {{ $libro->anyo }}</span>
                                 </div>
                             </div>
                         </a>
