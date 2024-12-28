@@ -6,9 +6,9 @@
                 <div class="text-center mb-6">
                     <h1 class="text-3xl font-semibold text-white">Explora los Tomos Arcanos</h1>
 
-                    <form method="GET" action="{{ route('libros.index') }}" class="mb-4">
+                    <form method="GET" action="{{ route('libros.index') }}" class="mb-4 mt-4">
                         <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar libros..." class="form-input">
-                        <button type="submit" class="btn btn-primary">Buscar</button>
+                        <x-primary-button>Buscar</x-primary-buttonx>
                     </form>
 
 

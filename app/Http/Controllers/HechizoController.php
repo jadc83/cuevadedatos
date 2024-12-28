@@ -16,7 +16,8 @@ class HechizoController extends Controller
         $consulta = Hechizo::query();
 
         if ($busqueda = $request->input('busqueda')) {
-            $consulta->where('nombre', 'ilike', "%{$busqueda}%");
+            $consulta->where('nombre', 'ilike', "%{$busqueda}%")
+            ->orWhere('efecto', 'ilike', "%{$busqueda}%");
         }
 
         $hechizos = $consulta->paginate(10);
