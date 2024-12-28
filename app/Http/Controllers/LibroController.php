@@ -103,7 +103,6 @@ class LibroController extends Controller
         $libro->coste_cordura = $request->coste_cordura;
         $libro->coste_tiempo = $request->coste_tiempo;
         $libro->mitos = $request->mitos;
-        $libro->puntuacion = $request->puntuacion;
         $libro->autor = $request->autor;
         $libro->anyo = $request->anyo;
 
