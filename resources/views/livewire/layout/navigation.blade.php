@@ -33,6 +33,9 @@ new class extends Component
                     <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')" class="text-white hover:text-indigo-500">
                         {{ __('Hechizos') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')" class="text-white hover:text-indigo-500">
+                        {{ __('Objetos') }}
+                    </x-nav-link>
                 </div>
             </div>
 

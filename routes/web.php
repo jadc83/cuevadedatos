@@ -1,9 +1,11 @@
 <?php
 use App\Http\Controllers\HechizoController;
 use App\Http\Controllers\LibroController;
+use App\Http\Controllers\ObjetoController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Hechizo;
 use App\Models\Libro;
+use App\Models\Objeto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $ultimosLibros = Libro::orderBy('created_at', 'desc')->limit(5)->get();
     $ultimosHechizos = Hechizo::orderBy('created_at', 'desc')->limit(5)->get();
-    return view('dashboard', ['ultimosLibros' => $ultimosLibros, 'ultimosHechizos' => $ultimosHechizos]);
+    $ultimosObjetos = Objeto::orderBy('created_at', 'desc')->limit(5)->get();
+    return view('dashboard', ['ultimosLibros' => $ultimosLibros, 'ultimosHechizos' => $ultimosHechizos, 'ultimosObjetos' => $ultimosObjetos]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -32,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('hechizos', HechizoController::class);
     Route::resource('libros', LibroController::class);
+    Route::resource('objetos', ObjetoController::class);
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
 
