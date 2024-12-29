@@ -23,7 +23,11 @@
 
                 <div class="flex flex-col">
                     <label for="idioma" class="text-gray-300">Idioma</label>
-                    <input type="text" name="idioma" id="idioma" value="{{ $libro->idioma }}" required placeholder="Idioma" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"/>
+                    <select name="idioma" id="idioma">
+                        @foreach ($idiomas as $idioma)
+                            <option value="{{$idioma->nombre}}">{{$idioma->nombre}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 

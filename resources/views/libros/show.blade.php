@@ -17,6 +17,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10 text-gray-300">
                             <div><strong>Título:</strong> {{ ucfirst($libro->titulo) }}</div>
                             <div><strong>Autor:</strong> {{ ucfirst($libro->autor) }}</div>
+                            <div><strong>Idioma:</strong> {{ ucfirst($libro->idioma) }}</div>
                             <div><strong>Año de Publicación:</strong> {{ $libro->anyo }}</div>
                             <div><strong>Coste de Cordura:</strong> {{ $libro->coste_cordura }}</div>
                             <div><strong>Semanas de Estudio:</strong> {{ $libro->coste_tiempo }}</div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Hechizo;
+use App\Models\Idioma;
 use App\Models\Libro;
 use Illuminate\Http\Request;
 
@@ -33,8 +34,9 @@ class LibroController extends Controller
     public function create()
     {
         $hechizos = Hechizo::all();
+        $idiomas = Idioma::all();
         $categorias = Categoria::all();
-        return view('libros.create', ['hechizos' => $hechizos, 'categorias' => $categorias]);
+        return view('libros.create', ['hechizos' => $hechizos, 'categorias' => $categorias, 'idiomas' => $idiomas]);
 
     }
 
@@ -94,9 +96,10 @@ class LibroController extends Controller
     public function edit(Libro $libro)
     {
         $hechizos = Hechizo::all(); // Obtenemos todos los hechizos disponibles
+        $idiomas = Idioma::all();
         $consulta = $libro->hechizos->pluck('id')->toArray(); // Obtenemos los IDs de los hechizos relacionados
 
-        return view('libros.edit', compact('libro', 'hechizos', 'consulta'));
+        return view('libros.edit', compact('libro', 'hechizos', 'consulta', 'idiomas'));
     }
 
     /**
