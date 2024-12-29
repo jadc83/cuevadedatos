@@ -10,25 +10,37 @@
                 @endif
 
                 <!-- Título y buscador -->
-                <div class="text-center mb-8">
+                <div class="mb-8">
                     <form method="GET" action="{{ route('hechizos.index') }}" class="mb-4 mt-4">
                         <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar hechizos..." class="form-input">
                         <x-primary-button>Buscar</x-primary-button>
                     </form>
                 </div>
 
-                <!-- Lista de hechizos -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach ($hechizos as $hechizo)
-                        <a href="{{ route('hechizos.show', $hechizo) }}" class="flex flex-col bg-gray-800 border border-gray-600 rounded-lg p-6 shadow-lg hover:bg-gray-700 transition duration-300">
-                            <div class="flex-grow text-left mb-4">
-                                <div class="font-semibold text-blue-400 text-xl">{{ ucfirst($hechizo->nombre) }}</div>
-                            </div>
-                            <div class="text-sm text-gray-300">
-                                <span class="block">Contenido en: {{ $hechizo->libros->pluck('titulo')->implode(', ') }}</span>
-                            </div>
-                        </a>
-                    @endforeach
+                <!-- Tabla de hechizos -->
+                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <table class="w-full text-white border-collapse">
+                        <!-- Cabecera de la tabla -->
+                        <thead>
+                            <tr class="bg-gray-800">
+                                <th class="text-left px-4 py-2 text-blue-400">Nombre</th>
+                                <th class="text-left px-4 py-2 text-blue-400">Categoría</th>
+                            </tr>
+                        </thead>
+                        <!-- Cuerpo de la tabla -->
+                        <tbody>
+                            @foreach ($hechizos as $hechizo)
+                                <tr class="border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+                                    <td class="px-4 py-2 text-gray-300 font-semibold">
+                                        <a href="{{ route('hechizos.show', $hechizo) }}" class="hover:text-blue-400">
+                                            {{ ucfirst($hechizo->nombre) }}
+                                        </a>
+                                    </td>
+                                    <td class="px-4 py-2 text-gray-300">{{ $hechizo->categoria->nombre }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Paginación -->

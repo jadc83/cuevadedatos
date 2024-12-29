@@ -24,13 +24,13 @@ new class extends Component
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:bg-gray-700">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-red-500">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('libros.index')" :active="request()->routeIs('libros')" class="text-white hover:bg-gray-700">
+                    <x-nav-link :href="route('libros.index')" :active="request()->routeIs('libros')" class="text-white hover:text-green-600">
                         {{ __('Libros') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')" class="text-white hover:bg-gray-700">
+                    <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')" class="text-white hover:text-indigo-500">
                         {{ __('Hechizos') }}
                     </x-nav-link>
                 </div>

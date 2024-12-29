@@ -18,7 +18,8 @@ class LibroController extends Controller
 
         if ($busqueda = $request->input('busqueda')) {
             $query->where('titulo', 'ilike', "%{$busqueda}%")
-                  ->orWhere('autor', 'ilike', "%{$busqueda}%");
+                  ->orWhere('autor', 'ilike', "%{$busqueda}%")
+                  ->orWhere('descripcion', 'ilike', "%{$busqueda}%");
         }
 
         $libros = $query->paginate(10);

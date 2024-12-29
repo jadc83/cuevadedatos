@@ -65,6 +65,27 @@
                         <li>{{ $hechizo->intensificada }}</li>
                     </ul>
                 </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold text-purple-300">Contenido en:</h3>
+                    <ul class="mt-1 p-3 bg-gray-700 text-purple-300 rounded-md">
+                        <li>
+                            @if ($hechizo->libros->isEmpty())
+                            <p class="text-gray-400 text-center italic">Este hechizo no está contenido en ningún libro registrado.</p>
+                        @else
+                            <ul class="divide-y divide-gray-600">
+                                @foreach ($hechizo->libros as $libro)
+                                    <li class="py-4 hover:bg-gray-700 transition-colors duration-200">
+                                        <a href="{{ route('libros.show', $libro) }}" class="block text-blue-400 hover:text-blue-300 text-center font-semibold text-lg">
+                                            {{ ucfirst($libro->titulo) }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="flex justify-between mt-6">

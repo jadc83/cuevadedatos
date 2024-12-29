@@ -1,52 +1,48 @@
 <x-app-layout>
     <div class="min-h-screen bg-gray-900 p-6" style="background-image: url('/images/cthulhu.jpg'); background-size: cover; background-position: center;">
         <div class="w-full max-w-5xl mx-auto p-6 bg-transparent rounded-lg">
-            <main class="bg-transparent">
-                <!-- Título y mensaje de advertencia -->
-                <div class="text-center mb-6">
-                    <form method="GET" action="{{ route('libros.index') }}" class="mb-4 mt-4">
-                        <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar libros..." class="form-input">
-                        <x-primary-button>Buscar</x-primary-buttonx>
-                    </form>
+            <form method="GET" action="{{ route('libros.index') }}" class="mb-4 mt-4">
+                <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar libros..."
+                    class="form-input">
+                <x-primary-button>Buscar</x-primary-button>
+            </form>
 
-                    @if (session()->has('error'))
-                        <div class="mt-4 p-4 text-red-800 rounded-lg bg-red-100 border border-red-300">
-                            <strong>¡Advertencia!</strong>
-                            <span>{{ session()->get('error') }}</span>
-                        </div>
-                    @endif
-                </div>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <table class="w-full text-white border-collapse">
+                    <!-- Cabecera de la tabla -->
+                    <thead>
+                        <tr class="bg-gray-800">
+                            <th class="text-left px-4 py-2 text-blue-400">Título</th>
+                            <th class="text-left px-4 py-2 text-blue-400">Mitos</th>
+                            <th class="text-left px-4 py-2 text-blue-400">Coste de Cordura</th>
+                            <th class="text-left px-4 py-2 text-blue-400">Idioma</th>
+                        </tr>
+                    </thead>
+                    <!-- Cuerpo de la tabla -->
+                    <tbody>
+                        @foreach ($libros as $libro)
+                            <tr class="border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+                                <td class="px-4 py-2 text-gray-300 font-semibold">
+                                    <a href="{{ route('libros.show', $libro) }}" class="hover:text-blue-400">
+                                        {{ $libro->titulo }}
+                                    </a>
+                                </td>
+                                <td class="px-4 py-2 text-gray-300">+{{ $libro->mitos }}%</td>
+                                <td class="px-4 py-2 text-red-400">-{{ $libro->coste_cordura }} COR</td>
+                                <td class="px-4 py-2 text-green-400">{{ $libro->idioma }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
-                <!-- Lista de libros -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach ($libros as $libro)
-                        <a href="{{ route('libros.show', $libro) }}" class="flex flex-col bg-gray-800 border border-gray-600 rounded-lg p-6 shadow-lg hover:bg-gray-700 transition duration-300">
-                            <div class="flex-grow text-left mb-4">
-                                <div class="font-semibold text-blue-400 text-xl">{{ $libro->titulo }}</div>
-                            </div>
-                            <div class="text-sm text-gray-300 space-y-2">
-                                <div class="flex items-center">
-                                    <i class="fas fa-book mr-2"></i><span>+{{ $libro->mitos }}% Mitos de Cthulhu</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-brain mr-2"></i><span>Coste de cordura -{{ $libro->coste_cordura }} COR</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-clock mr-2"></i><span>Tiempo de estudio {{ $libro->coste_tiempo }} semanas</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-calendar-alt mr-2"></i><span>Escrito en {{ $libro->anyo }}</span>
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
 
-                <!-- Paginación -->
-                <div class="mt-8 text-white">
-                    {{ $libros->links('pagination::tailwind') }}
-                </div>
-            </main>
+
+
+            <!-- Paginación -->
+            <div class="mt-8 text-white">
+                {{ $libros->links('pagination::tailwind') }}
+            </div>
         </div>
     </div>
 </x-app-layout>
