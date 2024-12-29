@@ -33,7 +33,7 @@
                         <ol class="list-decimal pl-6">
                             @foreach ($ultimosHechizos as $hechizo)
                                 <li>
-                                    <a href="{{ route('libros.show', $hechizo->id) }}" class="block mb-2 text-center text-lg hover:text-red-600 rounded transition duration-300">
+                                    <a href="{{ route('hechizos.show', $hechizo->id) }}" class="block mb-2 text-center text-lg hover:text-red-600 rounded transition duration-300">
                                         {{ $hechizo->nombre }}
                                     </a>
                                 </li>
