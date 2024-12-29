@@ -63,7 +63,7 @@
                 </div>
                 <!-- Botón para crear nuevo objeto -->
                 <div class="mt-8 text-center">
-                    <a href="{{ route('objetos.create') }}" class="px-8 py-4 bg-indigo-600 text-white font-bold rounded-md shadow-lg hover:bg-indigo-500 transition duration-300 transform hover:-translate-y-1">
+                    <a href="{{ route('objetos.create') }}" class="px-8 py-4 bg-pink-800 text-white font-bold rounded-md shadow-lg hover:bg-indigo-500 transition duration-300 transform hover:-translate-y-1">
                         Fabricar nuevo objeto
                     </a>
                 </div>

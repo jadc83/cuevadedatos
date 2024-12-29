@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreObjetoRequest;
-use App\Http\Requests\UpdateObjetoRequest;
 use App\Models\Objeto;
 use Illuminate\Http\Request;
 
@@ -31,15 +29,32 @@ class ObjetoController extends Controller
      */
     public function create()
     {
-        //
+        return view('objetos.create');
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreObjetoRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'denominacion' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:2000',
+            'efecto' => 'nullable|string|max:2000',
+            'valor' => 'nullable',
+        ]);
+
+        $objeto = new Objeto();
+        $validated['denominacion'] = $request->denominacion;
+        $validated['descripcion'] = $request->descripcion;
+        $validated['efecto'] = $request->efecto;
+        $validated['valor'] = $request->valor;
+        $objeto = new Objeto();
+        $objeto->fill($validated);
+        $objeto->save();
+
+        return redirect()->route('objetos.index');
     }
 
     /**
@@ -47,7 +62,8 @@ class ObjetoController extends Controller
      */
     public function show(Objeto $objeto)
     {
-        //
+
+        return view('objetos.show', ['objeto'=> $objeto]);
     }
 
     /**
@@ -55,22 +71,31 @@ class ObjetoController extends Controller
      */
     public function edit(Objeto $objeto)
     {
-        //
+        return view('objetos.edit', ['objeto' => $objeto]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateObjetoRequest $request, Objeto $objeto)
+    public function update(Request $request, Objeto $objeto)
     {
-        //
+        $objeto->denominacion = $request->denominacion;
+        $objeto->descripcion = $request->descripcion;
+        $objeto->efecto = $request->efecto;
+        $objeto->valor = $request->valor;
+        $objeto->save();
+
+        return redirect()->route('objetos.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Objeto $objeto)
     {
-        //
+        $objeto->delete();
+        return redirect()->route('objetos.index')->with('success', 'Objeto eliminado con éxito.');
     }
+
 }

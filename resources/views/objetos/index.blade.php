@@ -18,14 +18,14 @@
                     </thead>
                     <!-- Cuerpo de la tabla -->
                     <tbody>
-                        @foreach ($objetos as $objetos)
+                        @foreach ($objetos as $objeto)
                             <tr class="border-b border-gray-700 hover:bg-gray-700 transition duration-300">
                                 <td class="px-4 py-2 text-gray-300 font-semibold">
-                                    <a href="{{ route('objetos.show', $objetos) }}" class="hover:text-blue-400">
+                                    <a href="{{ route('objetos.show', $objeto) }}" class="hover:text-blue-400">
                                         {{ $objeto->denominacion }}
                                     </a>
                                 </td>
-                                <td class="px-4 py-2 text-gray-300">${{ $objetos->valor }}</td>
+                                <td class="px-4 py-2 text-gray-300">${{ $objeto->valor }}</td>
                             </tr>
                         @endforeach
                     </tbody>
