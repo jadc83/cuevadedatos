@@ -53,7 +53,7 @@ class LibroController extends Controller
             'coste_tiempo' => 'required',
             'mitos' => 'required',
             'autor' => 'required|string|max:50',
-            'anyo' => 'required'
+            'anyo' => ['required', 'regex:/^\d{1,9}\s?(ac|dc)$/i']
         ]);
 
         $libro = new Libro();
@@ -107,17 +107,26 @@ class LibroController extends Controller
      */
     public function update(Request $request, Libro $libro)
     {
-        $libro->titulo = $request->titulo;
-        $libro->idioma = $request->idioma;
-        $libro->descripcion = $request->descripcion;
-        $libro->coste_cordura = $request->coste_cordura;
-        $libro->coste_tiempo = $request->coste_tiempo;
-        $libro->mitos = $request->mitos;
-        $libro->autor = $request->autor;
-        $libro->anyo = $request->anyo;
+        $validated = $request->validate([
+            'titulo' => 'required|string|max:255',
+            'idioma' => 'required|string|max:50',
+            'descripcion' => 'required|string|max:2000',
+            'coste_cordura' => 'required',
+            'coste_tiempo' => 'required',
+            'mitos' => 'required',
+            'autor' => 'required|string|max:50',
+            'anyo' => ['required', 'regex:/^\d{1,9}\s?(ac|dc)$/i']
+        ]);
 
-        $libro->save();
-
+        $validated['titulo'] = $request->titulo;
+        $validated['idioma'] = $request->idioma;
+        $validated['descripcion'] = $request->descripcion;
+        $validated['coste_cordura'] = $request->coste_cordura;
+        $validated['coste_tiempo'] = $request->coste_tiempo;
+        $validated['mitos'] = $request->mitos;
+        $validated['autor'] = $request->autor;
+        $validated['anyo'] = $request->anyo;
+        $libro->update($validated);
         $consulta = [];
 
         if ($request->has('hechizos')) {

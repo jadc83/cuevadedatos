@@ -37,7 +37,7 @@
                     <section class="bg-gray-800 bg-opacity-50 p-6 rounded-lg shadow-md border-l-4 border-indigo-500">
                         <h2 class="text-4xl font-semibold text-indigo-400 text-center mb-6">Hechizos Contenidos</h2>
                         @if ($libro->hechizos->isEmpty())
-                            <p class="text-gray-400 text-center italic">Este tomo no contiene hechizos registrados.</p>
+                            <p class="text-gray-400 text-center italic">Este libro no contiene hechizos registrados.</p>
                         @else
                             <ul class="divide-y divide-gray-600">
                                 @foreach ($libro->hechizos as $hechizo)
