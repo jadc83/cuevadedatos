@@ -22,6 +22,7 @@
                             <div><strong>Coste de Cordura:</strong> {{ $libro->coste_cordura }}</div>
                             <div><strong>Semanas de Estudio:</strong> {{ $libro->coste_tiempo }}</div>
                             <div><strong>Mitos de Cthulhu:</strong> +{{ $libro->mitos }}%</div>
+                            <div><strong>Uploader: {{ $uploader->name}}</div>
                         </div>
                     </section>
 

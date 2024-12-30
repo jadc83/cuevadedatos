@@ -65,6 +65,10 @@
                 </ul>
             </div>
 
+            <div class="flex flex-col">
+                <input hidden type="text" name="uploader" id="uploader" value="{{ Auth::user()->id }}" />
+            </div>
+
             <div class="flex justify-center">
                 <x-primary-button class="mt-4 text-center w-full md:w-auto">Actualizar Libro</x-primary-button>
             </div>

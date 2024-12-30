@@ -67,6 +67,10 @@
                         </ul>
                     </div>
 
+                    <div class="flex flex-col">
+                        <input hidden type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}" />
+                    </div>
+
                     <div class="flex justify-center">
                         <x-primary-button class="mt-4 text-center w-full md:w-auto">Guardar Nuevo Libro</x-primary-button>
                     </div>

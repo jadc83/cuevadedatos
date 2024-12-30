@@ -6,7 +6,9 @@ use App\Models\Categoria;
 use App\Models\Hechizo;
 use App\Models\Idioma;
 use App\Models\Libro;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 class LibroController extends Controller
 {
@@ -53,10 +55,11 @@ class LibroController extends Controller
             'coste_tiempo' => 'required',
             'mitos' => 'required',
             'autor' => 'required|string|max:50',
-            'anyo' => ['required', 'regex:/^\d{1,9}\s?(ac|dc)$/i']
+            'anyo' => ['required', 'regex:/^\d{1,9}\s?(ac|dc)$/i'],
+            'user_id' => 'exists:users,id',
         ]);
 
-        $libro = new Libro();
+
         $validated['titulo'] = $request->titulo;
         $validated['idioma'] = $request->idioma;
         $validated['descripcion'] = $request->descripcion;
@@ -65,7 +68,7 @@ class LibroController extends Controller
         $validated['mitos'] = $request->mitos;
         $validated['autor'] = $request->autor;
         $validated['anyo'] = $request->anyo;
-
+        $validated['user_id'] = $request->user_id;
         $libro = new Libro();
         $libro->fill($validated);
         $libro->save();
@@ -87,7 +90,10 @@ class LibroController extends Controller
     public function show(Libro $libro)
     {
 
-        return view('libros.show', ['libro'=> $libro]);
+        $ejemplar = Libro::where('user_id', $libro->user_id)->get();
+        $uploader = User::where('id', $ejemplar[0]->user_id)->first(['name']); // Usar 'first()' para obtener un solo usuario
+
+        return view('libros.show', ['libro'=> $libro, 'uploader' => $uploader]);
     }
 
     /**
@@ -95,9 +101,9 @@ class LibroController extends Controller
      */
     public function edit(Libro $libro)
     {
-        $hechizos = Hechizo::all(); // Obtenemos todos los hechizos disponibles
+        $hechizos = Hechizo::all();
         $idiomas = Idioma::all();
-        $consulta = $libro->hechizos->pluck('id')->toArray(); // Obtenemos los IDs de los hechizos relacionados
+        $consulta = $libro->hechizos->pluck('id')->toArray();
 
         return view('libros.edit', compact('libro', 'hechizos', 'consulta', 'idiomas'));
     }

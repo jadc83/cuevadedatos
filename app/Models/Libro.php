@@ -9,7 +9,7 @@ class Libro extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'idioma','anyo', 'autor', 'mitos', 'descripcion', 'coste_cordura', 'coste_tiempo'];
+    protected $fillable = ['titulo', 'idioma','anyo', 'autor', 'mitos', 'descripcion', 'coste_cordura', 'coste_tiempo', 'user_id'];
 
     public function hechizos()
     {
