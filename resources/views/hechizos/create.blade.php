@@ -49,6 +49,10 @@
                 @endif
             </div>
 
+            <div class="flex flex-col">
+                <input hidden type="text" name="user_id" id="user_id" value="{{ Auth::user()->id }}" />
+            </div>
+
             <div class="flex justify-center">
                 <button type="submit" class="mt-4 px-6 py-3 bg-purple-700 text-white font-bold rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 shadow-lg">
                     Inscribir Hechizo en el Grimorio

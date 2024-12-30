@@ -15,6 +15,7 @@
 
             <h2 class="text-4xl font-bold text-purple-400 text-center mb-6 font-serif tracking-wider">Detalles del Hechizo</h2>
 
+
             <div class="space-y-4">
                 <div>
                     <h3 class="text-xl font-semibold text-purple-300">Categoría</h3>
@@ -86,6 +87,7 @@
                         </li>
                     </ul>
                 </div>
+                <div class="text-white"><strong>Uploader: {{ ucfirst($uploader->name) }}</div>
             </div>
 
             <div class="flex justify-between mt-6">

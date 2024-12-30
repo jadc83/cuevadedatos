@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Hechizo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HechizoController extends Controller
@@ -57,8 +58,19 @@ class HechizoController extends Controller
      */
     public function show(Hechizo $hechizo)
     {
-        return view('hechizos.show', ['hechizo'=> $hechizo]);
+        // Si solo necesitas un hechizo relacionado con el user_id, usa 'first()'
+        $ejemplar = Hechizo::where('user_id', $hechizo->user_id)->first();
+
+        // Verificar si se encontró un hechizo relacionado
+        if ($ejemplar) {
+            $uploader = User::where('id', $ejemplar->user_id)->first(['name']);
+        } else {
+            $uploader = null; // O maneja el caso cuando no se encuentra el hechizo
+        }
+
+        return view('hechizos.show', ['hechizo' => $hechizo, 'uploader' => $uploader]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -80,6 +92,7 @@ class HechizoController extends Controller
         $hechizo->coste = $request->coste;
         $hechizo->coste_cordura = $request->coste_cordura;
         $hechizo->intensificada = $request->intensificada;
+        $hechizo->user_id = $request->user_id;
         $hechizo->save();
 
         return redirect()-> route('hechizos.index');
