@@ -60,13 +60,7 @@ class HechizoController extends Controller
     {
         // Si solo necesitas un hechizo relacionado con el user_id, usa 'first()'
         $ejemplar = Hechizo::where('user_id', $hechizo->user_id)->first();
-
-        // Verificar si se encontró un hechizo relacionado
-        if ($ejemplar) {
-            $uploader = User::where('id', $ejemplar->user_id)->first(['name']);
-        } else {
-            $uploader = null; // O maneja el caso cuando no se encuentra el hechizo
-        }
+        $uploader = User::where('id', $ejemplar->user_id)->first(['name']);
 
         return view('hechizos.show', ['hechizo' => $hechizo, 'uploader' => $uploader]);
     }
