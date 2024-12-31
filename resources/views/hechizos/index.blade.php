@@ -36,7 +36,6 @@
                                             {{ $hechizo->nombre }}
                                         </a>
                                     </td>
-                                    <td class="px-4 py-4 text-black bg-white">{{ $hechizo->nombre }}</td>
                                     <td class="px-4 py-3 text-black bg-white">{{ $hechizo->categoria->nombre }}</td>
                                 </tr>
                             @endforeach
