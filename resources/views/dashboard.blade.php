@@ -4,9 +4,9 @@
         <div class="flex flex-wrap justify-center w-full gap-8 px-4 pt-8">
 
             <!-- Últimos libros -->
-            <div class="w-full sm:w-80 md:w-96">
-                <div class="p-6 bg-gray-800 text-white rounded-lg shadow-xl transition duration-300">
-                    <h2 class="text-white text-3xl mb-4 text-center font-semibold">Últimos 5 libros</h2>
+            <div class="w-full sm:w-72 md:w-96">
+                <div class="p-4 sm:p-6 bg-gray-800 text-white rounded-lg shadow-xl transition duration-300">
+                    <h2 class="text-2xl sm:text-3xl mb-4 text-center font-semibold">Últimos 5 libros</h2>
                     <ol class="list-decimal pl-6">
                         @foreach ($ultimosLibros as $libro)
                             <li>
@@ -26,9 +26,9 @@
             </div>
 
             <!-- Últimos hechizos -->
-            <div class="w-full sm:w-80 md:w-96">
-                <div class="p-6 bg-gray-800 text-white rounded-lg shadow-xl transition duration-300">
-                    <h2 class="text-white text-3xl mb-4 text-center font-semibold">Últimos 5 hechizos</h2>
+            <div class="w-full sm:w-72 md:w-96">
+                <div class="p-4 sm:p-6 bg-gray-800 text-white rounded-lg shadow-xl transition duration-300">
+                    <h2 class="text-2xl sm:text-3xl mb-4 text-center font-semibold">Últimos 5 hechizos</h2>
                     <ol class="list-decimal pl-6">
                         @foreach ($ultimosHechizos as $hechizo)
                             <li>
@@ -48,9 +48,9 @@
             </div>
 
             <!-- Últimos objetos -->
-            <div class="w-full sm:w-80 md:w-96">
-                <div class="p-6 bg-gray-800 text-white rounded-lg shadow-xl transition duration-300">
-                    <h2 class="text-white text-3xl mb-4 text-center font-semibold">Últimos 5 objetos</h2>
+            <div class="w-full sm:w-72 md:w-96">
+                <div class="p-4 sm:p-6 bg-gray-800 text-white rounded-lg shadow-xl transition duration-300">
+                    <h2 class="text-2xl sm:text-3xl mb-4 text-center font-semibold">Últimos 5 objetos</h2>
                     <ol class="list-decimal pl-6">
                         @foreach ($ultimosObjetos as $objeto)
                             <li>

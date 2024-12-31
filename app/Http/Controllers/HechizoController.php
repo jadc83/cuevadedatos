@@ -50,6 +50,7 @@ class HechizoController extends Controller
         $hechizo->categoria_id = $request->categoria_id;
         $hechizo->save();
 
+
         return redirect()-> route('hechizos.index');
     }
 
@@ -58,7 +59,6 @@ class HechizoController extends Controller
      */
     public function show(Hechizo $hechizo)
     {
-        // Si solo necesitas un hechizo relacionado con el user_id, usa 'first()'
         $ejemplar = Hechizo::where('user_id', $hechizo->user_id)->first();
         $uploader = User::where('id', $ejemplar->user_id)->first(['name']);
 
@@ -98,17 +98,11 @@ class HechizoController extends Controller
      */
     public function destroy($id)
     {
-        // Encuentra el hechizo
-        $hechizo = Hechizo::findOrFail($id);
-
-        // Desasocia todos los libros del hechizo
-        $hechizo->libros()->detach(); // Asegúrate de que la relación 'libros' esté definida en el modelo Hechizo
-
-        // Elimina el hechizo
+        $hechizo = Hechizo::find($id);
+        $hechizo->libros()->detach();
         $hechizo->delete();
 
-        // Redirige con un mensaje de éxito
-        return redirect()->route('hechizos.index')->with('success', 'Hechizo eliminado correctamente.');
+        return redirect()->route('hechizos.index')->with('exito', 'Hechizo eliminado correctamente.');
     }
 
 }

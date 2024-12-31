@@ -1,42 +1,43 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gray-900 p-6" style="background-image: url('/images/cthulhu.jpg'); background-size: cover; background-position: center;">
+    <div class="min-h-screen bg-gray-900 p-2" style="background-image: url('/images/fondo_hechizos.jpeg'); background-size: cover; background-position: center;">
         <div class="w-full max-w-5xl mx-auto p-6 bg-transparent rounded-lg">
             <main class="bg-transparent">
-                <!-- Mensaje de error -->
-                @if (session('error'))
-                    <div class="mb-6 p-4 text-red-800 rounded-lg bg-red-100 border border-red-300">
-                        {{ session('error') }}
+
+                @if (session('exito'))
+                    <div class="mb-6 p-4 text-white rounded-lg bg-blue-600">
+                        {{ session('exito') }}
                     </div>
                 @endif
 
                 <!-- Título y buscador -->
-                <div class="mb-8">
-                    <form method="GET" action="{{ route('hechizos.index') }}" class="mb-4 mt-4">
+                <div class="mb-2">
+                    <form method="GET" action="{{ route('hechizos.index') }}" class="mb-4">
                         <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar hechizos..." class="form-input">
                         <x-primary-button>Buscar</x-primary-button>
                     </form>
                 </div>
 
                 <!-- Tabla de hechizos -->
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <div class="bg-gradient-to-t from-orange-600 via-orange-700 to-transparent opacity-80 shadow-lg shadow-orange-400/50 rounded-lg p-6 text-white font-semibold">
                     <table class="w-full text-white border-collapse">
-                        <!-- Cabecera de la tabla -->
+                        <!-- Encabezados de la tabla -->
                         <thead>
-                            <tr class="bg-gray-800">
-                                <th class="text-left px-4 py-2 text-blue-400">Nombre</th>
-                                <th class="text-left px-4 py-2 text-blue-400">Categoría</th>
+                            <tr class="text-black bg-white font-semibold border-b-4 border-gray-700 text-center">
+                                <th class="text-left px-4 py-3">Nombre</th>
+                                <th class="text-left px-4 py-3">Categoria</th>
                             </tr>
                         </thead>
                         <!-- Cuerpo de la tabla -->
                         <tbody>
                             @foreach ($hechizos as $hechizo)
-                                <tr class="border-b border-gray-700 hover:bg-gray-700 transition duration-300">
-                                    <td class="px-4 py-2 text-gray-300 font-semibold">
-                                        <a href="{{ route('hechizos.show', $hechizo) }}" class="hover:text-blue-400">
-                                            {{ ucfirst($hechizo->nombre) }}
+                                <tr>
+                                    <td class="pl-4 text-gray-300 font-semibold bg-white">
+                                        <a href="{{ route('hechizos.show', $hechizo) }}" class="text-black hover:underline">
+                                            {{ $hechizo->nombre }}
                                         </a>
                                     </td>
-                                    <td class="px-4 py-2 text-gray-300">{{ $hechizo->categoria->nombre }}</td>
+                                    <td class="px-4 py-4 text-black bg-white">{{ $hechizo->nombre }}</td>
+                                    <td class="px-4 py-3 text-black bg-white">{{ $hechizo->categoria }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -44,7 +45,7 @@
                 </div>
 
                 <!-- Paginación -->
-                <div class="mt-8 text-white">
+                <div class="mt-8">
                     {{ $hechizos->links('pagination::tailwind') }}
                 </div>
             </main>

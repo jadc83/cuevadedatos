@@ -1,11 +1,6 @@
 <x-app-layout>
     <div class="min-h-screen flex items-center justify-center p-6" style="background-image: url('/images/editar.jpg');">
         <div class="bg-opacity-90 bg-gray-800 shadow-2xl rounded-lg p-8 border border-purple-700 w-full max-w-3xl space-y-6">
-            @if (session('error'))
-                <div class="p-4 mb-4 bg-red-800 text-white rounded-md shadow-md">
-                    {{ session('error') }}
-                </div>
-            @endif
 
             @if (session('exito'))
                 <div class="p-4 mb-4 bg-green-800 text-white rounded-md shadow-md">

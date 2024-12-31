@@ -154,7 +154,7 @@ class LibroController extends Controller
     {
         $libro->hechizos()->detach();
         $libro->delete();
-        return redirect()->route('libros.index')->with('success', 'Libro eliminado con éxito.');
+        return redirect()->route('libros.index')->with('exito', 'Libro eliminado con éxito.');
     }
 
 }

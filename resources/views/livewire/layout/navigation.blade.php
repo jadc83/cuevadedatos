@@ -20,24 +20,60 @@ new class extends Component
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-red-500">
+            <div class="flex justify-between items-center p-4 bg-gray-900 shadow-lg">
+                <!-- Menú de navegación -->
+                <div class="hidden sm:flex space-x-6">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-xs sm:text-sm text-white hover:text-red-500">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('libros.index')" :active="request()->routeIs('libros')" class="text-white hover:text-green-600">
+                    <x-nav-link :href="route('libros.index')" :active="request()->routeIs('libros')" class="text-xs sm:text-sm text-white hover:text-green-600">
                         {{ __('Libros') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')" class="text-white hover:text-indigo-500">
+                    <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')" class="text-xs sm:text-sm text-white hover:text-indigo-500">
                         {{ __('Hechizos') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')" class="text-white hover:text-orange-500">
+                    <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')" class="text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Objetos') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Menú móvil (hamburguesa) -->
+                <div class="sm:hidden">
+                    <button class="text-white focus:outline-none" id="navbar-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Menú desplegable en móviles -->
+                <div class="sm:hidden hidden" id="navbar-menu">
+                    <div class="space-y-4 mt-4">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="block text-xs sm:text-sm text-white hover:text-red-500">
+                            {{ __('Home') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('libros.index')" :active="request()->routeIs('libros')" class="block text-xs sm:text-sm text-white hover:text-green-600">
+                            {{ __('Libros') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')" class="block text-xs sm:text-sm text-white hover:text-indigo-500">
+                            {{ __('Hechizos') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')" class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                            {{ __('Objetos') }}
+                        </x-nav-link>
+                    </div>
+                </div>
             </div>
+
+            <script>
+                // Script para mostrar/ocultar el menú en dispositivos móviles
+                document.getElementById('navbar-toggle').addEventListener('click', function () {
+                    const menu = document.getElementById('navbar-menu');
+                    menu.classList.toggle('hidden');
+                });
+            </script>
+
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

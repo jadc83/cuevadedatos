@@ -1,5 +1,16 @@
 <x-app-layout>
     <div class="min-h-screen bg-gray-900 flex items-center justify-center p-6">
+        @if (session('error'))
+        <div class="p-4 mb-4 bg-red-800 text-white rounded-md shadow-md">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if (session('exito'))
+        <div class="p-4 mb-4 bg-green-800 text-white rounded-md shadow-md">
+            {{ session('exito') }}
+        </div>
+    @endif
         <form method="POST" action="{{ route('hechizos.update', $hechizo) }}" class="bg-gray-800 bg-opacity-90 shadow-2xl rounded-lg p-8 border border-purple-700 w-full max-w-2xl space-y-6">
             @method('PUT')
             @csrf
