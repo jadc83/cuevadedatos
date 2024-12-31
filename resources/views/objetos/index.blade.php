@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-h-screen h-full bg-gray-900 p-2" style="background-image: url('/images/fondo_objetos.jpeg'); background-size: cover; background-position: center;">
+    <div class="min-h-screen h-full bg-gray-900 p-2" style="background-image: url('/images/fondo_objetos.jpeg'); background-size: cover; background-position: center;">
         <div class="w-full max-w-5xl mx-auto p-2 bg-transparent rounded-lg">
 
             <form method="GET" action="{{ route('objetos.index') }}" class="mb-4 mt-4">
