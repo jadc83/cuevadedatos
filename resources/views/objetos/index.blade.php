@@ -1,31 +1,34 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gray-900 p-6" style="background-image: url('/images/cthulhu.jpg'); background-size: cover; background-position: center;">
-        <div class="w-full max-w-5xl mx-auto p-6 bg-transparent rounded-lg">
+    <div class="max-h-screen h-[47.6em] bg-gray-900 p-2" style="background-image: url('/images/fondo_objetos.jpeg'); background-size: cover; background-position: center;">
+        <div class="w-full max-w-5xl mx-auto p-2 bg-transparent rounded-lg">
+
             <form method="GET" action="{{ route('objetos.index') }}" class="mb-4 mt-4">
                 <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar objetos..."
                     class="form-input">
                 <x-primary-button>Buscar</x-primary-button>
             </form>
 
-            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+
+            <!-- Tabla de objetos -->
+            <div class="bg-gradient-to-t from-gray-600 via-gray-700 to-transparent opacity-80 shadow-lg shadow-gray-400/50 rounded-lg p-4 text-white font-semibold">
                 <table class="w-full text-white border-collapse">
-                    <!-- Cabecera de la tabla -->
+                    <!-- Encabezados de la tabla -->
                     <thead>
-                        <tr class="bg-gray-800">
-                            <th class="text-left px-4 py-2 text-blue-400">Denominación</th>
-                            <th class="text-left px-4 py-2 text-blue-400">Valor</th>
+                        <tr class="text-black font-space bg-white font-semibold border-b-4 border-gray-700 text-center">
+                            <th class="text-left px-4 py-3 text-xl">Denominación</th>
+                            <th class="text-left px-4 py-3 text-xl">Valor</th>
                         </tr>
                     </thead>
                     <!-- Cuerpo de la tabla -->
                     <tbody>
                         @foreach ($objetos as $objeto)
-                            <tr class="border-b border-gray-700 hover:bg-gray-700 transition duration-300">
-                                <td class="px-4 py-2 text-gray-300 font-semibold">
-                                    <a href="{{ route('objetos.show', $objeto) }}" class="hover:text-blue-400">
+                            <tr>
+                                <td class="pl-4 text-gray-300 font-semibold bg-white">
+                                    <a href="{{ route('objetos.show', $objeto) }}" class="text-black hover:underline">
                                         {{ $objeto->denominacion }}
                                     </a>
                                 </td>
-                                <td class="px-4 py-2 text-gray-300">${{ $objeto->valor }}</td>
+                                <td class="px-4 py-3 text-black bg-white">${{ $objeto->valor }}</td>
                             </tr>
                         @endforeach
                     </tbody>

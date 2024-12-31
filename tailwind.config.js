@@ -14,6 +14,7 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 lakki: ['Lakki Reddy', 'cursive'],
+                space: ['Space Grotesk', 'sans-serif'],
             },
         },
     },

@@ -11,7 +11,7 @@
                 <table class="w-full text-white border-collapse">
                     <!-- Encabezados de la tabla -->
                     <thead>
-                        <tr class="text-black bg-white font-semibold border-b-4 border-gray-700 text-center">
+                        <tr class="text-black font-space bg-white font-semibold border-b-4 border-gray-700 text-center text-xl">
                             <th class="text-left px-4 py-3">Título</th>
                             <th class="text-left px-4 py-3">Idioma</th>
                             <th class="text-left px-4 py-3">+ Mitos</th>

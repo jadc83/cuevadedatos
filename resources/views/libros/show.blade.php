@@ -12,17 +12,11 @@
     <div class="min-h-screen bg-cover bg-center" style="background-image: url('/images/editar.jpg');">
         <div class="bg-black bg-opacity-70 p-10 flex items-center justify-center">
             <div class="w-full max-w-4xl bg-gray-850 rounded-lg shadow-lg overflow-hidden">
-                <header class="bg-gray-700 bg-opacity-45 p-8 text-center border-b-4 border-indigo-600">
-                    <h1 class="text-6xl font-extrabold text-white tracking-wider uppercase">{{ ucfirst($libro->titulo) }}
-                    </h1>
-                </header>
-
                 <main class="p-8 space-y-10">
                     <!-- Sección de detalles -->
                     <section class="bg-gray-800 p-6 bg-opacity-45 rounded-lg shadow-md border-l-4 border-indigo-500">
-                        <h2 class="text-4xl font-semibold text-indigo-400 text-center mb-6">Detalles del Tomo</h2>
+                        <h2 class="text-4xl font-semibold text-indigo-400 text-center mb-6">Detalles de {{ ucfirst($libro->titulo) }}</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10 text-gray-300">
-                            <div><strong>Título:</strong> {{ ucfirst($libro->titulo) }}</div>
                             <div><strong>Autor:</strong> {{ ucfirst($libro->autor) }}</div>
                             <div><strong>Idioma:</strong> {{ ucfirst($libro->idioma) }}</div>
                             <div><strong>Año de Publicación:</strong> {{ $libro->anyo }}</div>

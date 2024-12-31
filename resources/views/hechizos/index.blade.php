@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="min-h-screen bg-gray-900 p-2" style="background-image: url('/images/fondo_hechizos.jpeg'); background-size: cover; background-position: center;">
-        <div class="w-full max-w-5xl mx-auto p-6 bg-transparent rounded-lg">
+        <div class="w-full max-w-5xl mx-auto p-2 bg-transparent rounded-lg">
             <main class="bg-transparent">
 
                 @if (session('exito'))
@@ -18,11 +18,11 @@
                 </div>
 
                 <!-- Tabla de hechizos -->
-                <div class="bg-gradient-to-t from-orange-600 via-orange-700 to-transparent opacity-80 shadow-lg shadow-orange-400/50 rounded-lg p-6 text-white font-semibold">
+                <div class="bg-gradient-to-t from-orange-600 via-orange-700 to-transparent opacity-80 shadow-lg shadow-orange-400/50 rounded-lg p-4 text-white font-semibold">
                     <table class="w-full text-white border-collapse">
                         <!-- Encabezados de la tabla -->
                         <thead>
-                            <tr class="text-black bg-white font-semibold border-b-4 border-gray-700 text-center">
+                            <tr class="text-black text-xl font-space bg-white font-semibold border-b-4 border-gray-700 text-center">
                                 <th class="text-left px-4 py-3">Nombre</th>
                                 <th class="text-left px-4 py-3">Categoria</th>
                             </tr>
