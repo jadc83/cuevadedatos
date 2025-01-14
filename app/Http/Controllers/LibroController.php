@@ -92,6 +92,7 @@ class LibroController extends Controller
 
         $ejemplar = Libro::where('user_id', $libro->user_id)->get();
         $uploader = User::where('id', $ejemplar[0]->user_id)->first(['name']); // Usar 'first()' para obtener un solo usuario
+        dd($uploader);
 
         return view('libros.show', ['libro'=> $libro, 'uploader' => $uploader]);
     }

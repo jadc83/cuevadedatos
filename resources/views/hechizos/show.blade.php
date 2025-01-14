@@ -82,7 +82,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="text-white"><strong>Uploader: {{ ucfirst($uploader) }}</div>
+
             </div>
 
             <div class="flex justify-between mt-6">

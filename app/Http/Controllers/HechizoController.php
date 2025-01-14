@@ -60,9 +60,8 @@ class HechizoController extends Controller
     public function show(Hechizo $hechizo)
     {
         $ejemplar = Hechizo::where('user_id', $hechizo->user_id)->first();
-        $uploader = User::where('id', $ejemplar->user_id)->first(['name']);
 
-        return view('hechizos.show', ['hechizo' => $hechizo, 'uploader' => $uploader]);
+        return view('hechizos.show', ['hechizo' => $hechizo]);
     }
 
 
