@@ -22,9 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
+
     $ultimosLibros = Libro::orderBy('created_at', 'desc')->limit(5)->get();
     $ultimosHechizos = Hechizo::orderBy('created_at', 'desc')->limit(5)->get();
     $ultimosObjetos = Objeto::orderBy('created_at', 'desc')->limit(5)->get();
+
     return view('dashboard', ['ultimosLibros' => $ultimosLibros, 'ultimosHechizos' => $ultimosHechizos, 'ultimosObjetos' => $ultimosObjetos]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

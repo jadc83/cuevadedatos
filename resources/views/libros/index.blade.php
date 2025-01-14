@@ -14,8 +14,6 @@
                         <tr class="text-black font-space bg-white font-semibold border-b-4 border-gray-700 text-center text-xl">
                             <th class="text-left px-4 py-3">Título</th>
                             <th class="text-left px-4 py-3">Idioma</th>
-                            <th class="text-left px-4 py-3">+ Mitos</th>
-                            <th class="text-left px-4 py-3">- Cordura</th>
                         </tr>
                     </thead>
                     <!-- Cuerpo de la tabla -->
@@ -28,8 +26,6 @@
                                     </a>
                                 </td>
                                 <td class="px-4 py-4 text-black bg-white">{{ $libro->idioma }}</td>
-                                <td class="px-4 py-3 text-black bg-white">+{{ $libro->mitos }}%</td>
-                                <td class="px-4 py-3 text-black bg-white">-{{ $libro->coste_cordura }} COR</td>
                             </tr>
                         @endforeach
                     </tbody>
