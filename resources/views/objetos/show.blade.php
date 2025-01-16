@@ -17,7 +17,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10 text-gray-300">
                             <div><strong>Denominación:</strong> {{ ucfirst($objeto->denominacion) }}</div>
                             <div><strong>Descripcion:</strong> {{ ucfirst($objeto->descripcion) }}</div>
-                            <div><strong>Efecto:</strong> {{ ucfirst($objeto->Efecto) }}</div>
+                            <div><strong>Efecto:</strong> {{ ucfirst($objeto->efecto) }}</div>
                             <div><strong>Valor:</strong> {{ $objeto->valor }}</div>
                         </div>
                     </section>
