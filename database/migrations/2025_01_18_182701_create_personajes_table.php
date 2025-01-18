@@ -32,6 +32,7 @@ return new class extends Migration
             $table->integer('ingresos')->nullable();
             $table->integer('ahorros');
             $table->integer('efectivo');
+            $table->boolean('vivo')->default(true);
             $table->timestamps();
         });
     }

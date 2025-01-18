@@ -25,6 +25,7 @@
                                     <th>Nombre</th>
                                     <th>Profesión</th>
                                     <th>Nacionalidad</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <!-- Cuerpo de la tabla -->
@@ -34,7 +35,11 @@
                                         <td class="text-black bg-white text-xs pl-2 pt-4"> <!-- Añadido padding a la izquierda -->
                                             <div class="flex justify-center items-center mb-6">
                                                 @if($personaje->foto)
-                                                    <img src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}" class="w-32 h-20 object-cover rounded-lg">
+                                                    @if($personaje->estado)
+                                                        <img src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}" class="w-32 h-20 object-cover rounded-lg">
+                                                    @else
+                                                        <img src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}" class="w-32 h-20 object-cover rounded-lg grayscale">
+                                                    @endif
                                                 @else
                                                     <p class="text-gray-500">No hay foto disponible</p>
                                                 @endif
@@ -49,6 +54,12 @@
 
                                         <td class="px-4 py-3 text-black bg-white text-xs">{{ $personaje->profesion }}</td>
                                         <td class="px-4 py-3 text-black bg-white text-xs">{{ $personaje->nacionalidad }}</td>
+                                        <td class="px-4 py-3 text-black bg-white text-xs">
+                                            <div>
+                                                <x-primary-button>Morir</x-primary-button>
+                                                <x-primary-button>Objetos</x-primary-buttonx>
+                                            </div>
+                                        </td>
 
                                     </tr>
                                 @endforeach

@@ -42,37 +42,55 @@ class PersonajeController extends Controller
     {
         $personaje = new Personaje();
 
-        // Asignar los valores del formulario
-        $personaje->user_id = $request->user_id;
-        $personaje->nombre = $request->nombre;
-        $personaje->profesion = $request->profesion;
-        $personaje->edad = $request->edad;
-        $personaje->nacionalidad = $request->nacionalidad;
-        $personaje->estudios = $request->estudios;
-        $personaje->fue = $request->fue;
-        $personaje->con = $request->con;
-        $personaje->des = $request->des;
-        $personaje->tam = $request->tam;
-        $personaje->apa = $request->apa;
-        $personaje->int = $request->int;
-        $personaje->pod = $request->pod;
-        $personaje->edu = $request->edu;
-        $personaje->cor = $request->cor;
-        $personaje->cordura_maxima = $request->cordura_maxima;
-        $personaje->ingresos = $request->ingresos;
-        $personaje->ahorros = $request->ahorros;
-        $personaje->efectivo = $request->efectivo;
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id|',
+            'nombre' => 'required|string|max:50',
+            'profesion' => 'string|max:100|nullable',
+            'edad' => 'integer|between:0,999999|nullable',
+            'nacionalidad' => 'string|max:255|nullable',
+            'estudios' => 'string|max:255|nullable',
+            'fue' => 'required|integer|between:3, 9999',
+            'con' => 'required|integer|between:3, 9999',
+            'des' => 'required|integer|between:3, 9999',
+            'tam' => 'required|integer|between:6, 9999',
+            'int' => 'required|integer|between:6, 9999',
+            'pod' => 'required|integer|between:3, 9999',
+            'edu' => 'required|integer|between:6, 9999',
+            'cor' => 'required|integer|between:3, 99',
+            'cordura_maxima' => 'required|integer|between:0, 99',
+            'ingresos' => 'nullable|numeric',
+            'ahorros' => 'nullable|numeric',
+            'efectivo' => 'nullable|numeric',
+        ]);
 
-        // Manejar la foto si fue cargada
+        $validated['user_id'] = $request->user_id;
+        $validated['nombre'] = $request->nombre;
+        $validated['profesion'] = $request->profesion;
+        $validated['edad'] = $request->edad;
+        $validated['coste_tiempo'] = $request->coste_tiempo;
+        $validated['nacionalidad'] = $request->nacionalidad;
+        $validated['fue'] = $request->fue;
+        $validated['con'] = $request->con;
+        $validated['des'] = $request->des;
+        $validated['tam'] = $request->tam;
+        $validated['apa'] = $request->apa;
+        $validated['pod'] = $request->pod;
+        $validated['edu'] = $request->edu;
+        $validated['cor'] = $request->cor;
+        $validated['cordura_maxima'] = $request->cordura_maxima;
+        $validated['efectivo'] = $request->efectivo;
+        $validated['ingresos'] = $request->ingresos;
+        $validated['ahorros'] = $request->ahorros;
+
+        $personaje = new Personaje();
+        $personaje->fill($validated);
+
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('fotos', 'public'); // Guardar en storage/app/public/fotos
             $personaje->foto = $fotoPath; // Asignar la ruta al modelo
         }
 
-        // Guardar el personaje en la base de datos
         $personaje->save();
-
-        // Redirigir al índice con un mensaje de éxito (opcional)
         return redirect()->route('personajes.index')->with('success', 'Personaje creado con éxito.');
     }
 
@@ -81,9 +99,7 @@ class PersonajeController extends Controller
      */
     public function show(Personaje $personaje)
     {
-        $usuario = Auth::User();
-        $habilidades = $usuario->habilidades;
-        return view('personajes.show', ['habilidades'=> $habilidades, 'personaje' => $personaje]);
+        return view('personajes.show', ['personaje' => $personaje]);
     }
 
     /**
