@@ -35,6 +35,9 @@ new class extends Component
                     <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')" class="text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Objetos') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('habilidades.index')" :active="request()->routeIs('habilidades')" class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                        {{ __('Habilidades') }}
+                    </x-nav-link>
                 </div>
 
                 <!-- Menú móvil (hamburguesa) -->
@@ -58,8 +61,8 @@ new class extends Component
                         <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')" class="block text-xs sm:text-sm text-white hover:text-indigo-500">
                             {{ __('Hechizos') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')" class="block text-xs sm:text-sm text-white hover:text-orange-500">
-                            {{ __('Objetos') }}
+                        <x-nav-link :href="route('habilidades.index')" :active="request()->routeIs('habilidades')" class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                            {{ __('Habilidades') }}
                         </x-nav-link>
                     </div>
                 </div>
