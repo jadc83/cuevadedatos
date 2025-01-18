@@ -4,11 +4,13 @@ use App\Http\Controllers\HabilidadController;
 use App\Http\Controllers\HechizoController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\ObjetoController;
+use App\Http\Controllers\PersonajeController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Habilidad;
 use App\Models\Hechizo;
 use App\Models\Libro;
 use App\Models\Objeto;
+use App\Models\Personaje;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +32,9 @@ Route::get('/', function () {
     $ultimosHechizos = Hechizo::orderBy('created_at', 'desc')->limit(5)->get();
     $ultimosObjetos = Objeto::orderBy('created_at', 'desc')->limit(5)->get();
     $ultimasHabilidades = Habilidad::orderBy('created_at', 'desc')->limit(5)->get();
+    $ultimosPersonajes = Personaje::orderBy('created_at', 'desc')->limit(5)->get();
 
-    return view('dashboard', ['ultimosLibros' => $ultimosLibros, 'ultimosHechizos' => $ultimosHechizos, 'ultimosObjetos' => $ultimosObjetos, 'ultimasHabilidades' => $ultimasHabilidades]);
+    return view('dashboard', ['ultimosLibros' => $ultimosLibros, 'ultimosPersonajes' => $ultimosPersonajes, 'ultimosHechizos' => $ultimosHechizos, 'ultimosObjetos' => $ultimosObjetos, 'ultimasHabilidades' => $ultimasHabilidades]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -42,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('hechizos', HechizoController::class);
     Route::resource('libros', LibroController::class);
     Route::resource('objetos', ObjetoController::class);
+    Route::resource('personajes', PersonajeController::class);
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
     Route::resource('habilidades', HabilidadController::class)->parameters([
