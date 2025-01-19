@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\HabilidadController;
 use App\Http\Controllers\HechizoController;
 use App\Http\Controllers\LibroController;
@@ -46,11 +47,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('libros', LibroController::class);
     Route::resource('objetos', ObjetoController::class);
     Route::resource('personajes', PersonajeController::class);
+    Route::resource('comentarios', ComentarioController::class);
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
     Route::resource('habilidades', HabilidadController::class)->parameters([
-        'habilidades' => 'habilidad',  // Cambiar el parámetro a 'habilidad' en lugar de 'habilidade'
+        'habilidades' => 'habilidad',
     ]);
+    Route::get('/personajes/{id}/informacion', [PersonajeController::class, 'informacion'])->name('personajes.informacion');
 
 
 });

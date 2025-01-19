@@ -50,8 +50,8 @@ class LibroController extends Controller
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
             'idioma' => 'required|string|max:50',
-            'descripcion' => 'required|string|max:2000',
-            'coste_cordura' => 'required',
+            'descripcion' => 'required|string|max:4000',
+            'coste_cordura' => 'required|string|max:50',
             'coste_tiempo' => 'required',
             'mitos' => 'required',
             'autor' => 'required|string|max:50',

@@ -99,9 +99,16 @@ class PersonajeController extends Controller
      */
     public function show(Personaje $personaje)
     {
+
         return view('personajes.show', ['personaje' => $personaje]);
     }
 
+    public function informacion($id)
+    {
+        $investigadores = Personaje::all();
+        $personaje = Personaje::find($id);
+        return view('personajes.informacion', ['personaje' => $personaje, 'investigadores' => $investigadores]);
+    }
     /**
      * Show the form for editing the specified resource.
      */

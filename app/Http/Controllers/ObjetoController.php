@@ -40,8 +40,8 @@ class ObjetoController extends Controller
     {
         $validated = $request->validate([
             'denominacion' => 'required|string|max:255',
-            'descripcion' => 'required|string|max:2000',
-            'efecto' => 'nullable|string|max:2000',
+            'descripcion' => 'required|string|max:4000',
+            'efecto' => 'nullable|string|max:4000',
             'valor' => 'nullable',
         ]);
 

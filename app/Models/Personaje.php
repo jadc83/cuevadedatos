@@ -23,5 +23,10 @@ class Personaje extends Model
                             'pod',
                             'ahorros',
                             'ingresos'];
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'comentable');
+    }
     //
 }

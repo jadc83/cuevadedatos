@@ -8,12 +8,31 @@
                 @endif
 
                 <!-- Título y buscador -->
-                <div class="mb-2">
+                <div class="mb-2 flex">
                     <form method="GET" action="{{ route('personajes.index') }}" class="mb-4">
                         <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar personajes..." class="form-input">
                         <x-primary-button>Buscar</x-primary-button>
                     </form>
+
+                    <select name="selectorPj" id="selectorPj" class="w-[14em] p-2 h-8 text-sm m-2 ml-auto">
+                        @foreach ($personajes as $personaje)
+                            <option value="{{ $personaje->id }}">
+                                {{ $personaje->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <form action="" method="get">
+                        <x-primary-button>Comprar</x-primary-button>
+                    </form>
+
+
+                    <form action="" method="get">
+                        <x-primary-button>Mensajes</x-primary-button>
+                    </form>
                 </div>
+
+
 
                 <!-- Tabla de personajes -->
                     <div class="w-full">
@@ -56,8 +75,11 @@
                                         <td class="px-4 py-3 text-black bg-white text-xs">{{ $personaje->nacionalidad }}</td>
                                         <td class="px-4 py-3 text-black bg-white text-xs">
                                             <div>
-                                                <x-primary-button>Morir</x-primary-button>
                                                 <x-primary-button>Objetos</x-primary-buttonx>
+                                                <x-primary-button>Habilidades</x-primary-buttonx>
+                                                    <a href="{{ route('personajes.informacion', $personaje) }}" class="btn btn-primary">
+                                                        Ver Información
+                                                    </a>
                                             </div>
                                         </td>
 

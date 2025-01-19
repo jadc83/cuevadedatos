@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
+        @livewireStyles
         <title>{{ config('app.name', 'Cueva de datos') }}</title>
 
         <!-- Fonts -->
@@ -27,6 +27,9 @@
                     </div>
                 </header>
             @endif
+            @yield('content')
+
+            @livewireScripts
 
             <!-- Page Content -->
             <main>

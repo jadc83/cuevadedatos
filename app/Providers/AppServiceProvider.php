@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Personaje;
+use Illuminate\Support\Facades\View as FacadesView;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $personajes = Personaje::all();
+        FacadesView::share('personajes', $personajes);
     }
 }
