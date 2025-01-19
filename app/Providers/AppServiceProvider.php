@@ -21,7 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $personajes = Personaje::all();
-        FacadesView::share('personajes', $personajes);
+
     }
 }
