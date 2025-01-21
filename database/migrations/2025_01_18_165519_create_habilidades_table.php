@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('habilidades', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('objeto_id')->constrained();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->integer('acierto_base');
             $table->timestamps();
         });
     }

@@ -41,14 +41,12 @@ class ObjetoController extends Controller
         $validated = $request->validate([
             'denominacion' => 'required|string|max:255',
             'descripcion' => 'required|string|max:4000',
-            'efecto' => 'nullable|string|max:4000',
             'valor' => 'nullable',
         ]);
 
         $objeto = new Objeto();
         $validated['denominacion'] = $request->denominacion;
         $validated['descripcion'] = $request->descripcion;
-        $validated['efecto'] = $request->efecto;
         $validated['valor'] = $request->valor;
         $objeto = new Objeto();
         $objeto->fill($validated);
@@ -81,7 +79,6 @@ class ObjetoController extends Controller
     {
         $objeto->denominacion = $request->denominacion;
         $objeto->descripcion = $request->descripcion;
-        $objeto->efecto = $request->efecto;
         $objeto->valor = $request->valor;
         $objeto->save();
 

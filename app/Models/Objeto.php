@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Objeto extends Model
 {
-    protected $fillable = ['denominacion', 'descripcion', 'efecto', 'valor'];
+    protected $fillable = ['denominacion', 'descripcion', 'valor'];
+
+    public function habilidades()
+    {
+        return $this->hasMany(Habilidad::class);
+    }
 }

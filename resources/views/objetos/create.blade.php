@@ -21,12 +21,7 @@
 
                     <div class="flex flex-col">
                         <label for="descripcion" class="text-gray-300">Descripción</label>
-                        <textarea name="descripcion" id="descripcion" placeholder="Descripción" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <label for="efecto" class="text-gray-300">Efecto</label>
-                        <textarea name="efecto" id="efecto" placeholder="Efecto si lo tuviese.." class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                        <textarea name="descripcion" id="descripcion" placeholder="Descripción" class="h-64 mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
                     </div>
 
                     <div class="flex justify-center">
