@@ -3,7 +3,7 @@
         Objeto - {{ $objeto->denominacion }}
     </x-slot>
 
-    <div class="min-h-screen bg-cover bg-center" style="background-image: url('/images/editar.jpg');">
+    <div class="min-h-screen bg-cover bg-center" style="background-image: url('/images/fondo_objetos.jpeg');">
         <div class="p-10 flex items-center justify-center">
             <div class="w-full max-w-4xl bg-gray-850 rounded-lg shadow-lg overflow-hidden">
                 <!-- Encabezado -->
