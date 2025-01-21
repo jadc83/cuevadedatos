@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gray-900 bg-opacity-80 flex items-center justify-center">
+    <div class="min-h-screen bg-gray-900 bg-opacity-80 flex items-center justify-center" style="background-image: url('/images/fondo_objetos.jpeg'); background-size: cover; background-position: center;">>
         <form method="POST" action="{{ route('objetos.update', $objeto) }}" class="bg-gray-800 bg-opacity-95 shadow-lg rounded-lg p-8 border border-green-700 w-full max-w-3xl space-y-6">
             @csrf
             @method('PATCH')

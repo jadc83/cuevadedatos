@@ -140,7 +140,7 @@
 
                 <!-- Espacio para subir foto -->
                 <div class="mt-6 flex flex-col items-center bg-black p-4 rounded-md">
-                    <label class="text-white mb-2" for="foto">Subir foto</label>
+                    <label class="text-white mb-2" for="foto">Subir foto, si no se cambia se mantendra la anterior.</label>
                     <input type="file" name="foto" id="foto" accept="image/*"
                         class="text-white file-input" />
                 </div>

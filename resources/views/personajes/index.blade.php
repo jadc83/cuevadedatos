@@ -29,7 +29,7 @@
                 </form>
 
 
-                <form action="" method="get">
+                <form action="{{ route('personajes.informacion', $personaje) }}" method="get" >
                     <x-primary-button>Mensajes</x-primary-button>
                 </form>
             </div>
