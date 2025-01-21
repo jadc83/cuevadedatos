@@ -150,7 +150,7 @@
 
                 <!-- Botón de enviar -->
                 <div class="flex justify-center mt-8">
-                    <x-primary-button>Crear personaje</x-primary-button>
+                    <x-primary-button>Modificar personaje</x-primary-button>
                 </div>
             </div>
         </form>
