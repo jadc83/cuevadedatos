@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('denominacion');
             $table->text('descripcion');
-            $table->string('efecto')->nullable();
             $table->decimal('valor', 12, 2)->nullable();
 
             $table->timestamps();

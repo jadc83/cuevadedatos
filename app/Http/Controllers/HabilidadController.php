@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Habilidad;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Exists;
+use App\Models\Objeto;
+
 
 class HabilidadController extends Controller
 {
@@ -28,10 +30,9 @@ class HabilidadController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-
-        return view('habilidades.create');
+        return view('habilidades.create', ['objetos' => Objeto::all(),'objeto_id'=> $request->input('objeto_id')]);
 
     }
 
@@ -43,19 +44,22 @@ class HabilidadController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string|max:2000',
-            'acierto_base' => 'required|integer|between: 0, 500',
-
+            'objeto_id' => 'required|not_regex:/^$/'
         ]);
 
 
         $validated['nombre'] = $request->nombre;
         $validated['descripcion'] = $request->descripcion;
-        $validated['acierto_base'] = $request->acierto_base;
+        $validated['objeto_id'] = $request->objeto_id;
         $habilidad = new Habilidad();
         $habilidad->fill($validated);
         $habilidad->save();
 
-        return redirect()->route('habilidades.index');
+
+
+        $objeto = Objeto::findOrFail($request->objeto_id);
+
+        return redirect()->route('objetos.show', ['objeto' => $objeto]);
     }
 
     /**
@@ -84,12 +88,10 @@ class HabilidadController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'required|string|max:2000',
-            'acierto_base' => 'integer|between:1,500',
         ]);
 
         $validated['nombre'] = $request->nombre;
         $validated['descripcion'] = $request->descripcion;
-        $validated['acierto_base'] = $request->acierto_base;
         $habilidad->update($validated);
 
 
@@ -103,7 +105,10 @@ class HabilidadController extends Controller
     public function destroy(Habilidad $habilidad)
     {
         $habilidad->delete();
-        return redirect()->route('habilidades.index')->with('exito', 'Habilidad eliminado con éxito.');
+
+        $objeto = Objeto::findOrFail($habilidad->objeto_id);
+
+        return redirect()->route('objetos.show', ['objeto' => $objeto]);
     }
 
 }

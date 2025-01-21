@@ -9,17 +9,14 @@
             </form>
 
 
-            <!-- Tabla de objetos -->
             <div class="bg-gradient-to-t from-gray-600 via-gray-700 to-transparent opacity-80 shadow-lg shadow-gray-400/50 rounded-lg p-4 text-white font-semibold">
                 <table class="w-full text-white border-collapse">
-                    <!-- Encabezados de la tabla -->
                     <thead>
                         <tr class="text-black font-space bg-white font-semibold border-b-4 border-gray-700 text-center">
                             <th class="text-left px-4 py-3 text-xl">Denominación</th>
                             <th class="text-left px-4 py-3 text-xl">Valor</th>
                         </tr>
                     </thead>
-                    <!-- Cuerpo de la tabla -->
                     <tbody>
                         @foreach ($objetos as $objeto)
                             <tr>
@@ -35,10 +32,6 @@
                 </table>
             </div>
 
-
-
-
-            <!-- Paginación -->
             <div class="mt-8 text-white">
                 {{ $objetos->links('pagination::tailwind') }}
             </div>
