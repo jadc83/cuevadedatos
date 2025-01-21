@@ -53,6 +53,11 @@
                     <p><strong>Cordura máxima:</strong> {{ $personaje->cordura_maxima }}</p>
                 </div>
             </div>
+            <div class="flex justify-center items-center mt-6">
+                <a href="{{ route('personajes.edit', $personaje) }}" class="px-6 py-3 bg-black text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-200 transform hover:scale-[1.03]">
+                    Modificar personaje
+                </a>
+            </div>
         </div>
 
         <div class="flex justify-center items-center mt-6">

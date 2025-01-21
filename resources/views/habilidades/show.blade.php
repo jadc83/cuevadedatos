@@ -11,13 +11,11 @@
                 </header>
 
                 <main class="p-8 space-y-10">
-                    <!-- Sección de detalles -->
                     <section class="bg-gray-800 p-6 bg-opacity-45 rounded-lg shadow-md border-l-4 border-indigo-500">
                         <h2 class="text-4xl font-semibold text-indigo-400 text-center mb-6">Detalles del habilidad</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-10 text-gray-300">
                             <div><strong>Nombre:</strong> {{ ucfirst($habilidad->nombre) }}</div>
                             <div><strong>Descripcion:</strong> {{ ucfirst($habilidad->descripcion) }}</div>
-                            <div><strong>&base:</strong> {{ ucfirst($habilidad->acierto_base) }}</div>
                         </div>
                     </section>
 

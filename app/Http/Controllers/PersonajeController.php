@@ -54,6 +54,7 @@ class PersonajeController extends Controller
             'des' => 'required|integer|between:3, 9999',
             'tam' => 'required|integer|between:6, 9999',
             'int' => 'required|integer|between:6, 9999',
+            'apa' => 'required|integer|between:3, 9999',
             'pod' => 'required|integer|between:3, 9999',
             'edu' => 'required|integer|between:6, 9999',
             'cor' => 'required|integer|between:3, 99',
@@ -69,10 +70,12 @@ class PersonajeController extends Controller
         $validated['edad'] = $request->edad;
         $validated['coste_tiempo'] = $request->coste_tiempo;
         $validated['nacionalidad'] = $request->nacionalidad;
+        $validated['estudios'] = $request->estudios;
         $validated['fue'] = $request->fue;
         $validated['con'] = $request->con;
         $validated['des'] = $request->des;
         $validated['tam'] = $request->tam;
+        $validated['int'] = $request->int;
         $validated['apa'] = $request->apa;
         $validated['pod'] = $request->pod;
         $validated['edu'] = $request->edu;
@@ -82,7 +85,6 @@ class PersonajeController extends Controller
         $validated['ingresos'] = $request->ingresos;
         $validated['ahorros'] = $request->ahorros;
 
-        $personaje = new Personaje();
         $personaje->fill($validated);
 
         if ($request->hasFile('foto')) {
@@ -114,7 +116,7 @@ class PersonajeController extends Controller
      */
     public function edit(Personaje $personaje)
     {
-        //
+        return view('personajes.edit', ['personaje' => $personaje ]);
     }
 
     /**
@@ -122,7 +124,58 @@ class PersonajeController extends Controller
      */
     public function update(Request $request, Personaje $personaje)
     {
-        //
+        $validated = $request->validate([
+            'user_id' => 'required|exists:users,id|',
+            'nombre' => 'required|string|max:50',
+            'profesion' => 'string|max:100|nullable',
+            'edad' => 'integer|between:0,999999|nullable',
+            'nacionalidad' => 'string|max:255|nullable',
+            'estudios' => 'string|max:255|nullable',
+            'fue' => 'required|integer|between:3, 9999',
+            'con' => 'required|integer|between:3, 9999',
+            'des' => 'required|integer|between:3, 9999',
+            'tam' => 'required|integer|between:6, 9999',
+            'int' => 'required|integer|between:6, 9999',
+            'apa' => 'required|integer|between:3, 9999',
+            'pod' => 'required|integer|between:3, 9999',
+            'edu' => 'required|integer|between:6, 9999',
+            'cor' => 'required|integer|between:3, 99',
+            'cordura_maxima' => 'required|integer|between:0, 99',
+            'ingresos' => 'nullable|numeric',
+            'ahorros' => 'nullable|numeric',
+            'efectivo' => 'nullable|numeric',
+        ]);
+
+        $validated['user_id'] = $request->user_id;
+        $validated['nombre'] = $request->nombre;
+        $validated['profesion'] = $request->profesion;
+        $validated['edad'] = $request->edad;
+        $validated['coste_tiempo'] = $request->coste_tiempo;
+        $validated['nacionalidad'] = $request->nacionalidad;
+        $validated['estudios'] = $request->estudios;
+        $validated['fue'] = $request->fue;
+        $validated['con'] = $request->con;
+        $validated['des'] = $request->des;
+        $validated['tam'] = $request->tam;
+        $validated['int'] = $request->int;
+        $validated['apa'] = $request->apa;
+        $validated['pod'] = $request->pod;
+        $validated['edu'] = $request->edu;
+        $validated['cor'] = $request->cor;
+        $validated['cordura_maxima'] = $request->cordura_maxima;
+        $validated['efectivo'] = $request->efectivo;
+        $validated['ingresos'] = $request->ingresos;
+        $validated['ahorros'] = $request->ahorros;
+
+        $personaje->fill($validated);
+
+        if ($request->hasFile('foto')) {
+            $fotoPath = $request->file('foto')->store('fotos', 'public'); // Guardar en storage/app/public/fotos
+            $personaje->foto = $fotoPath; // Asignar la ruta al modelo
+        }
+
+        $personaje->save();
+        return redirect()->route('personajes.index');
     }
 
     /**

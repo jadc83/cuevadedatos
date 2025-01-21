@@ -12,6 +12,8 @@ class Personaje extends Model
                            'nombre' ,
                            'profesion',
                            'nacionalidad' ,
+                           'edad',
+                           'estudios',
                            'cordura_maxima',
                            'cor',
                            'fue',

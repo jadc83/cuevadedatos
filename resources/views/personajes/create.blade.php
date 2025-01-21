@@ -4,15 +4,8 @@
         <form method="POST" action="{{ route('personajes.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mx-auto w-3/4 max-w-3xl px-6 py-8 bg-gray-800 rounded-lg shadow-lg">
-                <!-- Ancho más reducido con márgenes -->
-
-                <!-- Título o encabezado -->
                 <h2 class="text-2xl text-white font-semibold mb-6 text-center">Crear Nuevo Personaje</h2>
-
-                <!-- Formulario de datos del personaje -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <!-- Columna izquierda (Datos básicos) -->
                     <div class="space-y-6">
                         <div class="flex flex-col bg-black p-4 rounded-md">
                             <label class="text-white" for="user_id">ID jugador</label>
@@ -44,9 +37,7 @@
                             <x-input-error :messages="$errors->get('efectivo')" class="mt-2" />
                         </div>
                     </div>
-
-                    <!-- Columna derecha (Datos personales) -->
-                    <div class="space-y-6">
+                    <div>
                         <div class="flex flex-col bg-black p-4 rounded-md">
                             <label class="text-white" for="nombre">Nombre</label>
                             <input type="text" name="nombre" id="nombre"  class="input-field" />
@@ -72,9 +63,6 @@
                         </div>
                     </div>
 
-                </div>
-
-                <!-- Características del personaje -->
                 <div class="mt-6 grid grid-cols-2 gap-6">
                     <div class="flex flex-col bg-black p-4 rounded-md">
                         <label class="text-white" for="fue">FUE</label>
