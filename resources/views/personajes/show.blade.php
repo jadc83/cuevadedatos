@@ -6,8 +6,8 @@
         </div>
     @endif
 
-    <div class="max-w-4xl mx-auto p-4 rounded-lg mt-4 shadow-lg">
-        <div class="bg-black p-4 rounded-lg text-white font-semibold">
+    <div class=" max-w-4xl mx-auto p-4 rounded-lg mt-4 shadow-lg">
+        <div class="bg-black p-4 px-12 rounded-lg text-white font-semibold">
             <h2 class="text-2xl font-bold text-center mb-4">{{ $personaje->nombre }}</h2>
 
             <!-- Imagen centrada -->
@@ -21,14 +21,14 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <p>Información Personal</p>
+                    <strong class="underline">Información Personal</strong>
                     <p><strong>Profesión:</strong> {{ $personaje->profesion }}</p>
                     <p><strong>Edad:</strong> {{ $personaje->edad }}</p>
                     <p><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</p>
                     <p><strong>Estudios:</strong> {{ $personaje->estudios }}</p>
                 </div>
                 <div>
-                    <p>Información Financiera</p>
+                    <strong class="underline">Información Financiera</strong>
                     <p><strong>Ingresos:</strong> ${{ $personaje->ingresos }}/año</p>
                     <p><strong>Ahorros:</strong> ${{ $personaje->ahorros }}</p>
                     <p><strong>Efectivo:</strong> ${{ $personaje->efectivo }}</p>
@@ -37,20 +37,20 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                 <div>
-                    <p>Características Físicas</p>
-                    <p><strong>Fuerza:</strong> {{ $personaje->fue }}</p>
-                    <p><strong>Constitución:</strong> {{ $personaje->con }}</p>
-                    <p><strong>Destreza:</strong> {{ $personaje->des }}</p>
-                    <p><strong>Tamaño:</strong> {{ $personaje->tam }}</p>
-                    <p><strong>Apariencia:</strong> {{ $personaje->apa }}</p>
+                    <strong class="underline">Características Físicas</strong>
+                    <p><strong>Fuerza:</strong> <span class="flex justify-between w-full">| {{ ($personaje->fue) }} | {{ floor($personaje->fue/2) }} | {{ floor($personaje->fue/5) }} |</span></p>
+                    <p><strong>Constitución:</strong> <span class="flex justify-between w-full">| {{ floor($personaje->con) }} | {{ floor($personaje->con/2) }} | {{ floor($personaje->con/5) }} |</span></p>
+                    <p><strong>Destreza:</strong> <span class="flex justify-between w-full">| {{ ($personaje->des) }} | {{ floor($personaje->des/2) }} | {{ floor($personaje->des/5) }} |</span></p>
+                    <p><strong>Tamaño:</strong> <span class="flex justify-between w-full">| {{ ($personaje->tam) }} | {{ floor($personaje->tam/2) }} | {{ floor($personaje->tam/5) }} |</span></p>
+                    <p><strong>Apariencia:</strong> <span class="flex justify-between w-full">| {{ ($personaje->apa) }} | {{ floor($personaje->apa/2) }} | {{ floor($personaje->apa/5) }} |</span></p>
                 </div>
                 <div>
-                    <p>Características Mentales</p>
-                    <p><strong>Inteligencia:</strong> {{ $personaje->int }}</p>
-                    <p><strong>Poder:</strong> {{ $personaje->pod }}</p>
-                    <p><strong>Educación:</strong> {{ $personaje->edu }}</p>
-                    <p><strong>Cordura actual:</strong> {{ $personaje->cor }}</p>
-                    <p><strong>Cordura máxima:</strong> {{ $personaje->cordura_maxima }}</p>
+                    <strong class="underline">Características Mentales</strong>
+                    <p><strong>Inteligencia:</strong> <span class="flex justify-between w-full">| {{ ($personaje->int) }} | {{ floor($personaje->int/2) }} | {{ floor($personaje->int/5) }} |</span></p>
+                    <p><strong>Poder:</strong> <span class="flex justify-between w-full">| {{ ($personaje->pod) }} | {{ floor($personaje->pod/2) }} | {{ floor($personaje->pod/5) }} |</span></p>
+                    <p><strong>Educación:</strong> <span class="flex justify-between w-full">| {{ ($personaje->edu) }} | {{ floor($personaje->edu/2) }} | {{ floor($personaje->edu/5) }} |</span></p>
+                    <p><strong>Cordura actual:</strong> <span class="flex justify-between w-full">| {{ $personaje->cor }} |</span></p>
+                    <p><strong>Cordura máxima:</strong> <span class="flex justify-between w-full">| {{ $personaje->cordura_maxima }} |</span></p>
                 </div>
             </div>
             <div class="flex justify-center items-center mt-6">
