@@ -38,6 +38,7 @@ Route::get('/', function () {
     return view('dashboard', ['ultimosLibros' => $ultimosLibros, 'ultimosPersonajes' => $ultimosPersonajes, 'ultimosHechizos' => $ultimosHechizos, 'ultimosObjetos' => $ultimosObjetos, 'ultimasHabilidades' => $ultimasHabilidades]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,7 +54,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('habilidades', HabilidadController::class)->parameters([
         'habilidades' => 'habilidad',
     ]);
+
     Route::get('/personajes/{id}/informacion', [PersonajeController::class, 'informacion'])->name('personajes.informacion');
+    Route::get('/cementerio', function () {
+        $caidos = Personaje::onlyTrashed()->get();
+        return view('personajes.cementerio', ['caidos' => $caidos]);
+    })->middleware(['auth', 'verified'])->name('cementerio');
+
+    Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
 
 
 });

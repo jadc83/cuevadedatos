@@ -13,7 +13,7 @@
             <!-- Imagen centrada -->
             <div class="flex justify-center items-center mb-6">
                 @if($personaje->foto)
-                    <img src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}" class="w-48 h-48 rounded-lg">
+                    <img class="w-44 h-48 rounded-lg" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}" >
                 @else
                     <p class="text-gray-500">No hay foto disponible</p>
                 @endif

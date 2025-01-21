@@ -30,21 +30,13 @@ new class extends Component {
                         class="text-xs sm:text-sm text-white hover:text-green-600">
                         {{ __('Libros') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')"
-                        class="text-xs sm:text-sm text-white hover:text-indigo-500">
-                        {{ __('Hechizos') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')"
-                        class="text-xs sm:text-sm text-white hover:text-orange-500">
-                        {{ __('Objetos') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('habilidades.index')" :active="request()->routeIs('habilidades')"
-                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
-                        {{ __('Habilidades') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('personajes.index')" :active="request()->routeIs('personajes')"
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Personajes') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('cementerio')" :active="request()->routeIs('cementerio')"
+                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                        {{ __('Cementerio') }}
                     </x-nav-link>
 
                 </div>
@@ -116,6 +108,18 @@ new class extends Component {
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile')" wire:navigate class="hover:bg-red-500">
                             {{ __('Profile') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('hechizos.index')" :active="request()->routeIs('hechizos')"
+                            class="text-xs sm:text-sm hover:text-indigo-500">
+                            {{ __('Hechizos') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('objetos.index')" :active="request()->routeIs('objetos')"
+                            class="text-xs sm:text-sm hover:text-orange-500">
+                            {{ __('Objetos') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('habilidades.index')" :active="request()->routeIs('habilidades')"
+                            class="block text-xs sm:text-sm hover:text-orange-500">
+                            {{ __('Habilidades') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

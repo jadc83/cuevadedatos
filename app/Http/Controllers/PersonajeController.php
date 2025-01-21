@@ -134,4 +134,13 @@ class PersonajeController extends Controller
 
         return redirect()->route('personajes.index');
     }
+
+    public function res($id)
+    {
+        $personaje = Personaje::onlyTrashed()->find($id);
+        $personaje->restore();
+
+        // Redirige a la lista de personajes
+        return redirect()->route('personajes.index')->with('success', 'Personaje restaurado correctamente.');
+    }
 }
