@@ -52,8 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('personajes', PersonajeController::class);
     Route::resource('comentarios', ComentarioController::class);
     Route::resource('familias', FamiliaController::class);
-    Route::resource('especialidades', EspecializacionController::class);
-
+    Route::resource('especializaciones', EspecializacionController::class)->parameters(['especializaciones' => 'especializacion']);
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
     Route::resource('habilidades', HabilidadController::class)->parameters([

@@ -65,7 +65,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                     <div>
                         <p><strong>Antropología:</strong> <span class="flex justify-between w-full">| {{ $personaje->antropologia }} | {{ floor($personaje->antropologia / 2) }} | {{ floor($personaje->antropologia / 5) }} |</span></p>
-                        <p><strong>Armas de fuego:</strong>
+                        <a><strong>Armas de fuego:</strong></a>
                         <p><strong>Arqueología:</strong> <span class="flex justify-between w-full">| {{ $personaje->arqueologia }} | {{ floor($personaje->arqueologia / 2) }} | {{ floor($personaje->arqueologia / 5) }} |</span></p>
                         <p><strong>Arte/Artesanía:</strong>
                         <p><strong>Buscar libros:</strong> <span class="flex justify-between w-full">| {{ $personaje->buscar_libros }} | {{ floor($personaje->buscar_libros / 2) }} | {{ floor($personaje->buscar_libros / 5) }} |</span></p>
