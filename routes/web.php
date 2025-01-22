@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\EspecializacionController;
+use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\HabilidadController;
 use App\Http\Controllers\HechizoController;
 use App\Http\Controllers\LibroController;
@@ -49,6 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('objetos', ObjetoController::class);
     Route::resource('personajes', PersonajeController::class);
     Route::resource('comentarios', ComentarioController::class);
+    Route::resource('familias', FamiliaController::class);
+    Route::resource('especialidades', EspecializacionController::class);
+
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
     Route::resource('habilidades', HabilidadController::class)->parameters([

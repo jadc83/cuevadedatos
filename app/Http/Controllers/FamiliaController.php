@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Familia;
-use App\Http\Requests\StoreFamiliaRequest;
-use App\Http\Requests\UpdateFamiliaRequest;
-
+use Illuminate\Http\Request;
 class FamiliaController extends Controller
 {
     /**
@@ -13,7 +11,7 @@ class FamiliaController extends Controller
      */
     public function index()
     {
-        //
+        return view('familias.index', ['familias' => Familia::paginate(10)]);
     }
 
     /**
@@ -21,15 +19,24 @@ class FamiliaController extends Controller
      */
     public function create()
     {
-        //
+        return view('familias.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFamiliaRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'base' => 'required|integer|between:0,9999',
+        ]);
+
+        $familia = new Familia();
+        $familia->fill($validated);
+        $familia->save();
+
+        return redirect()->route('familias.index');
     }
 
     /**
@@ -45,15 +52,23 @@ class FamiliaController extends Controller
      */
     public function edit(Familia $familia)
     {
-        //
+        return view('familias.edit', ['familia' => $familia]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFamiliaRequest $request, Familia $familia)
+    public function update(Request $request, Familia $familia)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'base' => 'required|integer|between:0,9999',
+        ]);
+
+        $familia->fill($validated);
+        $familia->save();
+
+        return redirect()->route('familias.index');
     }
 
     /**
@@ -61,6 +76,7 @@ class FamiliaController extends Controller
      */
     public function destroy(Familia $familia)
     {
-        //
+        $familia->delete();
+        return redirect()->route('familias.index');
     }
 }
