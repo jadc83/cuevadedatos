@@ -65,12 +65,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                     <div>
                         <p><strong>Antropología:</strong> <span class="flex justify-between w-full">| {{ $personaje->antropologia }} | {{ floor($personaje->antropologia / 2) }} | {{ floor($personaje->antropologia / 5) }} |</span></p>
+                        <p><strong>Armas de fuego:</strong>
                         <p><strong>Arqueología:</strong> <span class="flex justify-between w-full">| {{ $personaje->arqueologia }} | {{ floor($personaje->arqueologia / 2) }} | {{ floor($personaje->arqueologia / 5) }} |</span></p>
-                        <p><strong>Arte/Artesanía:</strong> <span class="flex justify-between w-full">| {{ $personaje->arte_artesania }} | {{ floor($personaje->arte_artesania / 2) }} | {{ floor($personaje->arte_artesania / 5) }} |</span></p>
+                        <p><strong>Arte/Artesanía:</strong>
                         <p><strong>Buscar libros:</strong> <span class="flex justify-between w-full">| {{ $personaje->buscar_libros }} | {{ floor($personaje->buscar_libros / 2) }} | {{ floor($personaje->buscar_libros / 5) }} |</span></p>
                         <p><strong>Cerrajería:</strong> <span class="flex justify-between w-full">| {{ $personaje->cerrajeria }} | {{ floor($personaje->cerrajeria / 2) }} | {{ floor($personaje->cerrajeria / 5) }} |</span></p>
                         <p><strong>Charlatanería:</strong> <span class="flex justify-between w-full">| {{ $personaje->charlataneria }} | {{ floor($personaje->charlataneria / 2) }} | {{ floor($personaje->charlataneria / 5) }} |</span></p>
+                        <p><strong>Ciencia:</strong>
                         <p><strong>Ciencias Ocultas:</strong> <span class="flex justify-between w-full">| {{ $personaje->ciencias_ocultas }} | {{ floor($personaje->ciencias_ocultas / 2) }} | {{ floor($personaje->ciencias_ocultas / 5) }} |</span></p>
+                        <p><strong>Pelea:</strong>
                         <p><strong>Conducir Automóvil:</strong> <span class="flex justify-between w-full">| {{ $personaje->conducir_automovil }} | {{ floor($personaje->conducir_automovil / 2) }} | {{ floor($personaje->conducir_automovil / 5) }} |</span></p>
                     </div>
                     <div>
@@ -89,6 +92,8 @@
                         <p><strong>Intimidar:</strong> <span class="flex justify-between w-full">| {{ $personaje->intimidar }} | {{ floor($personaje->intimidar / 2) }} | {{ floor($personaje->intimidar / 5) }} |</span></p>
                         <p><strong>Juego de Manos:</strong> <span class="flex justify-between w-full">| {{ $personaje->juego_de_manos }} | {{ floor($personaje->juego_de_manos / 2) }} | {{ floor($personaje->juego_de_manos / 5) }} |</span></p>
                         <p><strong>Lanzar:</strong> <span class="flex justify-between w-full">| {{ $personaje->lanzar }} | {{ floor($personaje->lanzar / 2) }} | {{ floor($personaje->lanzar / 5) }} |</span></p>
+                        <p><strong>Lengua propia:</strong>
+                        <p><strong>Otras lenguas:</strong>
                         <p><strong>Mecánica:</strong> <span class="flex justify-between w-full">| {{ $personaje->mecanica }} | {{ floor($personaje->mecanica / 2) }} | {{ floor($personaje->mecanica / 5) }} |</span></p>
                         <p><strong>Medicina:</strong> <span class="flex justify-between w-full">| {{ $personaje->medicina }} | {{ floor($personaje->medicina / 2) }} | {{ floor($personaje->medicina / 5) }} |</span></p>
                     </div>
@@ -98,12 +103,14 @@
                         <p><strong>Naturaleza:</strong> <span class="flex justify-between w-full">| {{ $personaje->naturaleza }} | {{ floor($personaje->naturaleza / 2) }} | {{ floor($personaje->naturaleza / 5) }} |</span></p>
                         <p><strong>Orientarse:</strong> <span class="flex justify-between w-full">| {{ $personaje->orientarse }} | {{ floor($personaje->orientarse / 2) }} | {{ floor($personaje->orientarse / 5) }} |</span></p>
                         <p><strong>Persuasión:</strong> <span class="flex justify-between w-full">| {{ $personaje->persuasion }} | {{ floor($personaje->persuasion / 2) }} | {{ floor($personaje->persuasion / 5) }} |</span></p>
+                        <p><strong>Pilotar:</strong>
                         <p><strong>Primeros Auxilios:</strong> <span class="flex justify-between w-full">| {{ $personaje->primeros_auxilios }} | {{ floor($personaje->primeros_auxilios / 2) }} | {{ floor($personaje->primeros_auxilios / 5) }} |</span></p>
                         <p><strong>Psicoanálisis:</strong> <span class="flex justify-between w-full">| {{ $personaje->psicoanalisis }} | {{ floor($personaje->psicoanalisis / 2) }} | {{ floor($personaje->psicoanalisis / 5) }} |</span></p>
                         <p><strong>Psicología:</strong> <span class="flex justify-between w-full">| {{ $personaje->psicologia }} | {{ floor($personaje->psicologia / 2) }} | {{ floor($personaje->psicologia / 5) }} |</span></p>
                         <p><strong>Saltar:</strong> <span class="flex justify-between w-full">| {{ $personaje->saltar }} | {{ floor($personaje->saltar / 2) }} | {{ floor($personaje->saltar / 5) }} |</span></p>
                         <p><strong>Seguir Rastros:</strong> <span class="flex justify-between w-full">| {{ $personaje->seguir_rastros }} | {{ floor($personaje->seguir_rastros / 2) }} | {{ floor($personaje->seguir_rastros / 5) }} |</span></p>
                         <p><strong>Sigilo:</strong> <span class="flex justify-between w-full">| {{ $personaje->sigilo }} | {{ floor($personaje->sigilo / 2) }} | {{ floor($personaje->sigilo / 5) }} |</span></p>
+                        <p><strong>Supervivencia:</strong>
                         <p><strong>Trepar:</strong> <span class="flex justify-between w-full">| {{ $personaje->trepar }} | {{ floor($personaje->trepar / 2) }} | {{ floor($personaje->trepar / 5) }} |</span></p>
                     </div>
             </div>

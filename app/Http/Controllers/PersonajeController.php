@@ -119,7 +119,6 @@ class PersonajeController extends Controller
         $validated = $request->validate([
             'antropologia' => 'required|integer|between:0, 9999',
             'arqueologia' => 'required|integer|between:0, 9999',
-            'arte_artesania' => 'required|integer|between:0, 9999',
             'buscar_libros' => 'required|integer|between:0, 9999',
             'cerrajeria' => 'required|integer|between:0, 9999',
             'charlataneria' => 'required|integer|between:0, 9999',

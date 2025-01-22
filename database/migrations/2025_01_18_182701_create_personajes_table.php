@@ -43,7 +43,6 @@ return new class extends Migration
             //habilidades
             $table->integer('antropologia')->default(1);
             $table->integer('arqueologia')->default(1);
-            $table->integer('arte_artesania')->default(5);
             $table->integer('buscar_libros')->default(20);
             $table->integer('cerrajeria')->default(1);
             $table->integer('charlataneria')->default(1);

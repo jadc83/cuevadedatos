@@ -33,7 +33,6 @@ class Personaje extends Model
         'efectivo',
         'antropologia',
         'arqueologia',
-        'arte_artesania',
         'buscar_libros',
         'cerrajeria',
         'charlataneria',

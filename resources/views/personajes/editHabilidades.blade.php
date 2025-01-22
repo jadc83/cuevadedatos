@@ -27,14 +27,6 @@
                             :value="old('arqueologia', $personaje->arqueologia)" />
                             <x-input-error :messages="$errors->get('arqueologia')" class="mt-2" />
                         </div>
-
-                        <div class="flex flex-col bg-black p-4 rounded-md">
-                            <label class="text-white" for="arte_artesania">Arte/Artesanía</label>
-                            <x-text-input name="arte_artesania" type="text" id="arte_artesania" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            :value="old('arte_artesania', $personaje->arte_artesania)" />
-                            <x-input-error :messages="$errors->get('arte_artesania')" class="mt-2" />
-                        </div>
-
                         <div class="flex flex-col bg-black p-4 rounded-md">
                             <label class="text-white" for="buscar_libros">Buscar Libros</label>
                             <x-text-input name="buscar_libros" type="text" id="buscar_libros" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
