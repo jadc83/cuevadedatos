@@ -1,4 +1,9 @@
 <x-app-layout>
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="min-h-screen bg-gray-900 p-2"
         style="background-image: url('/images/fondo_personajes.jpeg'); background-size: cover; background-position: center;">
         <form method="POST" action="{{ route('personajes.update', $personaje) }}" enctype="multipart/form-data">
@@ -10,12 +15,14 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-6">
                         <div class="flex flex-col bg-black p-4 rounded-md">
-                            <label class="text-white" for="user_id">ID jugador</label>
-                            <x-text-input name="user_id" type="text" id="user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            :value="old('user_id', $personaje->user_id)" />
+                            <label class="text-white" for="user_id">Jugador</label>
+                            <select name="user_id" id="user_id" class="input-field">
+                                @foreach ($users as $user)
+                                    <option {{ $personaje->user_id == $user->id ? 'selected' : '' }}  value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
                             <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
                         </div>
-
                         <div class="flex flex-col bg-black p-4 rounded-md">
                             <label class="text-white" for="profesion">Profesión</label>
                             <x-text-input name="profesion" type="text" id="profesion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -74,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+                <h2 class="text-xl text-white font-semibold mb-6 text-center">Características</h2>
 
                 <div class="mt-6 grid grid-cols-2 gap-6">
                     <div class="flex flex-col bg-black p-4 rounded-md">
@@ -119,22 +127,28 @@
                         <x-input-error :messages="$errors->get('pod')" class="mt-2" />
                     </div>
                     <div class="flex flex-col bg-black p-4 rounded-md">
+                        <label class="text-white" for="pod">Suerte</label>
+                        <x-text-input name="pod" type="text" id="pod" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        :value="old('pod', $personaje->sue)" />
+                        <x-input-error :messages="$errors->get('sue')" class="mt-2" />
+                    </div>
+                    <div class="flex flex-col bg-black p-4 rounded-md">
                         <label class="text-white" for="edu">EDU</label>
                         <x-text-input name="edu" type="text" id="edu" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         :value="old('edu', $personaje->edu)" />
                         <x-input-error :messages="$errors->get('edu')" class="mt-2" />
                     </div>
                     <div class="flex flex-col bg-black p-4 rounded-md">
-                        <label class="text-white" for="cor">COR</label>
+                        <label class="text-white" for="cor">Cordura inicial</label>
                         <x-text-input name="cor" type="text" id="cor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         :value="old('cor', $personaje->cor)" />
                         <x-input-error :messages="$errors->get('cor')" class="mt-2" />
                     </div>
                     <div class="flex flex-col bg-black p-4 rounded-md">
-                        <label class="text-white" for="cordura_maxima">Cordura</label>
-                        <x-text-input name="cordura_maxima" type="text" id="cordura_maxima" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        :value="old('cordura_maxima', $personaje->cordura_maxima)" />
-                        <x-input-error :messages="$errors->get('cordura_maxima')" class="mt-2" />
+                        <label class="text-white" for="cor">Cordura actual</label>
+                        <x-text-input name="cor_actual" type="text" id="cor_actual" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        :value="old('cor', $personaje->cor_actual)" />
+                        <x-input-error :messages="$errors->get('cor')" class="mt-2" />
                     </div>
                 </div>
 

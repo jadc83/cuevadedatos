@@ -15,8 +15,12 @@
                     <!-- Columna izquierda (Datos básicos) -->
                     <div class="space-y-6">
                         <div class="flex flex-col bg-black p-4 rounded-md">
-                            <label class="text-white" for="user_id">ID jugador</label>
-                            <input type="text" name="user_id" id="user_id"  class="input-field" />
+                            <label class="text-white" for="user_id">Jugador</label>
+                            <select name="user_id" id="user_id" class="input-field">
+                                @foreach ($users as $user)
+                                    <option {{ auth()->user()->id == $user->id ? 'selected' : '' }}  value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
                             <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
                         </div>
 
@@ -73,6 +77,7 @@
                     </div>
 
                 </div>
+                <h2 class="text-xl text-white font-semibold mb-6 text-center">Características</h2>
 
                 <!-- Características del personaje -->
                 <div class="mt-6 grid grid-cols-2 gap-6">
@@ -117,16 +122,11 @@
                         <x-input-error :messages="$errors->get('edu')" class="mt-2" />
                     </div>
                     <div class="flex flex-col bg-black p-4 rounded-md">
-                        <label class="text-white" for="cor">COR</label>
-                        <input type="number" name="cor" id="cor"  class="input-field" />
-                        <x-input-error :messages="$errors->get('cor')" class="mt-2" />
+                        <label class="text-white" for="edu">Suerte</label>
+                        <input type="number" name="sue" id="sue" class="input-field" />
+                        <x-input-error :messages="$errors->get('sue')" class="mt-2" />
                     </div>
-                    <div class="flex flex-col bg-black p-4 rounded-md">
-                        <label class="text-white" for="cordura_maxima">Cordura</label>
-                        <input type="number" name="cordura_maxima" id="cordura_maxima"
-                            class="input-field" />
-                            <x-input-error :messages="$errors->get('cordura_maxima')" class="mt-2" />
-                    </div>
+
                 </div>
 
                 <!-- Espacio para subir foto -->

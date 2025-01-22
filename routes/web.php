@@ -62,7 +62,8 @@ Route::middleware('auth')->group(function () {
     })->middleware(['auth', 'verified'])->name('cementerio');
 
     Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
-
+    Route::get('/personajes/editHabilidades/{personaje}', [PersonajeController::class, 'editHabilidades'])->name('personajes.editHabilidades');
+    Route::put('/personajes/updateHabilidades/{personaje}', [PersonajeController::class, 'updateHabilidades'])->name('personajes.updateHabilidades');
 
 });
 
