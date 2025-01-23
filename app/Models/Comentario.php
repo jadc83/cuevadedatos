@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Comentario extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['personaje_id', 'contenido'];
+    protected $fillable = ['contenido', 'personaje_id'];
     public function comentable(){
         return $this->morphTo();
     }

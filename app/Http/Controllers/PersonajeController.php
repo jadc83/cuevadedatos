@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePersonajeRequest;
 use App\Http\Requests\UpdatePersonajeRequest;
+use App\Models\Comentario;
 use App\Models\Personaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -161,9 +162,16 @@ class PersonajeController extends Controller
     }
     public function informacion($id)
     {
-        $investigadores = Personaje::all();
-        $personaje = Personaje::find($id);
-        return view('personajes.informacion', ['personaje' => $personaje, 'investigadores' => $investigadores]);
+        // Cargar todos los personajes (si es necesario para el formulario)
+        $personajes = Personaje::all();
+
+        // Cargar el personaje específico junto con sus comentarios
+        $personaje = Personaje::with('comentarios')->findOrFail($id); // Cambia a findOrFail para manejar casos donde el ID no existe
+
+        return view('personajes.informacion', [
+            'personaje' => $personaje,
+            'personajes' => $personajes
+        ]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -261,4 +269,26 @@ class PersonajeController extends Controller
         // Redirige a la lista de personajes
         return redirect()->route('personajes.index')->with('success', 'Personaje restaurado correctamente.');
     }
+    public function comentar(Request $request, Personaje $personaje)
+    {
+        $request->validate([
+            'contenido' => 'required|string|max:500',
+            'personaje_id' => 'required|exists:personajes,id', // Asegúrate de que este campo sea requerido
+            'escritor_id' => 'required|exists:personajes,id', // El personaje que escribe el comentario
+        ]);
+
+        // Crear el comentario
+        Comentario::create([
+            'contenido' => $request->contenido,
+            'personaje_id' => $request->personaje_id,
+            'comentable_type' => 'App\Models\Personaje', // Cambia esto si es necesario
+            'comentable_id' => $request->personaje_id,   // ID del modelo comentable (el mismo personaje)
+        ]);
+
+        // Redirigir a la vista del personaje
+        return redirect()->route('personajes.informacion', ['id' => $request->personaje_id])
+                         ->with('success', 'Comentario agregado con éxito.');
+    }
+
+
 }

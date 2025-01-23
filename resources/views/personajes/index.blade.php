@@ -23,13 +23,6 @@
                             </option>
                         @endforeach
                     </select>
-
-                    <form action="{{ route('personajes.informacion', $personajes->first()) }}" method="get">
-                        <x-primary-button>Mensajes</x-primary-button>
-                    </form>
-                    <form action="" method="get">
-                        <x-primary-button>Comprar</x-primary-button>
-                    </form>
                 @else
                     <p class="text-white ml-auto">No hay personajes disponibles.</p>
                 @endif

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreComentarioRequest;
 use App\Http\Requests\UpdateComentarioRequest;
 use App\Models\Comentario;
+use App\Models\Personaje;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
@@ -27,10 +29,33 @@ class ComentarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreComentarioRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Validar los datos recibidos
+        $validated = $request->validate([
+            'personaje_id' => 'required|exists:personajes,id',
+            'contenido' => 'required|string|max:255',
+        ]);
+
+        // Obtener el personaje
+        $personaje = Personaje::find($validated['personaje_id']);
+
+        // Verificar si el usuario autenticado es el dueño del personaje
+        if ($personaje->user_id === Auth::id()) { // Asegúrate de que 'user_id' es el campo correcto en tu modelo Personaje
+            // Crear el comentario
+            $personaje->comentarios()->create([
+                'contenido' => $validated['contenido'],
+                'personaje_id' => $validated['personaje_id'],
+            ]);
+
+            return redirect()->back()->with('success', 'Comentario enviado correctamente.');
+        } else {
+            return redirect()->back()->with('error', 'No puedes comentar un personaje que no es tuyo.');
+        }
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -61,6 +86,8 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        $comentario->delete();
+
+        return redirect()->back();
     }
 }
