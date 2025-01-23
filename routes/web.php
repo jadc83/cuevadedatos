@@ -68,6 +68,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
     Route::get('/personajes/editHabilidades/{personaje}', [PersonajeController::class, 'editHabilidades'])->name('personajes.editHabilidades');
     Route::put('/personajes/updateHabilidades/{personaje}', [PersonajeController::class, 'updateHabilidades'])->name('personajes.updateHabilidades');
+    Route::put('/personajes/updateHabilidad/{personaje}', [PersonajeController::class, 'updateHabilidad'])->name('personajes.updateHabilidad');
+    Route::put('/personajes/updateEspecializacion/{personaje}', [PersonajeController::class, 'updateEspecializacion'])->name('personajes.updateEspecializacion');
+    Route::put('/personajes/especializacion/{personaje}', [PersonajeController::class, 'especializacion'])->name('personajes.especializacion');
+    Route::put('/personajes/desespecializacion/{personaje}', [PersonajeController::class, 'desespecializacion'])->name('personajes.desespecializacion');
 
 });
 

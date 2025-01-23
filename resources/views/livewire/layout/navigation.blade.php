@@ -38,7 +38,14 @@ new class extends Component {
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Cementerio') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="route('especializaciones.index')" :active="request()->routeIs('especializaciones')"
+                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                        {{ __('especialidades') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('familias.index')" :active="request()->routeIs('familias')"
+                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                        {{ __('familias') }}
+                    </x-nav-link>
                 </div>
 
                 <!-- Menú móvil (hamburguesa) -->

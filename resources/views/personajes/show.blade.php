@@ -12,8 +12,9 @@
 
             <!-- Imagen centrada -->
             <div class="flex justify-center items-center mb-6">
-                @if($personaje->foto)
-                    <img class="w-44 h-48 rounded-lg" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}" >
+                @if ($personaje->foto)
+                    <img class="w-44 h-48 rounded-lg" src="{{ asset('storage/' . $personaje->foto) }}"
+                        alt="Foto de {{ $personaje->nombre }}">
                 @else
                     <p class="text-gray-500">No hay foto disponible</p>
                 @endif
@@ -36,26 +37,46 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                <div>
+                <div class="text-center  flex flex-col items-center space-y-2">
                     <strong class="underline">Características Físicas</strong>
-                    <p><strong>Fuerza:</strong> <span class="flex justify-between w-full">| {{ ($personaje->fue) }} | {{ floor($personaje->fue/2) }} | {{ floor($personaje->fue/5) }} |</span></p>
-                    <p><strong>Constitución:</strong> <span class="flex justify-between w-full">| {{ floor($personaje->con) }} | {{ floor($personaje->con/2) }} | {{ floor($personaje->con/5) }} |</span></p>
-                    <p><strong>Destreza:</strong> <span class="flex justify-between w-full">| {{ ($personaje->des) }} | {{ floor($personaje->des/2) }} | {{ floor($personaje->des/5) }} |</span></p>
-                    <p><strong>Tamaño:</strong> <span class="flex justify-between w-full">| {{ ($personaje->tam) }} | {{ floor($personaje->tam/2) }} | {{ floor($personaje->tam/5) }} |</span></p>
-                    <p><strong>Apariencia:</strong> <span class="flex justify-between w-full">| {{ ($personaje->apa) }} | {{ floor($personaje->apa/2) }} | {{ floor($personaje->apa/5) }} |</span></p>
+                    <p><strong>Fuerza:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->fue }} |
+                            {{ floor($personaje->fue / 2) }} | {{ floor($personaje->fue / 5) }} |</span></p>
+                    <p><strong>Constitución:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ floor($personaje->con) }} | {{ floor($personaje->con / 2) }} |
+                            {{ floor($personaje->con / 5) }} |</span></p>
+                    <p><strong>Destreza:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->des }} |
+                            {{ floor($personaje->des / 2) }} | {{ floor($personaje->des / 5) }} |</span></p>
+                    <p><strong>Tamaño:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->tam }} |
+                            {{ floor($personaje->tam / 2) }} | {{ floor($personaje->tam / 5) }} |</span></p>
+                    <p><strong>Apariencia:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->apa }}
+                            | {{ floor($personaje->apa / 2) }} | {{ floor($personaje->apa / 5) }} |</span></p>
                 </div>
-                <div>
+                <div class="text-center">
                     <strong class="underline">Características Mentales</strong>
-                    <p><strong>Inteligencia:</strong> <span class="flex justify-between w-full">| {{ ($personaje->int) }} | {{ floor($personaje->int/2) }} | {{ floor($personaje->int/5) }} |</span></p>
-                    <p><strong>Poder:</strong> <span class="flex justify-between w-full">| {{ ($personaje->pod) }} | {{ floor($personaje->pod/2) }} | {{ floor($personaje->pod/5) }} |</span></p>
-                    <p><strong>Educación:</strong> <span class="flex justify-between w-full">| {{ ($personaje->edu) }} | {{ floor($personaje->edu/2) }} | {{ floor($personaje->edu/5) }} |</span></p>
-                    <p><strong>Cordura actual:</strong> <span class="flex justify-between w-full">| {{ $personaje->cor_actual }} |</span></p>
-                    <p><strong>Cordura inicial:</strong> <span class="flex justify-between w-full">| {{ $personaje->cor }} |</span></p>
-                    <p><strong>Cordura máxima:</strong> <span class="flex justify-between w-full">| {{ 99 - $personaje->mitos_cthulhu }} |</span></p>
+                    <p><strong>Inteligencia:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->int }} | {{ floor($personaje->int / 2) }} |
+                            {{ floor($personaje->int / 5) }}
+                            |</span></p>
+                    <p><strong>Poder:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->pod }} |
+                            {{ floor($personaje->pod / 2) }} | {{ floor($personaje->pod / 5) }} |</span></p>
+                    <p><strong>Educación:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->edu }}
+                            | {{ floor($personaje->edu / 2) }} | {{ floor($personaje->edu / 5) }} |</span></p>
+                    <p><strong>Cordura actual:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->cor_actual }} |</span></p>
+                    <p><strong>Cordura inicial:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ $personaje->cor }} |</span></p>
+                    <p><strong>Cordura máxima:</strong> <span class="flex justify-center w-full text-center">|
+                            {{ 99 - $personaje->mitos_cthulhu }} |</span></p>
                 </div>
             </div>
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl font-bold" >Habilidades</h2>
+            <div class="flex items-center justify-between mb-4 p-5">
+                <h2 class="text-2xl font-bold">Habilidades</h2>
                 <a href="{{ route('personajes.editHabilidades', $personaje) }}"
                     class="px-6 py-3 bg-white text-black rounded-lg shadow-md hover:bg-green-500 transition duration-200 transform hover:scale-[1.03]">
                     Modificar Habilidades
@@ -63,59 +84,100 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-                    <div>
-                        <p><strong>Antropología:</strong> <span class="flex justify-between w-full">| {{ $personaje->antropologia }} | {{ floor($personaje->antropologia / 2) }} | {{ floor($personaje->antropologia / 5) }} |</span></p>
-                        <a><strong>Armas de fuego:</strong></a>
-                        <p><strong>Arqueología:</strong> <span class="flex justify-between w-full">| {{ $personaje->arqueologia }} | {{ floor($personaje->arqueologia / 2) }} | {{ floor($personaje->arqueologia / 5) }} |</span></p>
-                        <p><strong>Arte/Artesanía:</strong>
-                        <p><strong>Buscar libros:</strong> <span class="flex justify-between w-full">| {{ $personaje->buscar_libros }} | {{ floor($personaje->buscar_libros / 2) }} | {{ floor($personaje->buscar_libros / 5) }} |</span></p>
-                        <p><strong>Cerrajería:</strong> <span class="flex justify-between w-full">| {{ $personaje->cerrajeria }} | {{ floor($personaje->cerrajeria / 2) }} | {{ floor($personaje->cerrajeria / 5) }} |</span></p>
-                        <p><strong>Charlatanería:</strong> <span class="flex justify-between w-full">| {{ $personaje->charlataneria }} | {{ floor($personaje->charlataneria / 2) }} | {{ floor($personaje->charlataneria / 5) }} |</span></p>
-                        <p><strong>Ciencia:</strong>
-                        <p><strong>Ciencias Ocultas:</strong> <span class="flex justify-between w-full">| {{ $personaje->ciencias_ocultas }} | {{ floor($personaje->ciencias_ocultas / 2) }} | {{ floor($personaje->ciencias_ocultas / 5) }} |</span></p>
-                        <p><strong>Pelea:</strong>
-                        <p><strong>Conducir Automóvil:</strong> <span class="flex justify-between w-full">| {{ $personaje->conducir_automovil }} | {{ floor($personaje->conducir_automovil / 2) }} | {{ floor($personaje->conducir_automovil / 5) }} |</span></p>
-                    </div>
-                    <div>
-                        <p><strong>Conducir Maquinaria:</strong> <span class="flex justify-between w-full">| {{ $personaje->conducir_maquinaria }} | {{ floor($personaje->conducir_maquinaria / 2) }} | {{ floor($personaje->conducir_maquinaria / 5) }} |</span></p>
-                        <p><strong>Contabilidad:</strong> <span class="flex justify-between w-full">| {{ $personaje->contabilidad }} | {{ floor($personaje->contabilidad / 2) }} | {{ floor($personaje->contabilidad / 5) }} |</span></p>
-                        <p><strong>Crédito:</strong> <span class="flex justify-between w-full">| {{ $personaje->credito }} | {{ floor($personaje->credito / 2) }} | {{ floor($personaje->credito / 5) }} |</span></p>
-                        <p><strong>Derecho:</strong> <span class="flex justify-between w-full">| {{ $personaje->derecho }} | {{ floor($personaje->derecho / 2) }} | {{ floor($personaje->derecho / 5) }} |</span></p>
-                        <p><strong>Descubrir:</strong> <span class="flex justify-between w-full">| {{ $personaje->descubrir }} | {{ floor($personaje->descubrir / 2) }} | {{ floor($personaje->descubrir / 5) }} |</span></p>
-                        <p><strong>Disfrazarse:</strong> <span class="flex justify-between w-full">| {{ $personaje->disfrazarse }} | {{ floor($personaje->disfrazarse / 2) }} | {{ floor($personaje->disfrazarse / 5) }} |</span></p>
-                        <p><strong>Electricidad:</strong> <span class="flex justify-between w-full">| {{ $personaje->electricidad }} | {{ floor($personaje->electricidad / 2) }} | {{ floor($personaje->electricidad / 5) }} |</span></p>
-                        <p><strong>Encanto:</strong> <span class="flex justify-between w-full">| {{ $personaje->encanto }} | {{ floor($personaje->encanto / 2) }} | {{ floor($personaje->encanto / 5) }} |</span></p>
-                        <p><strong>Equitación:</strong> <span class="flex justify-between w-full">| {{ $personaje->equitación }} | {{ floor($personaje->equitación / 2) }} | {{ floor($personaje->equitación / 5) }} |</span></p>
-                        <p><strong>Escuchar:</strong> <span class="flex justify-between w-full">| {{ $personaje->escuchar }} | {{ floor($personaje->escuchar / 2) }} | {{ floor($personaje->escuchar / 5) }} |</span></p>
-                        <p><strong>Esquivar:</strong> <span class="flex justify-between w-full">| {{ $personaje->esquivar }} | {{ floor($personaje->esquivar / 2) }} | {{ floor($personaje->esquivar / 5) }} |</span></p>
-                        <p><strong>Historia:</strong> <span class="flex justify-between w-full">| {{ $personaje->historia }} | {{ floor($personaje->historia / 2) }} | {{ floor($personaje->historia / 5) }} |</span></p>
-                        <p><strong>Intimidar:</strong> <span class="flex justify-between w-full">| {{ $personaje->intimidar }} | {{ floor($personaje->intimidar / 2) }} | {{ floor($personaje->intimidar / 5) }} |</span></p>
-                        <p><strong>Juego de Manos:</strong> <span class="flex justify-between w-full">| {{ $personaje->juego_de_manos }} | {{ floor($personaje->juego_de_manos / 2) }} | {{ floor($personaje->juego_de_manos / 5) }} |</span></p>
-                        <p><strong>Lanzar:</strong> <span class="flex justify-between w-full">| {{ $personaje->lanzar }} | {{ floor($personaje->lanzar / 2) }} | {{ floor($personaje->lanzar / 5) }} |</span></p>
-                        <p><strong>Lengua propia:</strong>
-                        <p><strong>Otras lenguas:</strong>
-                        <p><strong>Mecánica:</strong> <span class="flex justify-between w-full">| {{ $personaje->mecanica }} | {{ floor($personaje->mecanica / 2) }} | {{ floor($personaje->mecanica / 5) }} |</span></p>
-                        <p><strong>Medicina:</strong> <span class="flex justify-between w-full">| {{ $personaje->medicina }} | {{ floor($personaje->medicina / 2) }} | {{ floor($personaje->medicina / 5) }} |</span></p>
-                    </div>
-                    <div>
-                        <p><strong>Mitos de Cthulhu:</strong> <span class="flex justify-between w-full">| {{ $personaje->mitos_cthulhu }} | {{ floor($personaje->mitos_cthulhu / 2) }} | {{ floor($personaje->mitos_cthulhu / 5) }} |</span></p>
-                        <p><strong>Nadar:</strong> <span class="flex justify-between w-full">| {{ $personaje->nadar }} | {{ floor($personaje->nadar / 2) }} | {{ floor($personaje->nadar / 5) }} |</span></p>
-                        <p><strong>Naturaleza:</strong> <span class="flex justify-between w-full">| {{ $personaje->naturaleza }} | {{ floor($personaje->naturaleza / 2) }} | {{ floor($personaje->naturaleza / 5) }} |</span></p>
-                        <p><strong>Orientarse:</strong> <span class="flex justify-between w-full">| {{ $personaje->orientarse }} | {{ floor($personaje->orientarse / 2) }} | {{ floor($personaje->orientarse / 5) }} |</span></p>
-                        <p><strong>Persuasión:</strong> <span class="flex justify-between w-full">| {{ $personaje->persuasion }} | {{ floor($personaje->persuasion / 2) }} | {{ floor($personaje->persuasion / 5) }} |</span></p>
-                        <p><strong>Pilotar:</strong>
-                        <p><strong>Primeros Auxilios:</strong> <span class="flex justify-between w-full">| {{ $personaje->primeros_auxilios }} | {{ floor($personaje->primeros_auxilios / 2) }} | {{ floor($personaje->primeros_auxilios / 5) }} |</span></p>
-                        <p><strong>Psicoanálisis:</strong> <span class="flex justify-between w-full">| {{ $personaje->psicoanalisis }} | {{ floor($personaje->psicoanalisis / 2) }} | {{ floor($personaje->psicoanalisis / 5) }} |</span></p>
-                        <p><strong>Psicología:</strong> <span class="flex justify-between w-full">| {{ $personaje->psicologia }} | {{ floor($personaje->psicologia / 2) }} | {{ floor($personaje->psicologia / 5) }} |</span></p>
-                        <p><strong>Saltar:</strong> <span class="flex justify-between w-full">| {{ $personaje->saltar }} | {{ floor($personaje->saltar / 2) }} | {{ floor($personaje->saltar / 5) }} |</span></p>
-                        <p><strong>Seguir Rastros:</strong> <span class="flex justify-between w-full">| {{ $personaje->seguir_rastros }} | {{ floor($personaje->seguir_rastros / 2) }} | {{ floor($personaje->seguir_rastros / 5) }} |</span></p>
-                        <p><strong>Sigilo:</strong> <span class="flex justify-between w-full">| {{ $personaje->sigilo }} | {{ floor($personaje->sigilo / 2) }} | {{ floor($personaje->sigilo / 5) }} |</span></p>
-                        <p><strong>Supervivencia:</strong>
-                        <p><strong>Trepar:</strong> <span class="flex justify-between w-full">| {{ $personaje->trepar }} | {{ floor($personaje->trepar / 2) }} | {{ floor($personaje->trepar / 5) }} |</span></p>
-                    </div>
+                <div class="text-center flex flex-col items-center space-y-2">
+                    <x-habilidad-button habilidad-id="antropologia" puntuacion="{{ $personaje->antropologia }}"
+                        nombre="Antropología" />
+                    <x-especializacion-block familia="Arma de fuego" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Arma de fuego')" />
+                    <x-habilidad-button habilidad-id="arqueologia" puntuacion="{{ $personaje->arqueologia }}"
+                        nombre="Arqueologia" />
+                    <x-especializacion-block familia="Arte/Artesania" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Arte/Artesania')" />
+
+                    <x-habilidad-button habilidad-id="cerrajeria" puntuacion="{{ $personaje->cerrajeria }}"
+                        nombre="Cerrajeria" />
+                    <x-habilidad-button habilidad-id="charlataneria" puntuacion="{{ $personaje->charlataneria }}"
+                        nombre="Charlataneria" />
+
+                    <x-habilidad-button habilidad-id="charlataneria" puntuacion="{{ $personaje->charlataneria }}"
+                        nombre="Charlatanería" />
+                    <x-especializacion-block familia="Ciencia" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Ciencia')" />
+                    <x-habilidad-button habilidad-id="ciencias_ocultas" puntuacion="{{ $personaje->ciencias_ocultas }}"
+                        nombre="Ciencias ocultas" />
+
+                    <x-especializacion-block familia="Pelea" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Pelea')" />
+                    <x-habilidad-button habilidad-id="conducir_automovil"
+                        puntuacion="{{ $personaje->conducir_automovil }}" nombre="Conducir automovil" />
+
+                </div>
+                <div class="text-center flex flex-col items-center space-y-2">
+                    <x-habilidad-button habilidad-id="conducir_maquinaria"
+                        puntuacion="{{ $personaje->conducir_maquinaria }}" nombre="Conducir maquinaria" />
+                    <x-habilidad-button habilidad-id="contabilidad" puntuacion="{{ $personaje->contabilidad }}"
+                        nombre="Contabilidad" />
+                    <x-habilidad-button habilidad-id="credito" puntuacion="{{ $personaje->credito }}"
+                        nombre="Crédito" />
+                    <x-habilidad-button habilidad-id="derecho" puntuacion="{{ $personaje->derecho }}"
+                        nombre="Derecho" />
+                    <x-habilidad-button habilidad-id="descubrir" puntuacion="{{ $personaje->descubrir }}"
+                        nombre="Descubrir" />
+                    <x-habilidad-button habilidad-id="disfrazarse" puntuacion="{{ $personaje->disfrazarse }}"
+                        nombre="Disfrazarse" />
+                    <x-habilidad-button habilidad-id="electricidad" puntuacion="{{ $personaje->electricidad }}"
+                        nombre="Electricidad" />
+                    <x-habilidad-button habilidad-id="encanto" puntuacion="{{ $personaje->encanto }}"
+                        nombre="Encanto" />
+                    <x-habilidad-button habilidad-id="equitacion" puntuacion="{{ $personaje->equitacion }}"
+                        nombre="Equitación" />
+                    <x-habilidad-button habilidad-id="escuchar" puntuacion="{{ $personaje->escuchar }}"
+                        nombre="Escuchar" />
+                    <x-habilidad-button habilidad-id="esquivar" puntuacion="{{ $personaje->esquivar }}"
+                        nombre="Esquivar" />
+                    <x-habilidad-button habilidad-id="historia" puntuacion="{{ $personaje->historia }}"
+                        nombre="Historia" />
+                    <x-habilidad-button habilidad-id="intimidar" puntuacion="{{ $personaje->intimidar }}"
+                        nombre="Intimidar" />
+                    <x-habilidad-button habilidad-id="juego_de_manos" puntuacion="{{ $personaje->juego_de_manos }}"
+                        nombre="Juego de Manos" />
+                    <x-habilidad-button habilidad-id="lanzar" puntuacion="{{ $personaje->lanzar }}"
+                        nombre="Lanzar" />
+                    <x-especializacion-block familia="Lengua propia" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Lengua propia')" />
+                    <x-especializacion-block familia="Lengua extranjera" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Lengua extranjera')" />
+                    <x-habilidad-button habilidad-id="mecanica" puntuacion="{{ $personaje->mecanica }}"
+                        nombre="Mecánica" />
+                    <x-habilidad-button habilidad-id="medicina" puntuacion="{{ $personaje->medicina }}"
+                        nombre="Medicina" />
+                </div>
+                <div class="text-center flex flex-col items-center space-y-2">
+                    <x-habilidad-button habilidad-id="mitos_cthulhu" puntuacion="{{ $personaje->mitos_cthulhu }}"
+                        nombre="Mitos de Cthulhu" />
+                    <x-habilidad-button habilidad-id="nadar" puntuacion="{{ $personaje->nadar }}" nombre="Nadar" />
+                    <x-habilidad-button habilidad-id="naturaleza" puntuacion="{{ $personaje->naturaleza }}"
+                        nombre="Naturaleza" />
+                    <x-habilidad-button habilidad-id="orientarse" puntuacion="{{ $personaje->orientarse }}"
+                        nombre="Orientarse" />
+                    <x-habilidad-button habilidad-id="persuasion" puntuacion="{{ $personaje->persuasion }}"
+                        nombre="Persuasión" />
+                    <x-especializacion-block familia="Pilotar" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Pilotar')" />
+                    <x-habilidad-button habilidad-id="primeros_auxilios"
+                        puntuacion="{{ $personaje->primeros_auxilios }}" nombre="Primeros Auxilios" />
+                    <x-habilidad-button habilidad-id="psicoanalisis" puntuacion="{{ $personaje->psicoanalisis }}"
+                        nombre="Psicoanálisis" />
+                    <x-habilidad-button habilidad-id="psicologia" puntuacion="{{ $personaje->psicologia }}"
+                        nombre="Psicología" />
+                    <x-habilidad-button habilidad-id="saltar" puntuacion="{{ $personaje->saltar }}"
+                        nombre="Saltar" />
+                    <x-habilidad-button habilidad-id="seguir_rastros" puntuacion="{{ $personaje->seguir_rastros }}"
+                        nombre="Seguir Rastros" />
+                    <x-habilidad-button habilidad-id="sigilo" puntuacion="{{ $personaje->sigilo }}"
+                        nombre="Sigilo" />
+                    <x-especializacion-block familia="Supervivencia" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Supervivencia')" />
+
+                    <x-habilidad-button habilidad-id="trepar" puntuacion="{{ $personaje->trepar }}"
+                        nombre="Trepar" />
+                </div>
             </div>
             <div class="flex justify-center items-center mt-6">
-                <a href="{{ route('personajes.edit', $personaje) }}" class="px-6 py-3 bg-black text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-200 transform hover:scale-[1.03]">
+                <a href="{{ route('personajes.edit', $personaje) }}"
+                    class="px-6 py-3 bg-black text-white rounded-lg shadow-md hover:bg-gray-800 transition duration-200 transform hover:scale-[1.03]">
                     Modificar personaje
                 </a>
             </div>
@@ -124,6 +186,163 @@
         <div class="flex justify-center items-center mt-6">
             <x-primary-button><a href="{{ route('personajes.index') }}">Volver</a></x-primary-button>
         </div>
-    </div>
+        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white p-8 rounded-lg shadow-xl">
+                <form method="POST" action="{{ route('personajes.especializacion', $personaje) }}">
+                    @csrf
+                    @method('PUT')
+                    <h2 class="text-xl font-bold mb-4">Añadir especializacion</h2>
+                    <select name="especializacion_id" id="especializacion_id" class="w-full p-2 mb-4">
+                        @foreach ($familias as $familia)
+                            @if ($familia->nombre === 'Arma de fuego')
+                                @foreach ($familia->especializaciones as $especializacion)
+                                    <option value="{{ $especializacion->id }}">{{ $especializacion->nombre }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        @endforeach
+                    </select>
+                    <button class="bg-green-500 text-white px-4 py-2 rounded">Añadir</button>
+                </form>
+                <button id="closeModal" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
 
+            </div>
+        </div>
+        <div id="modalModificar"
+            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white p-8 rounded-lg shadow-xl">
+                <form id="formModificarHabilidad" method="POST"
+                    action="{{ route('personajes.updateHabilidad', $personaje) }}">
+                    @csrf
+                    @method('PUT')
+                    <h2 class="text-xl font-bold mb-4">Modificar habilidad</h2>
+                    <input type="hidden" name="habilidad_id" id="habilidad_id">
+                    <p id="habilidadNombre" class="font-semibold mb-2"></p>
+                    <label for="puntuacion" class="block mb-2">Nueva Puntuación:</label>
+                    <input type="number" name="puntuacion" id="puntuacion" class="w-full p-2 mb-4" required>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
+                </form>
+                <button id="closeModalModificar" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
+            </div>
+        </div>
+        <div id="modalModificarEspecializacion"
+            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+            <div class="bg-white p-8 rounded-lg shadow-xl">
+                <form id="formModificarEspecializacion" method="POST"
+                    action="{{ route('personajes.updateEspecializacion', $personaje) }}">
+                    @csrf
+                    @method('PUT')
+                    <h2 class="text-xl font-bold mb-4">Modificar Especialización</h2>
+                    <input type="hidden" name="especializacion2_id" id="especializacion2_id">
+                    <p id="especializacionNombre" class="font-semibold mb-2"></p>
+                    <label for="especializacion_puntuacion" class="block mb-2">Nueva Puntuación:</label>
+                    <input type="number" name="puntuacion" id="especializacion_puntuacion" class="w-full p-2 mb-4"
+                        required>
+                        <div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
+                </form>
+                <button id="closeModalEspecializacion" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
+                </div>
+                <form id="formModificarEspecializacion" method="POST"
+                    action="{{ route('personajes.desespecializacion', $personaje) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta especialidad?')">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="especializacion3_id" id="especializacion3_id">
+                    <button type="danger" class="text-red-700 pt-5">Borrar especialidad</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const modal = document.getElementById('modal');
+                const closeModal = document.getElementById('closeModal');
+                const select = modal.querySelector('select');
+
+                function loadSpecializations(familia) {
+                    select.innerHTML = '';
+                    @foreach ($familias as $familia)
+                        if (familia === '{{ $familia->nombre }}') {
+                            @foreach ($familia->especializaciones as $especializacion)
+                                select.innerHTML +=
+                                    `<option value="{{ $especializacion->id }}">{{ $especializacion->nombre }}</option>`;
+                            @endforeach
+                        }
+                    @endforeach
+                }
+
+                document.querySelectorAll('button[data-familia]').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const familia = this.getAttribute('data-familia');
+                        loadSpecializations(familia);
+                        modal.classList.remove('hidden');
+                    });
+                });
+
+                closeModal.addEventListener('click', function() {
+                    modal.classList.add('hidden');
+                });
+
+                // Modal para modificar habilidad
+                const modalModificar = document.getElementById('modalModificar');
+                const closeModalModificar = document.getElementById('closeModalModificar');
+                const formModificarHabilidad = document.getElementById('formModificarHabilidad');
+                const habilidadIdInput = document.getElementById('habilidad_id');
+                const puntuacionInput = document.getElementById('puntuacion');
+
+                function openModificarModal(habilidadId, puntuacion, nombre) {
+                    habilidadIdInput.value = habilidadId;
+                    puntuacionInput.value = puntuacion;
+                    document.getElementById('habilidadNombre').textContent = `Habilidad: ${nombre}`;
+                    modalModificar.classList.remove('hidden');
+                }
+
+                document.querySelectorAll('.modificarHabilidadBtn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const habilidadId = this.getAttribute('data-habilidad-id');
+                        const puntuacion = this.getAttribute('data-puntuacion');
+                        const nombre = this.getAttribute('data-nombre');
+                        openModificarModal(habilidadId, puntuacion, nombre);
+                    });
+                });
+
+                closeModalModificar.addEventListener('click', function() {
+                    modalModificar.classList.add('hidden');
+                });
+
+                const modalModificarEspecializacion = document.getElementById('modalModificarEspecializacion');
+                const closeModalEspecializacion = document.getElementById('closeModalEspecializacion');
+                const formModificarEspecializacion = document.getElementById('formModificarEspecializacion');
+                const especializacionIdInput = document.getElementById('especializacion2_id');
+                const especializacionIdInputDelete = document.getElementById('especializacion3_id');
+
+                const puntuacionInputEspecializacion = document.getElementById('especializacion_puntuacion');
+
+                function openModificarEspecializacionModal(especializacionId, puntuacion, nombre) {
+                    especializacionIdInput.value = especializacionId;
+                    especializacionIdInputDelete.value = especializacionId;
+                    puntuacionInputEspecializacion.value = puntuacion;
+                    document.getElementById('especializacionNombre').textContent = `Especialización: ${nombre}`;
+                    modalModificarEspecializacion.classList.remove('hidden');
+                }
+
+                document.querySelectorAll('.especializacionBtn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const especializacionId = this.getAttribute('data-especializacion-id');
+                        const puntuacion = this.getAttribute('data-especializacion-puntuacion');
+                        const nombre = this.getAttribute('data-especializacion-nombre');
+                        openModificarEspecializacionModal(especializacionId, puntuacion, nombre);
+                    });
+                });
+
+                closeModalEspecializacion.addEventListener('click', function() {
+                    modalModificarEspecializacion.classList.add('hidden');
+                });
+
+                modalModificarEspecializacion.addEventListener('click', function(event) {
+                    if (event.target === modalModificarEspecializacion) {
+                        modalModificarEspecializacion.classList.add('hidden');
+                    }
+                });
+            });
+        </script>
 </x-app-layout>
