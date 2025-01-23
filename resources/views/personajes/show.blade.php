@@ -97,7 +97,7 @@
                 <div class="text-center flex flex-col items-center space-y-2">
                     <x-habilidad-button habilidad-id="antropologia" puntuacion="{{ $personaje->antropologia }}"
                         nombre="Antropología" />
-                    <x-especializacion-block familia="Arma de fuego" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Arma de fuego')" />
+                    <x-especializacion-block familia="Armas de fuego" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Armas de fuego')" />
                     <x-habilidad-button habilidad-id="arqueologia" puntuacion="{{ $personaje->arqueologia }}"
                         nombre="Arqueologia" />
                     <x-especializacion-block familia="Arte/Artesania" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Arte/Artesania')" />

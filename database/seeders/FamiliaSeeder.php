@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class FamiliaSeeder extends Seeder
 {
@@ -12,6 +12,6 @@ class FamiliaSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+
     }
 }
