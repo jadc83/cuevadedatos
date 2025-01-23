@@ -10,14 +10,24 @@
         <div class="bg-black p-4 px-12 rounded-lg text-white font-semibold">
             <h2 class="text-2xl font-bold text-center mb-4">{{ $personaje->nombre }}</h2>
 
-            <!-- Imagen centrada -->
-            <div class="flex justify-center items-center mb-6">
-                @if ($personaje->foto)
-                    <img class="w-44 h-48 rounded-lg" src="{{ asset('storage/' . $personaje->foto) }}"
-                        alt="Foto de {{ $personaje->nombre }}">
+            <div class="flex justify-center items-center">
+                @if($personaje->foto)
+                    <img class="w-44 h-48 rounded-lg" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}">
                 @else
                     <p class="text-gray-500">No hay foto disponible</p>
                 @endif
+            </div>
+            <div class="flex p-2 justify-center">
+                <div>
+                    <form action="{{ route('personajes.informacion', $personaje) }}" method="get">
+                        <x-primary-button>Mensajes</x-primary-button>
+                    </form>
+                </div>
+                <div>
+                    <form action="" method="get">
+                        <x-primary-button>Comprar</x-primary-button>
+                    </form>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
