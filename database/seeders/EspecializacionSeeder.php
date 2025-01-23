@@ -23,7 +23,7 @@ class EspecializacionSeeder extends Seeder
                     ['nombre' => 'Ametralladora'],
                 ],
             ],
-            'Arte/Artesanía' => [
+            'Arte/Artesania' => [
                 'base' => 5,
                 'especializaciones' => [
                     ['nombre' => 'Pintar'],
@@ -55,7 +55,7 @@ class EspecializacionSeeder extends Seeder
                     ['nombre' => 'Francés'],
                 ],
             ],
-            'Otras lenguas' => [
+            'Lengua extranjera' => [
                 'base' => 1,
                 'especializaciones' => [
                     ['nombre' => 'Inglés'],

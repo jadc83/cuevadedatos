@@ -11,8 +11,9 @@
             <h2 class="text-2xl font-bold text-center mb-4">{{ $personaje->nombre }}</h2>
 
             <div class="flex justify-center items-center">
-                @if($personaje->foto)
-                    <img class="w-44 h-48 rounded-lg" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto de {{ $personaje->nombre }}">
+                @if ($personaje->foto)
+                    <img class="w-44 h-48 rounded-lg" src="{{ asset('storage/' . $personaje->foto) }}"
+                        alt="Foto de {{ $personaje->nombre }}">
                 @else
                     <p class="text-gray-500">No hay foto disponible</p>
                 @endif
@@ -113,7 +114,7 @@
                     <x-habilidad-button habilidad-id="ciencias_ocultas" puntuacion="{{ $personaje->ciencias_ocultas }}"
                         nombre="Ciencias ocultas" />
 
-                    <x-especializacion-block familia="Pelea" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Pelea')" />
+                    <x-especializacion-block familia="Combatir" :especializaciones="$personaje->especializaciones->where('familia.nombre', 'Combatir')" />
                     <x-habilidad-button habilidad-id="conducir_automovil"
                         puntuacion="{{ $personaje->conducir_automovil }}" nombre="Conducir automovil" />
 
@@ -230,129 +231,132 @@
                     <p id="habilidadNombre" class="font-semibold mb-2"></p>
                     <label for="puntuacion" class="block mb-2">Nueva Puntuación:</label>
                     <input type="number" name="puntuacion" id="puntuacion" class="w-full p-2 mb-4" required>
-                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
+                    <div>
+                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
                 </form>
                 <button id="closeModalModificar" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
             </div>
         </div>
-        <div id="modalModificarEspecializacion"
-            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
-            <div class="bg-white p-8 rounded-lg shadow-xl">
-                <form id="formModificarEspecializacion" method="POST"
-                    action="{{ route('personajes.updateEspecializacion', $personaje) }}">
-                    @csrf
-                    @method('PUT')
-                    <h2 class="text-xl font-bold mb-4">Modificar Especialización</h2>
-                    <input type="hidden" name="especializacion2_id" id="especializacion2_id">
-                    <p id="especializacionNombre" class="font-semibold mb-2"></p>
-                    <label for="especializacion_puntuacion" class="block mb-2">Nueva Puntuación:</label>
-                    <input type="number" name="puntuacion" id="especializacion_puntuacion" class="w-full p-2 mb-4"
-                        required>
-                        <div>
+    </div>
+    <div id="modalModificarEspecializacion"
+        class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <form id="formModificarEspecializacion" method="POST"
+                action="{{ route('personajes.updateEspecializacion', $personaje) }}">
+                @csrf
+                @method('PUT')
+                <h2 class="text-xl font-bold mb-4">Modificar Especialización</h2>
+                <input type="hidden" name="especializacion2_id" id="especializacion2_id">
+                <p id="especializacionNombre" class="font-semibold mb-2"></p>
+                <label for="especializacion_puntuacion" class="block mb-2">Nueva Puntuación:</label>
+                <input type="number" name="puntuacion" id="especializacion_puntuacion" class="w-full p-2 mb-4"
+                    required>
+                <div>
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
-                </form>
-                <button id="closeModalEspecializacion" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
-                </div>
-                <form id="formModificarEspecializacion" method="POST"
-                    action="{{ route('personajes.desespecializacion', $personaje) }}" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta especialidad?')">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" name="especializacion3_id" id="especializacion3_id">
-                    <button type="danger" class="text-red-700 pt-5">Borrar especialidad</button>
-                </form>
-            </div>
+            </form>
+            <button id="closeModalEspecializacion" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const modal = document.getElementById('modal');
-                const closeModal = document.getElementById('closeModal');
-                const select = modal.querySelector('select');
+        <form id="formModificarEspecializacion" method="POST"
+            action="{{ route('personajes.desespecializacion', $personaje) }}"
+            onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta especialidad?')">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="especializacion3_id" id="especializacion3_id">
+            <button type="danger" class="text-red-700 pt-5">Borrar especialidad</button>
+        </form>
+    </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('modal');
+            const closeModal = document.getElementById('closeModal');
+            const select = modal.querySelector('select');
 
-                function loadSpecializations(familia) {
-                    select.innerHTML = '';
-                    @foreach ($familias as $familia)
-                        if (familia === '{{ $familia->nombre }}') {
-                            @foreach ($familia->especializaciones as $especializacion)
-                                select.innerHTML +=
-                                    `<option value="{{ $especializacion->id }}">{{ $especializacion->nombre }}</option>`;
-                            @endforeach
-                        }
-                    @endforeach
-                }
-
-                document.querySelectorAll('button[data-familia]').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const familia = this.getAttribute('data-familia');
-                        loadSpecializations(familia);
-                        modal.classList.remove('hidden');
-                    });
-                });
-
-                closeModal.addEventListener('click', function() {
-                    modal.classList.add('hidden');
-                });
-
-                // Modal para modificar habilidad
-                const modalModificar = document.getElementById('modalModificar');
-                const closeModalModificar = document.getElementById('closeModalModificar');
-                const formModificarHabilidad = document.getElementById('formModificarHabilidad');
-                const habilidadIdInput = document.getElementById('habilidad_id');
-                const puntuacionInput = document.getElementById('puntuacion');
-
-                function openModificarModal(habilidadId, puntuacion, nombre) {
-                    habilidadIdInput.value = habilidadId;
-                    puntuacionInput.value = puntuacion;
-                    document.getElementById('habilidadNombre').textContent = `Habilidad: ${nombre}`;
-                    modalModificar.classList.remove('hidden');
-                }
-
-                document.querySelectorAll('.modificarHabilidadBtn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const habilidadId = this.getAttribute('data-habilidad-id');
-                        const puntuacion = this.getAttribute('data-puntuacion');
-                        const nombre = this.getAttribute('data-nombre');
-                        openModificarModal(habilidadId, puntuacion, nombre);
-                    });
-                });
-
-                closeModalModificar.addEventListener('click', function() {
-                    modalModificar.classList.add('hidden');
-                });
-
-                const modalModificarEspecializacion = document.getElementById('modalModificarEspecializacion');
-                const closeModalEspecializacion = document.getElementById('closeModalEspecializacion');
-                const formModificarEspecializacion = document.getElementById('formModificarEspecializacion');
-                const especializacionIdInput = document.getElementById('especializacion2_id');
-                const especializacionIdInputDelete = document.getElementById('especializacion3_id');
-
-                const puntuacionInputEspecializacion = document.getElementById('especializacion_puntuacion');
-
-                function openModificarEspecializacionModal(especializacionId, puntuacion, nombre) {
-                    especializacionIdInput.value = especializacionId;
-                    especializacionIdInputDelete.value = especializacionId;
-                    puntuacionInputEspecializacion.value = puntuacion;
-                    document.getElementById('especializacionNombre').textContent = `Especialización: ${nombre}`;
-                    modalModificarEspecializacion.classList.remove('hidden');
-                }
-
-                document.querySelectorAll('.especializacionBtn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const especializacionId = this.getAttribute('data-especializacion-id');
-                        const puntuacion = this.getAttribute('data-especializacion-puntuacion');
-                        const nombre = this.getAttribute('data-especializacion-nombre');
-                        openModificarEspecializacionModal(especializacionId, puntuacion, nombre);
-                    });
-                });
-
-                closeModalEspecializacion.addEventListener('click', function() {
-                    modalModificarEspecializacion.classList.add('hidden');
-                });
-
-                modalModificarEspecializacion.addEventListener('click', function(event) {
-                    if (event.target === modalModificarEspecializacion) {
-                        modalModificarEspecializacion.classList.add('hidden');
+            function loadSpecializations(familia) {
+                select.innerHTML = '';
+                @foreach ($familias as $familia)
+                    if (familia === '{{ $familia->nombre }}') {
+                        @foreach ($familia->especializaciones as $especializacion)
+                            select.innerHTML +=
+                                `<option value="{{ $especializacion->id }}">{{ $especializacion->nombre }}</option>`;
+                        @endforeach
                     }
+                @endforeach
+            }
+
+            document.querySelectorAll('button[data-familia]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const familia = this.getAttribute('data-familia');
+                    loadSpecializations(familia);
+                    modal.classList.remove('hidden');
                 });
             });
-        </script>
+
+            closeModal.addEventListener('click', function() {
+                modal.classList.add('hidden');
+            });
+
+            // Modal para modificar habilidad
+            const modalModificar = document.getElementById('modalModificar');
+            const closeModalModificar = document.getElementById('closeModalModificar');
+            const formModificarHabilidad = document.getElementById('formModificarHabilidad');
+            const habilidadIdInput = document.getElementById('habilidad_id');
+            const puntuacionInput = document.getElementById('puntuacion');
+
+            function openModificarModal(habilidadId, puntuacion, nombre) {
+                habilidadIdInput.value = habilidadId;
+                puntuacionInput.value = puntuacion;
+                document.getElementById('habilidadNombre').textContent = `Habilidad: ${nombre}`;
+                modalModificar.classList.remove('hidden');
+            }
+
+            document.querySelectorAll('.modificarHabilidadBtn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const habilidadId = this.getAttribute('data-habilidad-id');
+                    const puntuacion = this.getAttribute('data-puntuacion');
+                    const nombre = this.getAttribute('data-nombre');
+                    openModificarModal(habilidadId, puntuacion, nombre);
+                });
+            });
+
+            closeModalModificar.addEventListener('click', function() {
+                modalModificar.classList.add('hidden');
+            });
+
+            const modalModificarEspecializacion = document.getElementById('modalModificarEspecializacion');
+            const closeModalEspecializacion = document.getElementById('closeModalEspecializacion');
+            const formModificarEspecializacion = document.getElementById('formModificarEspecializacion');
+            const especializacionIdInput = document.getElementById('especializacion2_id');
+            const especializacionIdInputDelete = document.getElementById('especializacion3_id');
+
+            const puntuacionInputEspecializacion = document.getElementById('especializacion_puntuacion');
+
+            function openModificarEspecializacionModal(especializacionId, puntuacion, nombre) {
+                especializacionIdInput.value = especializacionId;
+                especializacionIdInputDelete.value = especializacionId;
+                puntuacionInputEspecializacion.value = puntuacion;
+                document.getElementById('especializacionNombre').textContent = `Especialización: ${nombre}`;
+                modalModificarEspecializacion.classList.remove('hidden');
+            }
+
+            document.querySelectorAll('.especializacionBtn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const especializacionId = this.getAttribute('data-especializacion-id');
+                    const puntuacion = this.getAttribute('data-especializacion-puntuacion');
+                    const nombre = this.getAttribute('data-especializacion-nombre');
+                    openModificarEspecializacionModal(especializacionId, puntuacion, nombre);
+                });
+            });
+
+            closeModalEspecializacion.addEventListener('click', function() {
+                modalModificarEspecializacion.classList.add('hidden');
+            });
+
+            modalModificarEspecializacion.addEventListener('click', function(event) {
+                if (event.target === modalModificarEspecializacion) {
+                    modalModificarEspecializacion.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </x-app-layout>
