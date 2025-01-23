@@ -70,6 +70,11 @@ class Personaje extends Model
         'vivo',
     ];
 
+    public function especializaciones()
+    {
+        return $this->belongsToMany(Especializacion::class)
+                    ->withPivot('puntuacion');
+    }
 
     public function comentarios()
     {

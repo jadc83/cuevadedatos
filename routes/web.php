@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\EspecializacionController;
+use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\HabilidadController;
 use App\Http\Controllers\HechizoController;
 use App\Http\Controllers\LibroController;
@@ -49,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('objetos', ObjetoController::class);
     Route::resource('personajes', PersonajeController::class);
     Route::resource('comentarios', ComentarioController::class);
+    Route::resource('familias', FamiliaController::class);
+    Route::resource('especializaciones', EspecializacionController::class)->parameters(['especializaciones' => 'especializacion']);
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
     Route::resource('habilidades', HabilidadController::class)->parameters([
@@ -64,6 +68,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
     Route::get('/personajes/editHabilidades/{personaje}', [PersonajeController::class, 'editHabilidades'])->name('personajes.editHabilidades');
     Route::put('/personajes/updateHabilidades/{personaje}', [PersonajeController::class, 'updateHabilidades'])->name('personajes.updateHabilidades');
+
+    Route::put('/personajes/updateHabilidad/{personaje}', [PersonajeController::class, 'updateHabilidad'])->name('personajes.updateHabilidad');
+    Route::put('/personajes/updateEspecializacion/{personaje}', [PersonajeController::class, 'updateEspecializacion'])->name('personajes.updateEspecializacion');
+    Route::put('/personajes/especializacion/{personaje}', [PersonajeController::class, 'especializacion'])->name('personajes.especializacion');
+    Route::put('/personajes/desespecializacion/{personaje}', [PersonajeController::class, 'desespecializacion'])->name('personajes.desespecializacion');
+
 });
 
 require __DIR__.'/auth.php';

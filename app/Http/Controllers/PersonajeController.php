@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePersonajeRequest;
 use App\Http\Requests\UpdatePersonajeRequest;
+use App\Models\Especializacion;
 use App\Models\Comentario;
 use App\Models\Personaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Faker\Provider\ar_EG\Person;
+use App\Models\Familia;
 
 class PersonajeController extends Controller
 {
@@ -109,7 +111,7 @@ class PersonajeController extends Controller
     public function show(Personaje $personaje)
     {
 
-        return view('personajes.show', ['personaje' => $personaje]);
+        return view('personajes.show', ['personaje' => $personaje, 'familias' => Familia::all()]);
     }
     public function editHabilidades(Personaje $personaje)
     {
@@ -160,6 +162,36 @@ class PersonajeController extends Controller
         $personaje->save();
         return redirect()->route('personajes.index')->with('success', 'Personaje creado con éxito.');
     }
+    public function updateHabilidad(Personaje $personaje, Request $request)
+    {
+        $request->validate([
+            'habilidad_id' => 'required|string',
+            'puntuacion' => 'required|integer|between:0, 9999',
+        ]);
+
+        // Actualiza la habilidad correspondiente
+        $habilidad = $request->habilidad_id;
+            $personaje->$habilidad = $request->puntuacion;
+            $personaje->save();
+
+        return redirect()->route('personajes.show', $personaje)->with('success', 'Habilidad modificada con éxito.');
+
+    }
+    public function updateEspecializacion(Personaje $personaje, Request $request)
+    {
+        $request->validate([
+            'especializacion2_id' => 'required',
+            'puntuacion' => 'required|between:0, 9999',
+        ]);
+        $especializacionId = $request->especializacion2_id;
+        $nuevaPuntuacion = $request->puntuacion;
+        $personaje->especializaciones()->updateExistingPivot($especializacionId, [
+            'puntuacion' => $nuevaPuntuacion
+        ]);
+
+        return redirect()->route('personajes.show', $personaje)->with('success', 'Especialización modificada con éxito.');
+    }
+
     public function informacion($id)
     {
         // Cargar todos los personajes (si es necesario para el formulario)
@@ -180,7 +212,22 @@ class PersonajeController extends Controller
     {
         return view('personajes.edit', ['personaje' => $personaje, 'users' => User::all()]);
     }
+    public function especializacion(Personaje $personaje, Request $request)
+    {
+        $especializacion = Especializacion::findOrFail($request->especializacion_id);
+        $puntuacion = $especializacion->familia->base;
 
+        $personaje->especializaciones()->attach($especializacion->id, ['puntuacion' => $puntuacion]);
+
+        return redirect()->route('personajes.show', $personaje);
+    }
+
+    public function desespecializacion(Personaje $personaje, Request $request)
+    {
+        // Accede a la relación 'especializaciones' y usa detach
+        $personaje->especializaciones()->detach($request->especializacion3_id);
+        return redirect()->route('personajes.show', $personaje);
+    }
     /**
      * Update the specified resource in storage.
      */
