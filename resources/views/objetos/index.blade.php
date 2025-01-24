@@ -12,7 +12,7 @@
 
     <div class="flex gap-6">
         <!-- Sección de artículos -->
-        <div class="w-3/4">
+        <div class="w-3/4 p-4 ml-8">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -41,7 +41,7 @@
         </div>
 
         <!-- Sección del carrito -->
-        <div class="w-1/4">
+        <div class="w-1/4 p-4 mr-12">
             <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
                 @if(session('carrito') && count(session('carrito')) > 0)
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
