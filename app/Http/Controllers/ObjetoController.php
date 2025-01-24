@@ -12,9 +12,16 @@ class ObjetoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $objetos = Objeto::all();
+        $query = Objeto::query();
+
+        if ($busqueda = $request->input('busqueda')) {
+            $query->where('denominacion', 'ilike', "%{$busqueda}%")
+                  ->orWhere('descripcion', 'ilike', "%{$busqueda}%");
+        }
+
+        $objetos = $query->paginate(10);
 
         return view('objetos.index', ['objetos' => $objetos]);
     }
@@ -129,9 +136,8 @@ class ObjetoController extends Controller
          session(['carrito' => $carrito]);
 
          // Mensaje flash para indicar éxito
-         session()->flash('exito', 'Artículo agregado al carrito.');
+         //session()->flash('exito', 'Artículo agregado al carrito.');
 
-         // Redirigir a la página de objetos
          return redirect()->route('objetos.index');
      }
 
