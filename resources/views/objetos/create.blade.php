@@ -17,6 +17,11 @@
                             <label for="valor" class="text-gray-300">Valor</label>
                             <input type="text" name="valor" id="valor" placeholder="Valor monetario" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
                         </div>
+
+                        <div class="flex flex-col">
+                            <label for="stock" class="text-gray-300">stock</label>
+                            <input type="text" name="stock" id="stock" placeholder="Valor monetario" class="mt-1 p-2 bg-gray-700 text-gray-300 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"/>
+                        </div>
                     </div>
 
                     <div class="flex flex-col">

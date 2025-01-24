@@ -1,39 +1,87 @@
 <x-app-layout>
-    <div class="min-h-screen h-full bg-gray-900 p-2" style="background-image: url('/images/fondo_objetos.jpeg'); background-size: cover; background-position: center;">
-        <div class="w-full max-w-5xl mx-auto p-2 bg-transparent rounded-lg">
-
-            <form method="GET" action="{{ route('objetos.index') }}" class="mb-4 mt-4">
-                <input type="text" name="busqueda" value="{{ request('busqueda') }}" placeholder="Buscar objetos..."
-                    class="form-input">
-                <x-primary-button>Buscar</x-primary-button>
-            </form>
-
-
-            <div class="bg-gradient-to-t from-gray-600 via-gray-700 to-transparent opacity-80 shadow-lg shadow-gray-400/50 rounded-lg p-4 text-white font-semibold">
-                <table class="w-full text-white border-collapse">
-                    <thead>
-                        <tr class="text-black font-space bg-white font-semibold border-b-4 border-gray-700 text-center">
-                            <th class="text-left px-4 py-3 text-xl">Denominación</th>
-                            <th class="text-left px-4 py-3 text-xl">Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($objetos as $objeto)
-                            <tr>
-                                <td class="pl-4 text-gray-300 font-semibold bg-white">
-                                    <a href="{{ route('objetos.show', $objeto) }}" class="text-black hover:underline">
-                                        {{ $objeto->denominacion }}
-                                    </a>
-                                </td>
-                                <td class="px-4 py-3 text-black bg-white">${{ $objeto->valor }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+    @if (session('exito'))
+        <div id="alert-3" class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <div class="ms-3 text-sm font-medium">
+                <p>{{ session('exito') }}</p>
             </div>
+        </div>
+    @endif
 
-            <div class="mt-8 text-white">
-                {{ $objetos->links('pagination::tailwind') }}
+    <div class="flex gap-6">
+        <!-- Sección de artículos -->
+        <div class="w-3/4">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left">Nombre del objeto</th>
+                        <th scope="col" class="px-6 py-3 text-right">Precio</th>
+                        <th scope="col" class="px-6 py-3 text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($objetos as $objeto)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <a href="{{ route('objetos.show', $objeto) }}">{{ $objeto->denominacion }}</a>
+                            </th>
+                            <td class="px-6 py-4 text-right">{{ $objeto->valor }}€</td>
+                            <td class="px-6 py-4 text-center">
+                                <form action="{{ route('objetos.comprar', $objeto) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    <button type="submit" class="text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md">Comprar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sección del carrito -->
+        <div class="w-1/4">
+            <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
+                @if(session('carrito') && count(session('carrito')) > 0)
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Nombre</th>
+                                <th scope="col" class="px-6 py-3 text-right">Subtotal</th>
+                                <th scope="col" class="px-6 py-3 text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(session('carrito') as $item)
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td class="px-6 py-4">{{ $item['denominacion'] }}</td>
+                                    <td class="px-6 py-4 text-right">{{ $item['valor'] * $item['cantidad'] }}€</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <form action="{{ route('objetos.add', $item['id']) }}" method="POST" class="inline-block">
+                                            @csrf
+                                            <button type="submit" class="text-white bg-green-600 hover:bg-green-700 px-2 py-1 rounded-md">+</button>
+                                        </form>
+                                        <span class="mx-2">{{ $item['cantidad'] }}</span>
+                                        <form action="{{ route('objetos.resta', $item['id']) }}" method="POST" class="inline-block">
+                                            @csrf
+                                            <button type="submit" class="text-white bg-red-600 hover:bg-red-700 px-2 py-1 rounded-md">-</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="mt-4 text-lg font-bold text-right">
+                        Total: {{ array_sum(array_map(function($item) { return $item['valor'] * $item['cantidad']; }, session('carrito'))) }}€
+                    </div>
+                    <form action="{{ route('objetos.vaciar') }}" method="POST" class="mt-4 text-center">
+                        @csrf
+                        <button type="submit" class="text-red-600 hover:text-red-800">Vaciar Carrito</button>
+                    </form>
+                @else
+                    <p class="text-center text-gray-500">Tu carrito está vacío.</p>
+                @endif
             </div>
         </div>
     </div>
