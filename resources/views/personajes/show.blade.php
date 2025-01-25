@@ -6,8 +6,8 @@
         </div>
     @endif
 
-    <div class=" max-w-4xl mx-auto p-4 rounded-lg mt-4 shadow-lg">
-        <div class="bg-black p-4 px-12 rounded-lg text-white font-semibold">
+    <div class="min-h-screen bg-gray-900 p-6">
+        <div class="w-2/4 mx-auto bg-gray-800 px-12 rounded-lg text-white font-semibold">
             <h2 class="text-2xl font-bold text-center mb-4">{{ $personaje->nombre }}</h2>
 
             <div class="flex justify-center items-center">
@@ -31,68 +31,61 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
                 <div>
                     <strong class="underline">Información Personal</strong>
-                    <p><strong>Profesión:</strong> {{ $personaje->profesion }}</p>
-                    <p><strong>Edad:</strong> {{ $personaje->edad }}</p>
-                    <p><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</p>
-                    <p><strong>Estudios:</strong> {{ $personaje->estudios }}</p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'profesion' }}" data-puntuacion="{{ $personaje->profesion }}" data-nombre="{{ 'Profesión' }}"><strong>Profesión:</strong> {{ $personaje->profesion }}</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'edad' }}" data-puntuacion="{{$personaje->edad }}" data-nombre="{{ 'Edad' }}"><strong>Edad:</strong> {{ $personaje->edad }}</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'nacionalidad' }}" data-puntuacion="{{ $personaje->nacionalidad }}" data-nombre="{{ 'Nacionalidad' }}"><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'estudios' }}" data-puntuacion="{{ $personaje->estudios }}" data-nombre="{{ 'Estudios' }}"><strong>Estudios:</strong> {{ $personaje->estudios }}</button></p>
                 </div>
                 <div>
                     <strong class="underline">Información Financiera</strong>
-                    <p><strong>Ingresos:</strong> ${{ $personaje->ingresos }}/año</p>
-                    <p><strong>Ahorros:</strong> ${{ $personaje->ahorros }}</p>
-                    <p><strong>Efectivo:</strong> ${{ $personaje->efectivo }}</p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ingresos' }}" data-puntuacion="{{ $personaje->ingresos }}" data-nombre="{{ 'Ingresos' }}"><strong>Ingresos:</strong> ${{ $personaje->ingresos }}$/año</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ahorros' }}" data-puntuacion="{{ $personaje->ahorros }}" data-nombre="{{ 'Ahorro' }}"><strong>Ahorros:</strong> ${{ $personaje->ahorros }}$</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'efectivo' }}" data-puntuacion="{{ $personaje->efectivo }}" data-nombre="{{ 'Efectivo' }}"><strong>Efectivo:</strong> ${{ $personaje->efectivo }}$</button></p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                 <div class="text-center  flex flex-col items-center space-y-2">
                     <strong class="underline">Características Físicas</strong>
-                    <p><strong>Fuerza:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->fue }} |
-                            {{ floor($personaje->fue / 2) }} | {{ floor($personaje->fue / 5) }} |</span></p>
-                    <p><strong>Constitución:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ floor($personaje->con) }} | {{ floor($personaje->con / 2) }} |
-                            {{ floor($personaje->con / 5) }} |</span></p>
-                    <p><strong>Destreza:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->des }} |
-                            {{ floor($personaje->des / 2) }} | {{ floor($personaje->des / 5) }} |</span></p>
-                    <p><strong>Tamaño:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->tam }} |
-                            {{ floor($personaje->tam / 2) }} | {{ floor($personaje->tam / 5) }} |</span></p>
-                    <p><strong>Apariencia:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->apa }}
-                            | {{ floor($personaje->apa / 2) }} | {{ floor($personaje->apa / 5) }} |</span></p>
+                    <x-habilidad-button habilidad-id="fue" puntuacion="{{ $personaje->fue }}"
+                        nombre="Fuerza" />
+                    <x-habilidad-button habilidad-id="con" puntuacion="{{ $personaje->con }}"
+                        nombre="Constitución" />
+                    <x-habilidad-button habilidad-id="des" puntuacion="{{ $personaje->des }}"
+                        nombre="Destreza" />
+                    <x-habilidad-button habilidad-id="tam" puntuacion="{{ $personaje->tam }}"
+                        nombre="Tamaño" />
+                    <x-habilidad-button habilidad-id="apa" puntuacion="{{ $personaje->apa }}"
+                        nombre="Apariencia" />
+                    <x-habilidad-single habilidad-id="hp" puntuacion="{{ $personaje->hp }}"
+                        nombre="Vida alctual" />
+                    <p><strong>Vida máxima:</strong> <span class="flex justify-center w-full text-center">|
+                        {{ floor(($personaje->con/5 + $personaje->tam/5)/2) }} |</span></p>
                 </div>
-                <div class="text-center">
+                <div class="text-center flex flex-col items-center space-y-2">
                     <strong class="underline">Características Mentales</strong>
-                    <p><strong>Inteligencia:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->int }} | {{ floor($personaje->int / 2) }} |
-                            {{ floor($personaje->int / 5) }}
-                            |</span></p>
-                    <p><strong>Poder:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->pod }} |
-                            {{ floor($personaje->pod / 2) }} | {{ floor($personaje->pod / 5) }} |</span></p>
-                    <p><strong>Educación:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->edu }}
-                            | {{ floor($personaje->edu / 2) }} | {{ floor($personaje->edu / 5) }} |</span></p>
-                    <p><strong>Cordura actual:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->cor_actual }} |</span></p>
-                    <p><strong>Cordura inicial:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ $personaje->cor }} |</span></p>
+                    <x-habilidad-button habilidad-id="int" puntuacion="{{ $personaje->int }}"
+                        nombre="Inteligencia" />
+                    <x-habilidad-button habilidad-id="pod" puntuacion="{{ $personaje->pod }}"
+                        nombre="Poder" />
+                    <x-habilidad-button habilidad-id="edu" puntuacion="{{ $personaje->edu }}"
+                        nombre="Educación" />
+                    <x-habilidad-single habilidad-id="cor_actual" puntuacion="{{ $personaje->cor_actual }}"
+                        nombre="Cordura actual" />
+                    <x-habilidad-single habilidad-id="cor" puntuacion="{{ $personaje->cor }}"
+                        nombre="Cordura inicial" />
                     <p><strong>Cordura máxima:</strong> <span class="flex justify-center w-full text-center">|
                             {{ 99 - $personaje->mitos_cthulhu }} |</span></p>
+                    <x-habilidad-single habilidad-id="mp" puntuacion="{{ $personaje->mp }}"
+                        nombre="Magia alctual" />
+                    <p><strong>Magia máxima:</strong> <span class="flex justify-center w-full text-center">|
+                        {{ floor($personaje->pod/5) }} |</span></p>
                 </div>
             </div>
-            <div class="flex items-center justify-between mb-4 p-5">
-                <h2 class="text-2xl font-bold">Habilidades</h2>
-                <a href="{{ route('personajes.editHabilidades', $personaje) }}"
-                    class="px-6 py-3 bg-white text-black rounded-lg shadow-md hover:bg-green-500 transition duration-200 transform hover:scale-[1.03]">
-                    Modificar Habilidades
-                </a>
-            </div>
+                <h2 class="text-2xl font-bold text-center">Habilidades</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                 <div class="text-center flex flex-col items-center space-y-2">
@@ -226,7 +219,7 @@
                     action="{{ route('personajes.updateHabilidad', $personaje) }}">
                     @csrf
                     @method('PUT')
-                    <h2 class="text-xl font-bold mb-4">Modificar habilidad</h2>
+                    <h2 class="text-xl font-bold mb-4">Modificar </h2>
                     <input type="hidden" name="habilidad_id" id="habilidad_id">
                     <p id="habilidadNombre" class="font-semibold mb-2"></p>
                     <label for="puntuacion" class="block mb-2">Nueva Puntuación:</label>
@@ -306,7 +299,7 @@
             function openModificarModal(habilidadId, puntuacion, nombre) {
                 habilidadIdInput.value = habilidadId;
                 puntuacionInput.value = puntuacion;
-                document.getElementById('habilidadNombre').textContent = `Habilidad: ${nombre}`;
+                document.getElementById('habilidadNombre').textContent = ` ${nombre}`;
                 modalModificar.classList.remove('hidden');
             }
 
