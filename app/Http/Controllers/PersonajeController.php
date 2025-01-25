@@ -236,56 +236,11 @@ class PersonajeController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id|',
             'nombre' => 'required|string|max:50',
-            'profesion' => 'string|max:100|nullable',
-            'edad' => 'integer|between:0,999999|nullable',
-            'nacionalidad' => 'string|max:255|nullable',
-            'estudios' => 'string|max:255|nullable',
-            'fue' => 'required|integer|between:3, 9999',
-            'con' => 'required|integer|between:3, 9999',
-            'des' => 'required|integer|between:3, 9999',
-            'tam' => 'required|integer|between:6, 9999',
-            'int' => 'required|integer|between:6, 9999',
-            'apa' => 'required|integer|between:3, 9999',
-            'pod' => 'required|integer|between:3, 9999',
-            'cor' => 'required|integer|between:3, 99',
-            'cor_actual' => 'required|integer|between:0, 99',
-            'ingresos' => 'nullable|numeric',
-            'ahorros' => 'nullable|numeric',
-            'efectivo' => 'nullable|numeric',
         ]);
 
-        if ($request->cor > 99 - $request->mitos_cuthulu) {
-            return redirect()->back()
-                ->withErrors(['cor' => 'El valor de cor no puede ser mayor a 99 menos el valor de mitos de cuthulu: ' . 99 - $request->mitos_cuthulu])
-                ->withInput();
-        }
-
-        if ($request->cor_actual > 99 - $request->mitos_cuthulu) {
-            return redirect()->back()
-                ->withErrors(['cor_actual' => 'El valor de cordura_actual no puede ser mayor a 99 menos el valor de mitos_cuthulu(): ' . 99 - $request->mitos_cuthulu])
-                ->withInput();
-        }
 
         $validated['user_id'] = $request->user_id;
         $validated['nombre'] = $request->nombre;
-        $validated['profesion'] = $request->profesion;
-        $validated['edad'] = $request->edad;
-        $validated['coste_tiempo'] = $request->coste_tiempo;
-        $validated['nacionalidad'] = $request->nacionalidad;
-        $validated['estudios'] = $request->estudios;
-        $validated['fue'] = $request->fue;
-        $validated['con'] = $request->con;
-        $validated['des'] = $request->des;
-        $validated['tam'] = $request->tam;
-        $validated['int'] = $request->int;
-        $validated['apa'] = $request->apa;
-        $validated['pod'] = $request->pod;
-        $validated['edu'] = $request->edu;
-        $validated['cor'] = $request->cor;
-        $validated['cordura_actual'] = $request->cor_actual;
-        $validated['efectivo'] = $request->efectivo;
-        $validated['ingresos'] = $request->ingresos;
-        $validated['ahorros'] = $request->ahorros;
 
         $personaje->fill($validated);
 
