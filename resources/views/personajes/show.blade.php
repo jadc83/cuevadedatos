@@ -8,7 +8,7 @@
 
     <div class="min-h-screen bg-gray-900 p-6">
         <div class="w-2/4 mx-auto bg-gray-800 px-12 rounded-lg text-white font-semibold">
-            <h2 class="text-2xl font-bold text-center mb-4">{{ $personaje->nombre }}</h2>
+            <h2 class="text-2xl font-bold text-center mb-4 py-5">{{ $personaje->nombre }}</h2>
 
             <div class="flex justify-center items-center">
                 @if ($personaje->foto)
