@@ -138,7 +138,7 @@
                         nombre="Electricidad" />
                     <x-habilidad-button habilidad-id="encanto" puntuacion="{{ $personaje->encanto }}"
                         nombre="Encanto" />
-                    <x-habilidad-button habilidad-id="equitacion" puntuacion="{{ $personaje->equitacion }}"
+                    <x-habilidad-button habilidad-id="equitación" puntuacion="{{ $personaje->equitación }}"
                         nombre="Equitación" />
                     <x-habilidad-button habilidad-id="escuchar" puntuacion="{{ $personaje->escuchar }}"
                         nombre="Escuchar" />
@@ -218,7 +218,7 @@
                     <div>
                         <button class="bg-green-500 text-white px-4 py-2 rounded">Añadir</button>
                 </form>
-                <button id="closeModal" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
+                <button id="closeModal" type="button" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
             </div>
         </div>
     </div>
@@ -236,7 +236,7 @@
                 <div>
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
             </form>
-            <button id="closeModalModificar" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
+            <button id="closeModalModificar" type="button" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
         </div>
     </div>
     </div>
@@ -256,7 +256,7 @@
                 <div>
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
             </form>
-            <button id="closeModalEspecializacion" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
+            <button id="closeModalEspecializacion" type="button" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
         </div>
         <form id="formModificarEspecializacion" method="POST"
             action="{{ route('personajes.desespecializacion', $personaje) }}"

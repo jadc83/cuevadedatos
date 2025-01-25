@@ -91,7 +91,7 @@ class PersonajeController extends Controller
         $validated['ahorros'] = $request->ahorros;
         $validated['hp'] = floor(($request->con/5 + $request->tam/5)/2);
         $validated['mp'] = floor($request->pod/5);
-        $validated['esquiva'] = $request->des;
+        $validated['esquivar'] = $request->des;
 
 
         $personaje->fill($validated);
