@@ -12,6 +12,8 @@
             <div class="mx-auto w-3/4 max-w-3xl px-6 py-8 bg-gray-800 rounded-lg shadow-lg">
                 <h2 class="text-2xl text-white font-semibold mb-6 text-center">Crear Nuevo Personaje</h2>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-6">
                         <div class="flex flex-col bg-black p-4 rounded-md">
                             <label class="text-white" for="user_id">Jugador</label>
                             <select name="user_id" id="user_id" class="input-field">
@@ -21,13 +23,37 @@
                             </select>
                             <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
                         </div>
-
+                        <div class="flex flex-col bg-black p-4 rounded-md">
+                            <label class="text-white" for="profesion">Profesión</label>
+                            <x-text-input name="profesion" type="text" id="profesion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            :value="old('profesion', $personaje->profesion)" />
+                            <x-input-error :messages="$errors->get('profesion')" class="mt-2" />
+                        </div>
+                        <div class="flex flex-col bg-black p-4 rounded-md">
+                            <label class="text-white" for="estudios">Estudios</label>
+                            <x-text-input name="estudios" type="text" id="estudios" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            :value="old('estudios', $personaje->estudios)" />
+                            <x-input-error :messages="$errors->get('estudios')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="space-y-6">
                         <div class="flex flex-col bg-black p-4 rounded-md">
                             <label class="text-white" for="nombre">Nombre</label>
                             <x-text-input name="nombre" type="text" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             :value="old('nombre', $personaje->nombre)" />
                             <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
                         </div>
+
+                        <div class="flex flex-col bg-black p-4 rounded-md">
+                            <label class="text-white" for="nacionalidad">Nacionalidad</label>
+                            <x-text-input name="nacionalidad" type="text" id="nacionalidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            :value="old('nacionalidad', $personaje->nacionalidad)" />
+                            <x-input-error :messages="$errors->get('nacionalidad')" class="mt-2" />
+                        </div>
+
+                    </div>
+                </div>
+
 
                 <!-- Espacio para subir foto -->
                 <div class="mt-6 flex flex-col items-center bg-black p-4 rounded-md">

@@ -72,7 +72,7 @@ class PersonajeController extends Controller
         $validated['nombre'] = $request->nombre;
         $validated['profesion'] = $request->profesion;
         $validated['edad'] = $request->edad;
-        $validated['coste_tiempo'] = $request->coste_tiempo;
+        $validated['coste_tiempo'] = $request->coste_tiempo; //No se que es esto, pero lo dejo por si acaso
         $validated['nacionalidad'] = $request->nacionalidad;
         $validated['estudios'] = $request->estudios;
         $validated['fue'] = $request->fue;
@@ -236,11 +236,30 @@ class PersonajeController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|exists:users,id|',
             'nombre' => 'required|string|max:50',
+            'profesion' => 'string|max:100|nullable',
+            'nacionalidad' => 'string|max:255|nullable',
+            'estudios' => 'string|max:255|nullable',
         ]);
 
+        if ($request->cor > 99 - $request->mitos_cuthulu) {
+            return redirect()->back()
+                ->withErrors(['cor' => 'El valor de cor no puede ser mayor a 99 menos el valor de mitos de cuthulu: ' . 99 - $request->mitos_cuthulu])
+                ->withInput();
+        }
+
+        if ($request->cor_actual > 99 - $request->mitos_cuthulu) {
+            return redirect()->back()
+                ->withErrors(['cor_actual' => 'El valor de cordura_actual no puede ser mayor a 99 menos el valor de mitos_cuthulu(): ' . 99 - $request->mitos_cuthulu])
+                ->withInput();
+        }
 
         $validated['user_id'] = $request->user_id;
         $validated['nombre'] = $request->nombre;
+        $validated['profesion'] = $request->profesion;
+        $validated['coste_tiempo'] = $request->coste_tiempo; //No se que es esto, pero lo dejo por si acaso
+        $validated['nacionalidad'] = $request->nacionalidad;
+        $validated['estudios'] = $request->estudios;
+
 
         $personaje->fill($validated);
 

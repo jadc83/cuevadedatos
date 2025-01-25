@@ -34,10 +34,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
                 <div>
                     <strong class="underline">Información Personal</strong>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'profesion' }}" data-puntuacion="{{ $personaje->profesion }}" data-nombre="{{ 'Profesión' }}"><strong>Profesión:</strong> {{ $personaje->profesion }}</button></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'edad' }}" data-puntuacion="{{$personaje->edad }}" data-nombre="{{ 'Edad' }}"><strong>Edad:</strong> {{ $personaje->edad }}</button></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'nacionalidad' }}" data-puntuacion="{{ $personaje->nacionalidad }}" data-nombre="{{ 'Nacionalidad' }}"><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</button></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'estudios' }}" data-puntuacion="{{ $personaje->estudios }}" data-nombre="{{ 'Estudios' }}"><strong>Estudios:</strong> {{ $personaje->estudios }}</button></p>
+                    <p><p><strong>Profesión:</strong> {{ $personaje->profesion }}</p></p>
+                    <p><p><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</p></p>
+                    <p><p><strong>Estudios:</strong> {{ $personaje->estudios }}</p></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{'edad'}}" data-puntuacion="{{$personaje->edad }}" data-nombre="{{ 'Edad' }}"><strong>Edad:</strong> {{ $personaje->edad }} años</button></p>
+
                 </div>
                 <div>
                     <strong class="underline">Información Financiera</strong>
@@ -222,7 +223,7 @@
                     <h2 class="text-xl font-bold mb-4">Modificar </h2>
                     <input type="hidden" name="habilidad_id" id="habilidad_id">
                     <p id="habilidadNombre" class="font-semibold mb-2"></p>
-                    <label for="puntuacion" class="block mb-2">Nueva Puntuación:</label>
+                    <label for="puntuacion" class="block mb-2">Nuevo valor:</label>
                     <input type="number" name="puntuacion" id="puntuacion" class="w-full p-2 mb-4" required>
                     <div>
                         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
