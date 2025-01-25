@@ -34,59 +34,67 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
                 <div>
                     <strong class="underline">Información Personal</strong>
-                    <p><p><strong>Profesión:</strong> {{ $personaje->profesion }}</p></p>
-                    <p><p><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</p></p>
-                    <p><p><strong>Estudios:</strong> {{ $personaje->estudios }}</p></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{'edad'}}" data-puntuacion="{{$personaje->edad }}" data-nombre="{{ 'Edad' }}"><strong>Edad:</strong> {{ $personaje->edad }} años</button></p>
+                    <p>
+                    <p><strong>Profesión:</strong> {{ $personaje->profesion }}</p>
+                    </p>
+                    <p>
+                    <p><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</p>
+                    </p>
+                    <p>
+                    <p><strong>Estudios:</strong> {{ $personaje->estudios }}</p>
+                    </p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'edad' }}"
+                            data-puntuacion="{{ $personaje->edad }}"
+                            data-nombre="{{ 'Edad' }}"><strong>Edad:</strong> {{ $personaje->edad }}
+                            años</button></p>
 
                 </div>
                 <div>
                     <strong class="underline">Información Financiera</strong>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ingresos' }}" data-puntuacion="{{ $personaje->ingresos }}" data-nombre="{{ 'Ingresos' }}"><strong>Ingresos:</strong> ${{ $personaje->ingresos }}$/año</button></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ahorros' }}" data-puntuacion="{{ $personaje->ahorros }}" data-nombre="{{ 'Ahorro' }}"><strong>Ahorros:</strong> ${{ $personaje->ahorros }}$</button></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'efectivo' }}" data-puntuacion="{{ $personaje->efectivo }}" data-nombre="{{ 'Efectivo' }}"><strong>Efectivo:</strong> ${{ $personaje->efectivo }}$</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ingresos' }}"
+                            data-puntuacion="{{ $personaje->ingresos }}"
+                            data-nombre="{{ 'Ingresos' }}"><strong>Ingresos:</strong>
+                            ${{ $personaje->ingresos }}$/año</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ahorros' }}"
+                            data-puntuacion="{{ $personaje->ahorros }}"
+                            data-nombre="{{ 'Ahorro' }}"><strong>Ahorros:</strong>
+                            ${{ $personaje->ahorros }}$</button></p>
+                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'efectivo' }}"
+                            data-puntuacion="{{ $personaje->efectivo }}"
+                            data-nombre="{{ 'Efectivo' }}"><strong>Efectivo:</strong>
+                            ${{ $personaje->efectivo }}$</button></p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                 <div class="text-center  flex flex-col items-center space-y-2">
                     <strong class="underline">Características Físicas</strong>
-                    <x-habilidad-button habilidad-id="fue" puntuacion="{{ $personaje->fue }}"
-                        nombre="Fuerza" />
-                    <x-habilidad-button habilidad-id="con" puntuacion="{{ $personaje->con }}"
-                        nombre="Constitución" />
-                    <x-habilidad-button habilidad-id="des" puntuacion="{{ $personaje->des }}"
-                        nombre="Destreza" />
-                    <x-habilidad-button habilidad-id="tam" puntuacion="{{ $personaje->tam }}"
-                        nombre="Tamaño" />
-                    <x-habilidad-button habilidad-id="apa" puntuacion="{{ $personaje->apa }}"
-                        nombre="Apariencia" />
-                    <x-habilidad-single habilidad-id="hp" puntuacion="{{ $personaje->hp }}"
-                        nombre="Vida alctual" />
+                    <x-habilidad-button habilidad-id="fue" puntuacion="{{ $personaje->fue }}" nombre="Fuerza" />
+                    <x-habilidad-button habilidad-id="con" puntuacion="{{ $personaje->con }}" nombre="Constitución" />
+                    <x-habilidad-button habilidad-id="des" puntuacion="{{ $personaje->des }}" nombre="Destreza" />
+                    <x-habilidad-button habilidad-id="tam" puntuacion="{{ $personaje->tam }}" nombre="Tamaño" />
+                    <x-habilidad-button habilidad-id="apa" puntuacion="{{ $personaje->apa }}" nombre="Apariencia" />
+                    <x-habilidad-single habilidad-id="hp" puntuacion="{{ $personaje->hp }}" nombre="Vida alctual" />
                     <p><strong>Vida máxima:</strong> <span class="flex justify-center w-full text-center">|
-                        {{ floor(($personaje->con/5 + $personaje->tam/5)/2) }} |</span></p>
+                            {{ floor(($personaje->con / 5 + $personaje->tam / 5) / 2) }} |</span></p>
                 </div>
                 <div class="text-center flex flex-col items-center space-y-2">
                     <strong class="underline">Características Mentales</strong>
-                    <x-habilidad-button habilidad-id="int" puntuacion="{{ $personaje->int }}"
-                        nombre="Inteligencia" />
-                    <x-habilidad-button habilidad-id="pod" puntuacion="{{ $personaje->pod }}"
-                        nombre="Poder" />
-                    <x-habilidad-button habilidad-id="edu" puntuacion="{{ $personaje->edu }}"
-                        nombre="Educación" />
+                    <x-habilidad-button habilidad-id="int" puntuacion="{{ $personaje->int }}" nombre="Inteligencia" />
+                    <x-habilidad-button habilidad-id="pod" puntuacion="{{ $personaje->pod }}" nombre="Poder" />
+                    <x-habilidad-button habilidad-id="edu" puntuacion="{{ $personaje->edu }}" nombre="Educación" />
                     <x-habilidad-single habilidad-id="cor_actual" puntuacion="{{ $personaje->cor_actual }}"
                         nombre="Cordura actual" />
                     <x-habilidad-single habilidad-id="cor" puntuacion="{{ $personaje->cor }}"
                         nombre="Cordura inicial" />
                     <p><strong>Cordura máxima:</strong> <span class="flex justify-center w-full text-center">|
                             {{ 99 - $personaje->mitos_cthulhu }} |</span></p>
-                    <x-habilidad-single habilidad-id="mp" puntuacion="{{ $personaje->mp }}"
-                        nombre="Magia alctual" />
+                    <x-habilidad-single habilidad-id="mp" puntuacion="{{ $personaje->mp }}" nombre="Magia alctual" />
                     <p><strong>Magia máxima:</strong> <span class="flex justify-center w-full text-center">|
-                        {{ floor($personaje->pod/5) }} |</span></p>
+                            {{ floor($personaje->pod / 5) }} |</span></p>
                 </div>
             </div>
-                <h2 class="text-2xl font-bold text-center">Habilidades</h2>
+            <h2 class="text-2xl font-bold text-center">Habilidades</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
                 <div class="text-center flex flex-col items-center space-y-2">
@@ -207,30 +215,30 @@
                             @endif
                         @endforeach
                     </select>
-                    <button class="bg-green-500 text-white px-4 py-2 rounded">Añadir</button>
+                    <div>
+                        <button class="bg-green-500 text-white px-4 py-2 rounded">Añadir</button>
                 </form>
                 <button id="closeModal" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
-
             </div>
         </div>
-        <div id="modalModificar"
-            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
-            <div class="bg-white p-8 rounded-lg shadow-xl">
-                <form id="formModificarHabilidad" method="POST"
-                    action="{{ route('personajes.updateHabilidad', $personaje) }}">
-                    @csrf
-                    @method('PUT')
-                    <h2 class="text-xl font-bold mb-4">Modificar </h2>
-                    <input type="hidden" name="habilidad_id" id="habilidad_id">
-                    <p id="habilidadNombre" class="font-semibold mb-2"></p>
-                    <label for="puntuacion" class="block mb-2">Nuevo valor:</label>
-                    <input type="number" name="puntuacion" id="puntuacion" class="w-full p-2 mb-4" required>
-                    <div>
-                        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
-                </form>
-                <button id="closeModalModificar" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
-            </div>
+    </div>
+    <div id="modalModificar" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-xl">
+            <form id="formModificarHabilidad" method="POST"
+                action="{{ route('personajes.updateHabilidad', $personaje) }}">
+                @csrf
+                @method('PUT')
+                <h2 class="text-xl font-bold mb-4">Modificar </h2>
+                <input type="hidden" name="habilidad_id" id="habilidad_id">
+                <p id="habilidadNombre" class="font-semibold mb-2"></p>
+                <label for="puntuacion" class="block mb-2">Nuevo valor:</label>
+                <input type="number" name="puntuacion" id="puntuacion" class="w-full p-2 mb-4" required>
+                <div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Modificar</button>
+            </form>
+            <button id="closeModalModificar" class="bg-red-500 text-white px-4 py-2 rounded">Cerrar</button>
         </div>
+    </div>
     </div>
     <div id="modalModificarEspecializacion"
         class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
