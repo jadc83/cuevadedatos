@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Objeto;
+use App\Models\Personaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +19,14 @@ class ObjetoController extends Controller
 
         if ($busqueda = $request->input('busqueda')) {
             $query->where('denominacion', 'ilike', "%{$busqueda}%")
-                  ->orWhere('descripcion', 'ilike', "%{$busqueda}%");
+                ->orWhere('descripcion', 'ilike', "%{$busqueda}%");
         }
 
         $objetos = $query->paginate(10);
+        $jugador = Auth::user();
+        $personaje = Personaje::find($jugador->personaje_id);
 
-        return view('objetos.index', ['objetos' => $objetos]);
+        return view('objetos.index', ['objetos' => $objetos, 'personaje' => $personaje]);
     }
 
     /**
@@ -32,7 +35,6 @@ class ObjetoController extends Controller
     public function create()
     {
         return view('objetos.create');
-
     }
 
     /**
@@ -65,7 +67,7 @@ class ObjetoController extends Controller
     public function show(Objeto $objeto)
     {
 
-        return view('objetos.show', ['objeto'=> $objeto]);
+        return view('objetos.show', ['objeto' => $objeto]);
     }
 
     /**
@@ -90,7 +92,6 @@ class ObjetoController extends Controller
         return redirect()->route('objetos.index');
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
@@ -100,50 +101,44 @@ class ObjetoController extends Controller
         return redirect()->route('objetos.index')->with('success', 'Objeto eliminado con éxito.');
     }
 
-
-        /**
+    /**
      * Añade un objeto al carrito desde la vista del carrito
      */
 
-     public function comprar($id)
-     {
-         $objeto = Objeto::findOrFail($id);
-         $carrito = session('carrito', []);
-         $existe = false;
+    public function comprar($id)
+    {
+        $objeto = Objeto::findOrFail($id);
+        $carrito = session('carrito', []);
+        $existe = false;
 
-         foreach ($carrito as &$item) {
-             if ($item['id'] == $objeto->id) {
-                 // Cambiar '==' por '=' para asignar correctamente
-                 $item['denominacion'] = $objeto->denominacion; // Asignación correcta
-                 $item['valor'] = $objeto->valor; // Asignación correcta
-                 $item['cantidad'] += 1;  // Incrementa la cantidad
-                 $existe = true;
-                 break;
-             }
-         }
+        foreach ($carrito as &$item) {
+            if ($item['id'] == $objeto->id) {
+                // Cambiar '==' por '=' para asignar correctamente
+                $item['denominacion'] = $objeto->denominacion; // Asignación correcta
+                $item['valor'] = $objeto->valor; // Asignación correcta
+                $item['cantidad'] += 1;  // Incrementa la cantidad
+                $existe = true;
+                break;
+            }
+        }
 
-         if (!$existe) {
-             // Agregar nuevo objeto al carrito
-             $carrito[$objeto->id] = [
-                 'id' => $objeto->id,
-                 'denominacion' => $objeto->denominacion,
-                 'valor' => $objeto->valor,
-                 'cantidad' => 1,
-             ];
-         }
+        if (!$existe) {
+            $carrito[$objeto->id] = [
+                'id' => $objeto->id,
+                'denominacion' => $objeto->denominacion,
+                'valor' => $objeto->valor,
+                'cantidad' => 1,
+            ];
+        }
+        session(['carrito' => $carrito]);
 
-         // Almacenar el carrito actualizado en la sesión
-         session(['carrito' => $carrito]);
+        // Mensaje flash para indicar éxito
+        //session()->flash('exito', 'Artículo agregado al carrito.');
 
-         // Mensaje flash para indicar éxito
-         //session()->flash('exito', 'Artículo agregado al carrito.');
+        return redirect()->route('objetos.index');
+    }
 
-         return redirect()->route('objetos.index');
-     }
-
-
-
-         /**
+    /**
      * Resta un objeto al carrito desde la vista del carrito
      */
 
@@ -162,7 +157,8 @@ class ObjetoController extends Controller
         return redirect()->route('objetos.index');
     }
 
-    public function vaciar(){
+    public function vaciar()
+    {
         session()->forget('carrito');
         return redirect()->route('objetos.index');
     }
@@ -201,4 +197,25 @@ class ObjetoController extends Controller
         return redirect()->route('objetos.index');
     }
 
+    public function pagar(Request $request)
+    {
+        $personaje = Personaje::find($request->input('personaje_id'));
+
+        if (!$personaje) {
+            return back()->with('error', 'Personaje no encontrado.');
+        }
+        $total = array_sum(array_map(function ($item) {
+            return $item['valor'] * $item['cantidad'];
+        }, session('carrito')));
+
+        if ($personaje->ahorros >= $total) {
+            $personaje->ahorros -= $total;
+            $personaje->save();
+            session()->forget('carrito');
+
+            return redirect()->route('objetos.index');
+        } else {
+            return back()->with('error', 'No tienes suficientes ahorros para realizar el pago.');
+        }
+    }
 }

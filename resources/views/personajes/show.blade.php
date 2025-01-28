@@ -18,6 +18,9 @@
                     <p class="text-gray-500">No hay foto disponible</p>
                 @endif
             </div>
+            <div class="text-center">
+                <p><strong>Jugador:</strong> {{ $personaje->user->name }}</p>
+            </div>
             <div class="flex p-2 justify-center">
                 <div>
                     <form action="{{ route('personajes.informacion', $personaje) }}" method="get">

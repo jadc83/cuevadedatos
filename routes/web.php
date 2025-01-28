@@ -68,6 +68,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/objetos/{objeto}/comprar', [ObjetoController::class, 'comprar'])->name('objetos.comprar');
     Route::post('/objetos/{objeto}/resta', [ObjetoController::class, 'resta'])->name('objetos.resta');
     Route::post('/vaciar-carrito', [ObjetoController::class, 'vaciar'])->name('objetos.vaciar');
+    Route::post('/pagar', [ObjetoController::class, 'pagar'])->name('objetos.pagar');
+
 
 
     Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
