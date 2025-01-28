@@ -63,12 +63,15 @@ Route::middleware('auth')->group(function () {
     Route::put('/personajes/updateEspecializacion/{personaje}', [PersonajeController::class, 'updateEspecializacion'])->name('personajes.updateEspecializacion');
     Route::put('/personajes/especializacion/{personaje}', [PersonajeController::class, 'especializacion'])->name('personajes.especializacion');
     Route::put('/personajes/desespecializacion/{personaje}', [PersonajeController::class, 'desespecializacion'])->name('personajes.desespecializacion');
+    Route::post('/personajes/cambiar', [PersonajeController::class, 'cambiar'])->name('personajes.cambiar');
+
 
     Route::post('/objetos/{objeto}/add', [ObjetoController::class, 'add'])->name('objetos.add');
     Route::post('/objetos/{objeto}/comprar', [ObjetoController::class, 'comprar'])->name('objetos.comprar');
     Route::post('/objetos/{objeto}/resta', [ObjetoController::class, 'resta'])->name('objetos.resta');
     Route::post('/vaciar-carrito', [ObjetoController::class, 'vaciar'])->name('objetos.vaciar');
     Route::post('/pagar', [ObjetoController::class, 'pagar'])->name('objetos.pagar');
+    Route::post('/personajes/comprar/{objetoId}', [PersonajeController::class, 'comprar'])->name('personajes.comprar');
 
 
 

@@ -40,12 +40,19 @@ new class extends Component {
                     </x-nav-link>
                     <x-nav-link :href="route('especializaciones.index')" :active="request()->routeIs('especializaciones')"
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
-                        {{ __('especialidades') }}
+                        {{ __('Especialidades') }}
                     </x-nav-link>
                     <x-nav-link :href="route('familias.index')" :active="request()->routeIs('familias')"
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
-                        {{ __('familias') }}
+                        {{ __('Familias') }}
                     </x-nav-link>
+                    <p class="text-white">
+                        @php
+                        use App\Models\Personaje;
+                            $personaje = Personaje::find(Auth::user()->personaje_id)
+                        @endphp
+                        {{$personaje->nombre}}
+                    </p>
                 </div>
 
                 <!-- Menú móvil (hamburguesa) -->

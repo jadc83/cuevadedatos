@@ -29,8 +29,6 @@
             <div id="cart-container"
                 class="absolute top-16 right-24 bg-white shadow-md rounded-lg p-4 w-80 dark:bg-gray-800">
                 <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Carrito</h2>
-                <p>{{$personaje->ahorros}}$</p>
-
                 <form action="{{ route('objetos.vaciar') }}" method="POST" class="mt-2 text-end">
                     @csrf
                     <button type="submit" class="text-red-600 hover:text-red-800 mb-4">
