@@ -65,12 +65,6 @@
                         @endforeach
                     </ol>
                 </div>
-                <div class="mt-8 text-center">
-                    <a href="{{ route('objetos.create') }}"
-                    class="px-6 py-3 text-white bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-bold focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition duration-200" py-3 bg-pink-700 text-white font-semibold rounded-lg shadow-md hover:bg-pink-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition duration-200 transform hover:scale-105">
-                        Fabricar nuevo objeto
-                    </a>
-                </div>
             </div>
 
             <!-- Últimas habilidades -->
@@ -118,6 +112,7 @@
                     </a>
                 </div>
             </div>
+
 
         </div>
     </div>

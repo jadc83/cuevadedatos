@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Objeto extends Model
 {
-    protected $fillable = ['denominacion', 'descripcion', 'valor'];
+    protected $fillable = ['denominacion', 'descripcion', 'valor', 'stock'];
 
     public function habilidades()
     {

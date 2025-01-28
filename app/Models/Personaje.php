@@ -70,6 +70,13 @@ class Personaje extends Model
         'vivo',
     ];
 
+    public function user()
+    {
+
+        return $this->belongsTo(User::class);
+
+    }
+
     public function especializaciones()
     {
         return $this->belongsToMany(Especializacion::class)

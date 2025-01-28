@@ -28,6 +28,7 @@
                                 <h3 class="text-lg font-semibold text-indigo-300">Valor</h3>
                                 <p class="mt-1">{{ $objeto->valor }}</p>
                             </div>
+
                         </div>
                     </section>
 

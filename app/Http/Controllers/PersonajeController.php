@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Faker\Provider\ar_EG\Person;
 use App\Models\Familia;
+use App\Models\Objeto;
+use Illuminate\Support\Facades\DB;
 
 class PersonajeController extends Controller
 {
@@ -286,29 +288,37 @@ class PersonajeController extends Controller
     {
         $personaje = Personaje::onlyTrashed()->find($id);
         $personaje->restore();
-
-        // Redirige a la lista de personajes
         return redirect()->route('personajes.index')->with('success', 'Personaje restaurado correctamente.');
     }
     public function comentar(Request $request, Personaje $personaje)
     {
         $request->validate([
             'contenido' => 'required|string|max:500',
-            'personaje_id' => 'required|exists:personajes,id', // Asegúrate de que este campo sea requerido
-            'escritor_id' => 'required|exists:personajes,id', // El personaje que escribe el comentario
+            'personaje_id' => 'required|exists:personajes,id',
+            'escritor_id' => 'required|exists:personajes,id',
         ]);
 
-        // Crear el comentario
         Comentario::create([
             'contenido' => $request->contenido,
             'personaje_id' => $request->personaje_id,
-            'comentable_type' => 'App\Models\Personaje', // Cambia esto si es necesario
-            'comentable_id' => $request->personaje_id,   // ID del modelo comentable (el mismo personaje)
+            'comentable_type' => 'App\Models\Personaje',
+            'comentable_id' => $request->personaje_id,
         ]);
 
-        // Redirigir a la vista del personaje
         return redirect()->route('personajes.informacion', ['id' => $request->personaje_id])
                          ->with('success', 'Comentario agregado con éxito.');
+    }
+
+    public function cambiar(Request $request)
+    {
+        $usuarioId = Auth::id();
+        $personajeId = $request->input('selectorPj');
+        DB::table('users')
+            ->where('id', $usuarioId)
+            ->update(['personaje_id' => $personajeId]);
+
+        session()->forget('carrito');
+        return redirect()->route('dashboard');
     }
 
 

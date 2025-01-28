@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\EspecializacionController;
 use App\Http\Controllers\FamiliaController;
@@ -40,7 +41,6 @@ Route::get('/', function () {
     return view('dashboard', ['ultimosLibros' => $ultimosLibros, 'ultimosPersonajes' => $ultimosPersonajes, 'ultimosHechizos' => $ultimosHechizos, 'ultimosObjetos' => $ultimosObjetos, 'ultimasHabilidades' => $ultimasHabilidades]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -55,24 +55,32 @@ Route::middleware('auth')->group(function () {
     Route::resource('especializaciones', EspecializacionController::class)->parameters(['especializaciones' => 'especializacion']);
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
-    Route::resource('habilidades', HabilidadController::class)->parameters([
-        'habilidades' => 'habilidad',
-    ]);
-
+    Route::resource('habilidades', HabilidadController::class)->parameters(['habilidades' => 'habilidad',]);
     Route::get('/personajes/{id}/informacion', [PersonajeController::class, 'informacion'])->name('personajes.informacion');
+    Route::get('/personajes/editHabilidades/{personaje}', [PersonajeController::class, 'editHabilidades'])->name('personajes.editHabilidades');
+    Route::put('/personajes/updateHabilidades/{personaje}', [PersonajeController::class, 'updateHabilidades'])->name('personajes.updateHabilidades');
+    Route::put('/personajes/updateHabilidad/{personaje}', [PersonajeController::class, 'updateHabilidad'])->name('personajes.updateHabilidad');
+    Route::put('/personajes/updateEspecializacion/{personaje}', [PersonajeController::class, 'updateEspecializacion'])->name('personajes.updateEspecializacion');
+    Route::put('/personajes/especializacion/{personaje}', [PersonajeController::class, 'especializacion'])->name('personajes.especializacion');
+    Route::put('/personajes/desespecializacion/{personaje}', [PersonajeController::class, 'desespecializacion'])->name('personajes.desespecializacion');
+    Route::post('/personajes/cambiar', [PersonajeController::class, 'cambiar'])->name('personajes.cambiar');
+
+
+    Route::post('/objetos/{objeto}/add', [ObjetoController::class, 'add'])->name('objetos.add');
+    Route::post('/objetos/{objeto}/comprar', [ObjetoController::class, 'comprar'])->name('objetos.comprar');
+    Route::post('/objetos/{objeto}/resta', [ObjetoController::class, 'resta'])->name('objetos.resta');
+    Route::post('/vaciar-carrito', [ObjetoController::class, 'vaciar'])->name('objetos.vaciar');
+    Route::post('/pagar', [ObjetoController::class, 'pagar'])->name('objetos.pagar');
+    Route::post('/personajes/comprar/{objetoId}', [PersonajeController::class, 'comprar'])->name('personajes.comprar');
+
+
+
+    Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
     Route::get('/cementerio', function () {
         $caidos = Personaje::onlyTrashed()->get();
         return view('personajes.cementerio', ['caidos' => $caidos]);
     })->middleware(['auth', 'verified'])->name('cementerio');
 
-    Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
-    Route::get('/personajes/editHabilidades/{personaje}', [PersonajeController::class, 'editHabilidades'])->name('personajes.editHabilidades');
-    Route::put('/personajes/updateHabilidades/{personaje}', [PersonajeController::class, 'updateHabilidades'])->name('personajes.updateHabilidades');
-
-    Route::put('/personajes/updateHabilidad/{personaje}', [PersonajeController::class, 'updateHabilidad'])->name('personajes.updateHabilidad');
-    Route::put('/personajes/updateEspecializacion/{personaje}', [PersonajeController::class, 'updateEspecializacion'])->name('personajes.updateEspecializacion');
-    Route::put('/personajes/especializacion/{personaje}', [PersonajeController::class, 'especializacion'])->name('personajes.especializacion');
-    Route::put('/personajes/desespecializacion/{personaje}', [PersonajeController::class, 'desespecializacion'])->name('personajes.desespecializacion');
 
 });
 
