@@ -124,8 +124,10 @@ new class extends Component {
                     @endphp
                     @if ($personaje && $personaje->foto)
                         <img class="w-full h-full object-cover" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto del personaje">
-                    @else
+                    @elseif ($personaje == null)
                         <span class="text-white text-xs text-center">Sin seleccion</span>
+                    @else
+                        <span class="text-white text-xs text-center">Sin imagen</span>
                     @endif
                 </div>
                 <x-dropdown align="right" width="48">

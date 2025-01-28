@@ -102,8 +102,12 @@ class PersonajeController extends Controller
             $fotoPath = $request->file('foto')->store('fotos', 'public'); // Guardar en storage/app/public/fotos
             $personaje->foto = $fotoPath; // Asignar la ruta al modelo
         }
-
+        $user = User::find($request->user_id);
         $personaje->save();
+        if ($user->personaje_id == null){
+            $user->personaje_id = $personaje->id;
+            $user->save();
+        }
         return redirect()->route('personajes.index')->with('success', 'Personaje creado con éxito.');
     }
 
@@ -161,7 +165,12 @@ class PersonajeController extends Controller
         ]);
 
         $personaje->update($validated);
+        $user = User::find($request->user_id || $personaje->user_id);
         $personaje->save();
+        if ($user->personaje_id == null){
+            $user->personaje_id = $personaje->id;
+            $user->save();
+        }
         return redirect()->route('personajes.index')->with('success', 'Personaje creado con éxito.');
     }
     public function updateHabilidad(Personaje $personaje, Request $request)
@@ -281,6 +290,9 @@ class PersonajeController extends Controller
     {
         $personaje->delete();
 
+        $user = User::find($personaje->user_id);
+        $user->personaje_id = null;
+        $user->save();
         return redirect()->route('personajes.index');
     }
 
