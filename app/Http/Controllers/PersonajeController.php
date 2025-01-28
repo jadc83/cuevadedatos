@@ -342,6 +342,8 @@ class PersonajeController extends Controller
         DB::table('users')
             ->where('id', $usuarioId)
             ->update(['personaje_id' => $personajeId]);
+
+        session()->forget('carrito');
         return redirect()->route('dashboard');
     }
 

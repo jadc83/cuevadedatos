@@ -14,18 +14,6 @@
                         placeholder="Buscar personajes..." class="form-input">
                     <x-primary-button>Buscar</x-primary-button>
                 </form>
-
-                @if ($personajes->isNotEmpty())
-                    <select name="selectorPj" id="selectorPj" class="w-[14em] p-2 h-8 text-sm m-2 ml-auto">
-                        @foreach ($personajes as $personaje)
-                            <option value="{{ $personaje->id }}">
-                                {{ $personaje->nombre }}
-                            </option>
-                        @endforeach
-                    </select>
-                @else
-                    <p class="text-white ml-auto">No hay personajes disponibles.</p>
-                @endif
             </div>
 
             <div class="w-full">

@@ -46,13 +46,8 @@ new class extends Component {
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Familias') }}
                     </x-nav-link>
-                    <p class="text-white">
-                        @php
-                        use App\Models\Personaje;
-                            $personaje = Personaje::find(Auth::user()->personaje_id)
-                        @endphp
-                        {{$personaje->nombre}}
-                    </p>
+
+
                 </div>
 
                 <!-- Menú móvil (hamburguesa) -->
@@ -101,6 +96,34 @@ new class extends Component {
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div>
+                    <form action="{{ route('personajes.cambiar') }}" method="post" id="formCambiar">
+                        @csrf
+                        <select name="selectorPj" id="selectorPj" class="w-[14em] p-2 h-8 text-sm m-2 ml-auto">
+                            @foreach (Auth::user()->personajes as $personaje)
+                                <option value="{{ $personaje->id }}"
+                                    @if (old('selectorPj', Auth::user()->personaje_id) == $personaje->id) selected @endif>
+                                    {{ $personaje->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                    </form>
+                </div>
+
+                <script>
+                    document.getElementById('selectorPj').addEventListener('change', function() {
+                        document.getElementById('formCambiar').submit();
+                    });
+                </script>
+
+                <div class="text-white flex justify-center items-center" style="width: 60px; height: 60px; overflow: hidden; border-radius: 50%;">
+                    @php
+                        use App\Models\Personaje;
+                        $personaje = Personaje::find(Auth::user()->personaje_id);
+                    @endphp
+                    <img class="w-full h-full object-cover" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto del personaje">
+                </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
