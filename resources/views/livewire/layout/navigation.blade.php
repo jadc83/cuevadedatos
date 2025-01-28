@@ -122,7 +122,11 @@ new class extends Component {
                         use App\Models\Personaje;
                         $personaje = Personaje::find(Auth::user()->personaje_id);
                     @endphp
-                    <img class="w-full h-full object-cover" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto del personaje">
+                    @if ($personaje && $personaje->foto)
+                        <img class="w-full h-full object-cover" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto del personaje">
+                    @else
+                        <span class="text-white text-xs text-center">Sin seleccion</span>
+                    @endif
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
