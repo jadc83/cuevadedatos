@@ -120,9 +120,8 @@ new class extends Component {
                 <div class="text-white flex justify-center items-center" style="width: 60px; height: 60px; overflow: hidden; border-radius: 50%;">
                     @php
                         use App\Models\Personaje;
-                        $personaje = Personaje::find(Auth::user()->personaje_id);
+                        $personaje = Personaje::find(Auth::user()->nombre);
                     @endphp
-                    <img class="w-full h-full object-cover" src="{{ asset('storage/' . $personaje->foto) }}" alt="Foto del personaje">
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
