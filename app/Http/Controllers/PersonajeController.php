@@ -216,6 +216,20 @@ class PersonajeController extends Controller
             'personajes' => $personajes
         ]);
     }
+    public function inventario($id)
+    {
+        // Cargar todos los personajes (si es necesario para el formulario)
+        $personajes = Personaje::all();
+
+        // Cargar el personaje específico junto con sus objetos y comentarios
+        $personaje = Personaje::with(['comentarios', 'objetos'])->find($id); // Usamos 'objetos' para traer todos los objetos asociados al personaje
+
+        return view('personajes.inventario', [
+            'personaje' => $personaje,
+            'personajes' => $personajes
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

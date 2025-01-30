@@ -116,27 +116,38 @@
 
         <!-- Cuadrícula de objetos -->
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4 w-4/6 justify-between ml-32 ">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4 w-4/6 justify-between ml-32">
             @foreach ($objetos as $objeto)
                 <a href="{{ route('objetos.show', $objeto) }}" class="text-black cursor-zoom-in">
                     <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
                         <p class="text-black font-semibold bg-white">{{ $objeto->denominacion }}</p>
-                        <p class="text-gray-500 dark:text-gray-400">{{ $objeto->descripcion }}</p>
-                        <form action="{{ route('objetos.comprar', $objeto) }}" method="POST" class="mt-4">
-                            @csrf
-                            <button type="submit"
-                                class=" text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24">
-                                    <path
-                                        d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
-                                </svg>
-                            </button>
-                        </form>
+                        <p class="text-black font-semibold bg-white">Cantidad disponible: {{ $objeto->stock }}</p>
+
+                        <!-- Verificar si el stock es mayor a 0 para mostrar el botón -->
+                        @if ($objeto->stock > 0)
+                            <form action="{{ route('objetos.comprar', $objeto) }}" method="POST" class="mt-4">
+                                @csrf
+                                <button type="submit" class="text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md w1/6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        @else
+                        <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
+                                <p class=" text-center text-gray-500">Sin stock</p>
+                            </div>
+                        @endif
                     </div>
+
                 </a>
             @endforeach
+
         </div>
+        <div class="mx-64 my-24">
+            {{ $objetos->links() }}
+        </div>
+
 
     </div>
 

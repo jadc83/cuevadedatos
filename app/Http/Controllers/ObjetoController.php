@@ -22,7 +22,7 @@ class ObjetoController extends Controller
                 ->orWhere('descripcion', 'ilike', "%{$busqueda}%");
         }
 
-        $objetos = $query->paginate(10);
+        $objetos = $query->orderBy('denominacion', 'asc')->paginate(12);
         $jugador = Auth::user();
         $personaje = Personaje::find($jugador->personaje_id);
 
@@ -170,14 +170,14 @@ class ObjetoController extends Controller
 
         // Verificar si el carrito no está vacío
         if (isset($carrito[$id])) {
-            unset($carrito[$id]); // Eliminar el objeto del carrito
+            unset($carrito[$id]);
             session(['carrito' => $carrito]); // Actualizar la sesión
             session()->flash('exito', 'Artículo eliminado del carrito.');
         } else {
             session()->flash('error', 'El artículo no se encontró en el carrito.');
         }
 
-        return redirect()->route('objetos.index'); // Redirigir a la vista deseada
+        return redirect()->route('objetos.index');
     }
     public function add(Objeto $objeto)
     {
@@ -204,13 +204,45 @@ class ObjetoController extends Controller
         if (!$personaje) {
             return back()->with('error', 'Personaje no encontrado.');
         }
+
         $total = array_sum(array_map(function ($item) {
             return $item['valor'] * $item['cantidad'];
         }, session('carrito')));
 
         if ($personaje->ahorros >= $total) {
+
             $personaje->ahorros -= $total;
             $personaje->save();
+
+            foreach (session('carrito') as $item) {
+                $coincidencia = DB::table('objeto_personaje')
+                    ->where('personaje_id', $personaje->id)
+                    ->where('objeto_id', $item['id'])
+                    ->first();
+
+                if ($coincidencia) {
+                    DB::table('objeto_personaje')
+                        ->where('personaje_id', $personaje->id)
+                        ->where('objeto_id', $item['id'])
+                        ->update([
+                            'cantidad' => $coincidencia->cantidad + $item['cantidad'],
+                            'updated_at' => now(),
+                        ]);
+                } else {
+                    DB::table('objeto_personaje')->insert([
+                        'personaje_id' => $personaje->id,
+                        'objeto_id' => $item['id'],
+                        'cantidad' => $item['cantidad'],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+
+                DB::table('objetos')
+                    ->where('id', $item['id'])
+                    ->decrement('stock', $item['cantidad']);
+            }
+
             session()->forget('carrito');
 
             return redirect()->route('objetos.index');
@@ -218,4 +250,6 @@ class ObjetoController extends Controller
             return back()->with('error', 'No tienes suficientes ahorros para realizar el pago.');
         }
     }
+
+
 }
