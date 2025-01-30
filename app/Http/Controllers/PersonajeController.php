@@ -222,7 +222,7 @@ class PersonajeController extends Controller
         $personajes = Personaje::all();
 
         // Cargar el personaje específico junto con sus objetos y comentarios
-        $personaje = Personaje::with(['comentarios', 'objetos'])->findOrFail($id); // Usamos 'objetos' para traer todos los objetos asociados al personaje
+        $personaje = Personaje::with(['comentarios', 'objetos'])->find($id); // Usamos 'objetos' para traer todos los objetos asociados al personaje
 
         return view('personajes.inventario', [
             'personaje' => $personaje,
