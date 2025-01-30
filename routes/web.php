@@ -53,10 +53,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('comentarios', ComentarioController::class);
     Route::resource('familias', FamiliaController::class);
     Route::resource('especializaciones', EspecializacionController::class)->parameters(['especializaciones' => 'especializacion']);
+    Route::resource('habilidades', HabilidadController::class)->parameters(['habilidades' => 'habilidad',]);
     Route::get('/hechizos/{id}', [HechizoController::class, 'show'])->name('hechizos.show');
     Route::get('/libros/{id}', [LibroController::class, 'show'])->name('libros.show');
-    Route::resource('habilidades', HabilidadController::class)->parameters(['habilidades' => 'habilidad',]);
     Route::get('/personajes/{id}/informacion', [PersonajeController::class, 'informacion'])->name('personajes.informacion');
+    Route::get('/personajes/{id}/inventario', [PersonajeController::class, 'inventario'])->name('personajes.inventario');
     Route::get('/personajes/editHabilidades/{personaje}', [PersonajeController::class, 'editHabilidades'])->name('personajes.editHabilidades');
     Route::put('/personajes/updateHabilidades/{personaje}', [PersonajeController::class, 'updateHabilidades'])->name('personajes.updateHabilidades');
     Route::put('/personajes/updateHabilidad/{personaje}', [PersonajeController::class, 'updateHabilidad'])->name('personajes.updateHabilidad');

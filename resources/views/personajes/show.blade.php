@@ -28,8 +28,8 @@
                     </form>
                 </div>
                 <div>
-                    <form action="" method="get">
-                        <x-primary-button>Comprar</x-primary-button>
+                    <form action="{{ route('personajes.inventario', $personaje) }}" method="get">
+                        <x-primary-button>Inventario</x-primary-button>
                     </form>
                 </div>
             </div>

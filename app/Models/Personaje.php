@@ -87,5 +87,10 @@ class Personaje extends Model
     {
         return $this->morphMany(Comentario::class, 'comentable');
     }
+
+    public function objetos()
+    {
+        return $this->belongsToMany(Objeto::class, 'objeto_personaje', 'personaje_id', 'objeto_id')->withPivot('cantidad');
+    }
     //
 }

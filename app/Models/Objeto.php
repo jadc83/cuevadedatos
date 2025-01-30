@@ -12,4 +12,9 @@ class Objeto extends Model
     {
         return $this->hasMany(Habilidad::class);
     }
+
+    public function personajes()
+    {
+        return $this->belongsToMany(Personaje::class, 'objeto_personaje', 'personaje_id', 'objeto_id')->withPivot('cantidad');
+    }
 }
