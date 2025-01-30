@@ -245,7 +245,7 @@ class ObjetoController extends Controller
 
             session()->forget('carrito');
 
-            return redirect()->route('objetos.index');
+            return redirect()->route('objetos.index')->with('success', 'Compra realizada con éxito.');
         } else {
             return back()->with('error', 'No tienes suficientes ahorros para realizar el pago.');
         }

@@ -117,7 +117,7 @@ new class extends Component {
                     });
                 </script>
 
-                <div class="text-white flex justify-center items-center" style="width: 60px; height: 60px; overflow: hidden; border-radius: 50%;">
+                <div class="text-white flex justify-center items-center" style="width: 40px; height: 40px; overflow: hidden; border-radius: 50%;">
                     @php
                         use App\Models\Personaje;
                         $personaje = Personaje::find(Auth::user()->personaje_id);
