@@ -1,4 +1,5 @@
 <x-app-layout>
+
     @if (session('exito'))
         <div id="alert-3"
             class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
@@ -14,7 +15,40 @@
 
     <div style="background-image: url('/images/fondo_objetos.jpeg'); background-size: cover; background-position: center; height: 100vh;"
         class="relative">
+        @if (session('error'))
+            <div id="error-alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                role="alert">
+                <strong class="font-bold">¡Error!</strong>
+                <span class="block sm:inline">{{ session('error') }}</span>
+                <button type="button" onclick="document.getElementById('error-alert').remove();"
+                    class="absolute top-0 right-0 px-4 py-3 text-red-700">
+                    ✖
+                </button>
+            </div>
+        @endif
 
+        @if (session('success'))
+            <div id="success-alert"
+                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
+                role="alert">
+                <strong class="font-bold">¡Éxito!</strong>
+                <span class="block sm:inline">{{ session('success') }}</span>
+                <button type="button" onclick="document.getElementById('success-alert').remove();"
+                    class="absolute top-0 right-0 px-4 py-3 text-green-700">
+                    ✖
+                </button>
+            </div>
+        @endif
+
+        <script>
+            setTimeout(() => {
+                const errorAlert = document.getElementById('error-alert');
+                if (errorAlert) errorAlert.remove();
+
+                const successAlert = document.getElementById('success-alert');
+                if (successAlert) successAlert.remove();
+            }, 5000);
+        </script>
         <!-- Botón para abrir/cerrar el carrito -->
         <button id="toggle-cart" class="absolute top-4 right-24 bg- px-4 py-2 rounded-full shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -127,14 +161,17 @@
                         @if ($objeto->stock > 0)
                             <form action="{{ route('objetos.comprar', $objeto) }}" method="POST" class="mt-4">
                                 @csrf
-                                <button type="submit" class="text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md w1/6">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                        <path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
+                                <button type="submit"
+                                    class="text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md w1/6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
                                     </svg>
                                 </button>
                             </form>
                         @else
-                        <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
+                            <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
                                 <p class=" text-center text-gray-500">Sin stock</p>
                             </div>
                         @endif
