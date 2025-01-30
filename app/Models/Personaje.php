@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Personaje extends Model
@@ -92,5 +93,8 @@ class Personaje extends Model
     {
         return $this->belongsToMany(Objeto::class, 'objeto_personaje', 'personaje_id', 'objeto_id')->withPivot('cantidad');
     }
-    //
+    public function armas(): BelongsToMany
+    {
+        return $this->belongsToMany(Arma::class);
+    }
 }

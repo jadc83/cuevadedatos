@@ -46,7 +46,10 @@ new class extends Component {
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Familias') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="route('armas.index')" :active="request()->routeIs('armas')"
+                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                        {{ __('Armas') }}
+                    </x-nav-link>
 
                 </div>
 
@@ -164,7 +167,10 @@ new class extends Component {
                             class="block text-xs sm:text-sm hover:text-orange-500">
                             {{ __('Habilidades') }}
                         </x-dropdown-link>
-
+                        <x-dropdown-link :href="route('tipoArmas.index')" :active="request()->routeIs('tipoArmas')"
+                            class="block text-xs sm:text-sm hover:text-orange-500">
+                            {{ __('Tipos de arma') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <button wire:click="logout" class="w-full text-start">
                             <x-dropdown-link class="hover:bg-red-500">
