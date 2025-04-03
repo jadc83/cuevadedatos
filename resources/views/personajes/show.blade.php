@@ -21,82 +21,152 @@
             <div class="text-center">
                 <p><strong>Jugador:</strong> {{ $personaje->user->name }}</p>
             </div>
+
+            <!--Enlaces de mensajes e inventario -->
             <div class="flex p-2 justify-center">
-                <div>
                     <form action="{{ route('personajes.informacion', $personaje) }}" method="get">
                         <x-primary-button>Mensajes</x-primary-button>
                     </form>
-                </div>
-                <div>
                     <form action="{{ route('personajes.inventario', $personaje) }}" method="get">
                         <x-primary-button>Inventario</x-primary-button>
                     </form>
-                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
-                <div>
-                    <strong class="underline">Información Personal</strong>
-                    <p>
-                    <p><strong>Profesión:</strong> {{ $personaje->profesion }}</p>
-                    </p>
-                    <p>
-                    <p><strong>Nacionalidad:</strong> {{ $personaje->nacionalidad }}</p>
-                    </p>
-                    <p>
-                    <p><strong>Estudios:</strong> {{ $personaje->estudios }}</p>
-                    </p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'edad' }}"
-                            data-puntuacion="{{ $personaje->edad }}"
-                            data-nombre="{{ 'Edad' }}"><strong>Edad:</strong> {{ $personaje->edad }}
-                            años</button></p>
-
-                </div>
-                <div>
-                    <strong class="underline">Información Financiera</strong>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ingresos' }}"
-                            data-puntuacion="{{ $personaje->ingresos }}"
-                            data-nombre="{{ 'Ingresos' }}"><strong>Ingresos:</strong>
-                            ${{ $personaje->ingresos }}$/año</button></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'ahorros' }}"
-                            data-puntuacion="{{ $personaje->ahorros }}"
-                            data-nombre="{{ 'Ahorro' }}"><strong>Ahorros:</strong>
-                            ${{ $personaje->ahorros }}$</button></p>
-                    <p><button class="modificarHabilidadBtn" data-habilidad-id="{{ 'efectivo' }}"
-                            data-puntuacion="{{ $personaje->efectivo }}"
-                            data-nombre="{{ 'Efectivo' }}"><strong>Efectivo:</strong>
-                            ${{ $personaje->efectivo }}$</button></p>
-                </div>
+            <div class="grid grid-cols-1 cols-2 gap-6 text-center">
+                <!--Informacion personal -->
+                <table class="border border-gray-300 border-collapse w-full shadow-lg rounded-lg bg-orange-500">
+                    <thead class="bg-gray-200 text-black">
+                        <tr >
+                            <th class="border border-gray-300 px-4 py-2">Profesión</th>
+                            <th class="border border-gray-300 px-4 py-2">Nacionalidad</th>
+                            <th class="border border-gray-300 px-4 py-2">Estudios</th>
+                            <th class="border border-gray-300 px-4 py-2">Edad</th>
+                            <th class="border border-gray-300 px-4 py-2">Ingresos</th>
+                            <th class="border border-gray-300 px-4 py-2">Ahorros</th>
+                            <th class="border border-gray-300 px-4 py-2">Efectivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td class="border border-gray-300 px-4 py-2">{{ $personaje->profesion }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $personaje->nacionalidad }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $personaje->estudios }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $personaje->edad }}</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded modificarHabilidadBtn"
+                                    data-habilidad-id="{{ 'ingresos' }}"
+                                    data-puntuacion="{{ $personaje->ingresos }}"
+                                    data-nombre="{{ 'Ingresos' }}">
+                                    ${{ $personaje->ingresos }}
+                                </button>
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded modificarHabilidadBtn"
+                                    data-habilidad-id="{{ 'ahorros' }}"
+                                    data-puntuacion="{{ $personaje->ahorros }}"
+                                    data-nombre="{{ 'Ahorro' }}">
+                                    ${{ $personaje->ahorros }}
+                                </button>
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded modificarHabilidadBtn"
+                                    data-habilidad-id="{{ 'efectivo' }}"
+                                    data-puntuacion="{{ $personaje->efectivo }}"
+                                    data-nombre="{{ 'Efectivo' }}">
+                                    ${{ $personaje->efectivo }}
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                <div class="text-center  flex flex-col items-center space-y-2">
-                    <strong class="underline">Características Físicas</strong>
-                    <x-habilidad-button habilidad-id="fue" puntuacion="{{ $personaje->fue }}" nombre="Fuerza" />
-                    <x-habilidad-button habilidad-id="con" puntuacion="{{ $personaje->con }}" nombre="Constitución" />
-                    <x-habilidad-button habilidad-id="des" puntuacion="{{ $personaje->des }}" nombre="Destreza" />
-                    <x-habilidad-button habilidad-id="tam" puntuacion="{{ $personaje->tam }}" nombre="Tamaño" />
-                    <x-habilidad-button habilidad-id="apa" puntuacion="{{ $personaje->apa }}" nombre="Apariencia" />
-                    <x-habilidad-single habilidad-id="hp" puntuacion="{{ $personaje->hp }}" nombre="Vida alctual" />
-                    <p><strong>Vida máxima:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ floor(($personaje->con / 5 + $personaje->tam / 5) / 2) }} |</span></p>
-                </div>
-                <div class="text-center flex flex-col items-center space-y-2">
-                    <strong class="underline">Características Mentales</strong>
-                    <x-habilidad-button habilidad-id="int" puntuacion="{{ $personaje->int }}" nombre="Inteligencia" />
-                    <x-habilidad-button habilidad-id="pod" puntuacion="{{ $personaje->pod }}" nombre="Poder" />
-                    <x-habilidad-button habilidad-id="edu" puntuacion="{{ $personaje->edu }}" nombre="Educación" />
-                    <x-habilidad-single habilidad-id="cor_actual" puntuacion="{{ $personaje->cor_actual }}"
-                        nombre="Cordura actual" />
-                    <x-habilidad-single habilidad-id="cor" puntuacion="{{ $personaje->cor }}"
-                        nombre="Cordura inicial" />
-                    <p><strong>Cordura máxima:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ 99 - $personaje->mitos_cthulhu }} |</span></p>
-                    <x-habilidad-single habilidad-id="mp" puntuacion="{{ $personaje->mp }}" nombre="Magia alctual" />
-                    <p><strong>Magia máxima:</strong> <span class="flex justify-center w-full text-center">|
-                            {{ floor($personaje->pod / 5) }} |</span></p>
-                </div>
+            <div class="grid grid-cols-1 cols-2 gap-6 text-center mt-4">
+                <!--Estadisticas base -->
+                <table class="border border-gray-300 border-collapse w-full shadow-lg rounded-lg bg-indigo-500">
+                    <thead class="bg-gray-200 text-black">
+                        <tr>
+                            <th class="border border-gray-300 px-4 py-2">HP</th>
+                            <th class="border border-gray-300 px-4 py-2">MaxHP</th>
+                            <th class="border border-gray-300 px-4 py-2">MP</th>
+                            <th class="border border-gray-300 px-4 py-2">MaxMP</th>
+                            <th class="border border-gray-300 px-4 py-2">Suerte</th>
+                            <th class="border border-gray-300 px-4 py-2">Cordura inicial</th>
+                            <th class="border border-gray-300 px-4 py-2">Cordura</th>
+                            <th class="border border-gray-300 px-4 py-2">MaxCOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-single habilidad-id="hp" puntuacion="{{ $personaje->hp }}" nombre="Vida actual" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                {{ floor(($personaje->con / 5 + $personaje->tam / 5) / 2) }}
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-single habilidad-id="mp" puntuacion="{{ $personaje->mp }}" nombre="Magia alctual" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                {{ floor($personaje->pod / 5) }}
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                {{$personaje->sue}}
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-single habilidad-id="cor" puntuacion="{{ $personaje->cor }}" nombre="Cordura inicial" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-single habilidad-id="cor_actual" puntuacion="{{ $personaje->cor_actual }}" nombre="Cordura actual" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                {{ 99 - $personaje->mitos_cthulhu }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
+            <div class="grid grid-cols-1  gap-6 mt-4">
+                <table class="w-full bg-white  text-black shadow-lg rounded-lg text-center mx-auto">
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="fue" puntuacion="{{ $personaje->fue }}" nombre="FUE" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="con" puntuacion="{{ $personaje->con }}" nombre="CON" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="des" puntuacion="{{ $personaje->des }}" nombre="DES" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="tam" puntuacion="{{ $personaje->tam }}" nombre="TAM" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="apa" puntuacion="{{ $personaje->apa }}" nombre="APA" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="int" puntuacion="{{ $personaje->int }}" nombre="INT" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="pod" puntuacion="{{ $personaje->pod }}" nombre="POD" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="edu" puntuacion="{{ $personaje->edu }}" nombre="EDU" />
+                            </td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <x-habilidad-button habilidad-id="mov" puntuacion="Soon" nombre="MOV" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <h2 class="text-2xl font-bold text-center">Habilidades</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
@@ -202,7 +272,7 @@
         <div class="flex justify-center items-center mt-6">
             <x-primary-button><a href="{{ route('personajes.index') }}">Volver</a></x-primary-button>
         </div>
-        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center">
+        <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center">
             <div class="bg-white p-8 rounded-lg shadow-xl">
                 <form method="POST" action="{{ route('personajes.especializacion', $personaje) }}">
                     @csrf

@@ -17,6 +17,7 @@ use App\Models\Objeto;
 use App\Models\Personaje;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\EditorPersonaje;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,11 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+
+
+Route::get('/editor-personaje', EditorPersonaje::class);
+
 
 require __DIR__.'/auth.php';
 
