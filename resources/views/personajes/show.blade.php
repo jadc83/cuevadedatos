@@ -498,7 +498,7 @@
     </div>
 
     <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex text-black items-center justify-center">
-        <div class="bg-gray-800 p-8  shadow-xl">
+        <div class="bg-gray-800 p-8  shadow-xl border border-orange-700">
             <form method="POST" action="{{ route('personajes.especializacion', $personaje) }}">
                 @csrf
                 @method('PUT')
