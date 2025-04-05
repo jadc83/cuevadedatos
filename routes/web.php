@@ -17,6 +17,7 @@ use App\Models\Objeto;
 use App\Models\Personaje;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\EditorPersonaje;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,9 +74,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/vaciar-carrito', [ObjetoController::class, 'vaciar'])->name('objetos.vaciar');
     Route::post('/pagar', [ObjetoController::class, 'pagar'])->name('objetos.pagar');
     Route::post('/personajes/comprar/{objetoId}', [PersonajeController::class, 'comprar'])->name('personajes.comprar');
-
-
-
+    Route::post('/personajes/{personaje}/inventario/{objeto}/soltar', [ObjetoController::class, 'soltar'])->name('objetos.soltar');
+    Route::post('/personajes/{personaje}/inventario/{objeto}/soltarTodo', [ObjetoController::class, 'soltarTodo'])->name('objetos.soltarTodo');
     Route::put('/resucitar/{id}', [PersonajeController::class, 'res'])->name('resucitar');
     Route::get('/cementerio', function () {
         $caidos = Personaje::onlyTrashed()->get();
@@ -84,6 +84,11 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+
+
+Route::get('/editor-personaje', EditorPersonaje::class);
+
 
 require __DIR__.'/auth.php';
 

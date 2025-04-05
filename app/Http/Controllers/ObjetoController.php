@@ -250,6 +250,42 @@ class ObjetoController extends Controller
             return back()->with('error', 'No tienes suficientes ahorros para realizar el pago.');
         }
     }
+    public function soltarTodo(Personaje $personaje, Objeto $objeto)
+    {
+        // Verificar que el objeto esté en el inventario del personaje
+        if (! $personaje->objetos->contains($objeto->id)) {
+            abort(403, 'Este objeto no pertenece al personaje.');
+        }
+
+        $personaje->objetos()->detach($objeto->id);
+
+        return back()->with('status', 'Objeto soltado correctamente.');
+    }
+
+    public function soltar(Personaje $personaje, Objeto $objeto)
+    {
+        $relacion = $personaje->objetos()->where('objeto_id', $objeto->id)->first();
+
+        if (! $relacion) {
+            abort(403, 'Este objeto no pertenece al personaje.');
+        }
+
+        $cantidadActual = $relacion->pivot->cantidad;
+
+        if ($cantidadActual > 1) {
+            // Solo restamos 1
+            $personaje->objetos()->updateExistingPivot($objeto->id, [
+                'cantidad' => $cantidadActual - 1,
+            ]);
+        } else {
+            // Si solo tiene 1, eliminamos la relación
+            $personaje->objetos()->detach($objeto->id);
+        }
+
+        return back()->with('status', 'Objeto soltado correctamente.');
+    }
+
+
 
 
 }
