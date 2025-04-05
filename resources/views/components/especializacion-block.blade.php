@@ -18,13 +18,13 @@
 
                 <!-- Valores -->
                 <div class="flex justify-end space-x-2 w-1/2 mr-6">
-                    <div class="bg-gray-100 border border-gray-300 rounded w-[3em] font-medium text-gray-700 text-center">
+                    <div class="bg-gray-100 border border-gray-300 rounded w-12 font-medium text-gray-700 text-center">
                         {{ (int)$especializacion->pivot->puntuacion }}
                     </div>
-                    <div class="bg-orange-300 border border-gray-300 rounded w-[3em] font-medium text-gray-800 text-center">
+                    <div class="bg-orange-300 border border-gray-300 rounded w-12 font-medium text-gray-800 text-center">
                         {{ floor($especializacion->pivot->puntuacion / 2) }}
                     </div>
-                    <div class="bg-red-400 text-black border border-gray-300 rounded font-medium w-[3em] text-center">
+                    <div class="bg-red-900 text-white border border-gray-300 rounded font-medium w-12 text-center">
                         {{ floor($especializacion->pivot->puntuacion / 5) }}
                     </div>
                 </div>
