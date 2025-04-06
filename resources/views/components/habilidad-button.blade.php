@@ -6,10 +6,10 @@
 
             <!-- Puntuaciones -->
             <div class="flex justify-end space-x-2 w-1/2">
-                <div class="rounded align-middle font-medium text-gray-700 w-12 text-center">
+                <div class="rounded align-middle font-medium text-black bg-white w-12 text-center">
                     {{ (int)$puntuacion }}
                 </div>
-                <div class="bg-orange-600 rounded w-12 font-medium text-gray-800">
+                <div class="bg-orange-600 rounded w-12 font-medium text-white">
                     {{ floor((int)$puntuacion / 2) }}
                 </div>
                 <div class="bg-red-900 text-white border border-gray-300 w-12 rounded font-medium">

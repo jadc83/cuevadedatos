@@ -21,7 +21,7 @@
                     <div class="bg-gray-100 border border-gray-300 rounded w-12 font-medium text-gray-700 text-center">
                         {{ (int)$especializacion->pivot->puntuacion }}
                     </div>
-                    <div class="bg-orange-300 border border-gray-300 rounded w-12 font-medium text-gray-800 text-center">
+                    <div class="bg-orange-600 border border-gray-300 rounded w-12 font-medium text-white text-center">
                         {{ floor($especializacion->pivot->puntuacion / 2) }}
                     </div>
                     <div class="bg-red-900 text-white rounded font-medium w-12 text-center">

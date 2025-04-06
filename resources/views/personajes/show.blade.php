@@ -89,16 +89,16 @@
 
             <div class="grid grid-cols-1 cols-2 gap-6 text-center">
                 <!--Informacion personal -->
-                <table class="w-full shadow  bg-gray-800 border border-green-700">
+                <table class="w-full shadow  bg-gray-800 border border-amber-700">
                     <thead class="bg-gray-800 text-black">
                         <tr>
-                            <th class=" px-4 py-2 text-green-700"> ☰ Profesión ☰ </th>
-                            <th class=" px-4 py-2 text-green-700">☰ Nacionalidad ☰</th>
-                            <th class=" px-4 py-2 text-green-700">☰ Estudios ☰</th>
-                            <th class=" px-4 py-2 text-green-700">☰ Edad ☰</th>
-                            <th class=" px-4 py-2 text-green-700">☰ Ingresos ☰</th>
-                            <th class=" px-4 py-2 text-green-700">☰ Ahorros ☰</th>
-                            <th class=" px-4 py-2 text-green-700">☰ Efectivo ☰</th>
+                            <th class=" px-4 py-2 text-amber-700"> ☰ Profesión ☰ </th>
+                            <th class=" px-4 py-2 text-amber-700">☰ Nacionalidad ☰</th>
+                            <th class=" px-4 py-2 text-amber-700">☰ Estudios ☰</th>
+                            <th class=" px-4 py-2 text-amber-700">☰ Edad ☰</th>
+                            <th class=" px-4 py-2 text-amber-700">☰ Ingresos ☰</th>
+                            <th class=" px-4 py-2 text-amber-700">☰ Ahorros ☰</th>
+                            <th class=" px-4 py-2 text-amber-700">☰ Efectivo ☰</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,7 +109,7 @@
                             <td class=" px-4 py-2">{{ $personaje->edad }}</td>
                             <td class=" px-4 py-2">
                                 <button
-                                    class="border rounded border-green-700 text-white font-bold py-1 px-3  modificarHabilidadBtn"
+                                    class="border rounded border-amber-700 text-white font-bold py-1 px-3  modificarHabilidadBtn"
                                     data-habilidad-id="{{ 'ingresos' }}"
                                     data-puntuacion="{{ $personaje->ingresos }}" data-nombre="{{ 'Ingresos' }}">
                                     ${{ $personaje->ingresos }}
@@ -117,7 +117,7 @@
                             </td>
                             <td class=" px-4 py-2">
                                 <button
-                                    class="border rounded border-green-700 text-white font-bold py-1 px-3  modificarHabilidadBtn"
+                                    class="border rounded border-amber-700 text-white font-bold py-1 px-3  modificarHabilidadBtn"
                                     data-habilidad-id="{{ 'ahorros' }}"
                                     data-puntuacion="{{ $personaje->ahorros }}" data-nombre="{{ 'Ahorro' }}">
                                     ${{ $personaje->ahorros }}
@@ -125,7 +125,7 @@
                             </td>
                             <td class=" px-4 py-2">
                                 <button
-                                    class="border rounded border-green-700 text-white font-bold py-1 px-3  modificarHabilidadBtn"
+                                    class="border rounded border-amber-700 text-white font-bold py-1 px-3  modificarHabilidadBtn"
                                     data-habilidad-id="{{ 'efectivo' }}"
                                     data-puntuacion="{{ $personaje->efectivo }}" data-nombre="{{ 'Efectivo' }}">
                                     ${{ $personaje->efectivo }}
@@ -137,8 +137,8 @@
             </div>
 
             <div class="grid grid-cols-1  gap-6 mt-4">
-                <h2 class="text-2xl font-bold text-center text-green-700 p-2">Caracteristicas</h2>
-                <table class="w-full text-green-700 border border-green-700 bg-gray-800 shadow  text-center mx-auto">
+                <h2 class="text-2xl font-bold text-center text-amber-700  p-2">Caracteristicas</h2>
+                <table class="w-full text-amber-700 border border-amber-700 bg-gray-800 shadow  text-center mx-auto">
                     <tbody>
                         <tr>
                             <td class=" px-4 py-2">
@@ -185,9 +185,9 @@
                 </table>
             </div>
 
-            <h2 class="text-2xl font-bold text-center text-green-700 p-4">Habilidades</h2>
+            <h2 class="text-2xl font-bold text-center text-amber-700 p-4">Habilidades</h2>
 
-            <div class="flex w-full border border-green-700">
+            <div class="flex w-full border border-amber-700">
                 <div class="w-full flex-col">
                     <table class="w-full shadow bg-gray-800">
                         <tbody>
