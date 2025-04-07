@@ -26,17 +26,10 @@ new class extends Component {
                         class="text-xs sm:text-sm text-white hover:text-red-500">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('libros.index')" :active="request()->routeIs('libros')"
-                        class="text-xs sm:text-sm text-white hover:text-green-600">
-                        {{ __('Libros') }}
-                    </x-nav-link>
+
                     <x-nav-link :href="route('personajes.index')" :active="request()->routeIs('personajes')"
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Personajes') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('cementerio')" :active="request()->routeIs('cementerio')"
-                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
-                        {{ __('Cementerio') }}
                     </x-nav-link>
                     <x-nav-link :href="route('especializaciones.index')" :active="request()->routeIs('especializaciones')"
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">

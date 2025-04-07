@@ -63,7 +63,7 @@ class ArmaController extends Controller
      */
     public function show(Arma $arma)
     {
-        return view('armas.show', compact('arma'));
+        return view('armas.show', ['arma' => $arma]);
     }
 
     /**

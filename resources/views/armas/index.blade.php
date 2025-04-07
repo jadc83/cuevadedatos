@@ -21,7 +21,7 @@
                             <tr>
                                 <td class="pl-4 text-black font-semibold bg-white">
                                     <p>
-                                        {{ $arma->nombre }}
+                                        <a href="{{route('armas.show', $arma)}}">{{ $arma->nombre }}</a>
                                     </p>
                                 </td>
                                 <td class="px-4 py-3 text-black bg-white">{{ $arma->tipoArma->nombre }}</td>
