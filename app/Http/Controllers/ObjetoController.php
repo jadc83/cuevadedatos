@@ -22,7 +22,7 @@ class ObjetoController extends Controller
                 ->orWhere('descripcion', 'ilike', "%{$busqueda}%");
         }
 
-        $objetos = $query->orderBy('denominacion', 'asc')->paginate(12);
+        $objetos = $query->orderBy('denominacion', 'asc')->paginate(10);
         $jugador = Auth::user();
         $personaje = Personaje::find($jugador->personaje_id);
 

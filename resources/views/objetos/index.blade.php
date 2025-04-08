@@ -12,18 +12,13 @@
         </div>
     @endif
 
-
-    <div style="background-image: url('/images/fondo_objetos.jpeg'); background-size: cover; background-position: center; height: 100vh;"
-        class="relative">
+    <div class="relative">
         @if (session('error'))
             <div id="error-alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
                 role="alert">
                 <strong class="font-bold">¡Error!</strong>
                 <span class="block sm:inline">{{ session('error') }}</span>
-                <button type="button" onclick="document.getElementById('error-alert').remove();"
-                    class="absolute top-0 right-0 px-4 py-3 text-red-700">
-                    ✖
-                </button>
+                <button type="button" onclick="document.getElementById('error-alert').remove();" class="absolute top-0 right-0 px-4 py-3 text-red-700">✖</button>
             </div>
         @endif
 
@@ -33,10 +28,7 @@
                 role="alert">
                 <strong class="font-bold">¡Éxito!</strong>
                 <span class="block sm:inline">{{ session('success') }}</span>
-                <button type="button" onclick="document.getElementById('success-alert').remove();"
-                    class="absolute top-0 right-0 px-4 py-3 text-green-700">
-                    ✖
-                </button>
+                <button type="button" onclick="document.getElementById('success-alert').remove();" class="absolute top-0 right-0 px-4 py-3 text-green-700">✖</button>
             </div>
         @endif
 
@@ -49,6 +41,7 @@
                 if (successAlert) successAlert.remove();
             }, 5000);
         </script>
+
         <!-- Botón para abrir/cerrar el carrito -->
         <button id="toggle-cart" class="absolute top-4 right-24 bg- px-4 py-2 rounded-full shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -59,7 +52,7 @@
 
 
         <!-- Carrito -->
-        <div>
+        <div class="overflow-hidden">
             <div id="cart-container"
                 class="absolute top-16 right-24 bg-white shadow-md rounded-lg p-4 w-80 dark:bg-gray-800">
                 <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Carrito</h2>
@@ -123,8 +116,6 @@
                     <p class="text-center text-gray-500">Tu carrito está vacío.</p>
                 @endif
 
-
-
                 <div class="mt-4">
                     <form method="GET" action="{{ route('objetos.index') }}" class="mb-4">
                         <input type="text" name="busqueda" value="{{ request('busqueda') }}"
@@ -140,25 +131,34 @@
                         Fabricar nuevo objeto
                     </a>
                 </div>
-
-
             </div>
-
-
         </div>
 
 
         <!-- Cuadrícula de objetos -->
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4 w-4/6 justify-between ml-32">
-            @foreach ($objetos as $objeto)
-                <a href="{{ route('objetos.show', $objeto) }}" class="text-black cursor-zoom-in">
-                    <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
-                        <p class="text-black font-semibold bg-white">{{ $objeto->denominacion }}</p>
-                        <p class="text-black font-semibold bg-white">Cantidad disponible: {{ $objeto->stock }}</p>
+        <div class="min-h-screen p-8 bg-gray-900 text-gray-100 font-serif shadow-2xl shadow-indigo-900/30 overflow-hidden">
 
-                        <!-- Verificar si el stock es mayor a 0 para mostrar el botón -->
-                        @if ($objeto->stock > 0)
+            <div class="overflow-x-auto h-full">
+                <table class="min-w-5/6 mx-auto border border-indigo-800 overflow-hidden shadow-md">
+                    <thead>
+                        <tr class="bg-indigo-950 text-green-200 uppercase text-sm tracking-wider border-b border-indigo-700">
+                            <th class="px-6 py-4 text-left">Denominación</th>
+                            <th class="px-6 py-4 text-left">Descripción</th>
+                            <th class="px-6 py-4 text-left">Precio</th>
+                            <th class="px-6 py-4 text-left">Stock</th>
+                            <th class="px-6 py-4 text-left">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-indigo-800">
+                        @foreach ($objetos as $objeto)
+                            <tr class="hover:bg-indigo-800/30 transition duration-300">
+                                <td class="px-6 py-4">{{ $objeto->denominacion }}</td>
+                                <td class="px-6 py-4">{{ $objeto->descripcion }}</td>
+                                <td class="px-6 py-4">{{ $objeto->valor }}$</td>
+                                <td class="px-6 py-4">{{ $objeto->stock }}</td>
+                                <td class="px-6 py-4">
+                                    @if ($objeto->stock > 0)
                             <form action="{{ route('objetos.comprar', $objeto) }}" method="POST" class="mt-4">
                                 @csrf
                                 <button type="submit"
@@ -171,20 +171,21 @@
                                 </button>
                             </form>
                         @else
-                            <div class="bg-white shadow-md rounded-lg p-4 dark:bg-gray-800">
-                                <p class=" text-center text-gray-500">Sin stock</p>
+                            <div>
+                                <p class=" text-left text-gray-500">Sin stock</p>
                             </div>
                         @endif
-                    </div>
-
-                </a>
-            @endforeach
-
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
+
         <div class="mx-64 my-24">
             {{ $objetos->links() }}
         </div>
-
 
     </div>
 

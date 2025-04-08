@@ -31,17 +31,13 @@ new class extends Component {
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Personajes') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('especializaciones.index')" :active="request()->routeIs('especializaciones')"
-                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
-                        {{ __('Especialidades') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('familias.index')" :active="request()->routeIs('familias')"
-                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
-                        {{ __('Familias') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('armas.index')" :active="request()->routeIs('armas')"
                         class="block text-xs sm:text-sm text-white hover:text-orange-500">
                         {{ __('Armas') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('objetos.index')" :active="request()->routeIs('objetos')"
+                        class="block text-xs sm:text-sm text-white hover:text-orange-500">
+                        {{ __('Tienda') }}
                     </x-nav-link>
 
                 </div>
@@ -76,6 +72,7 @@ new class extends Component {
                             class="block text-xs sm:text-sm text-white hover:text-orange-500">
                             {{ __('Habilidades') }}
                         </x-nav-link>
+
                     </div>
                 </div>
             </div>
@@ -160,10 +157,15 @@ new class extends Component {
                             class="block text-xs sm:text-sm hover:text-orange-500">
                             {{ __('Habilidades') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('tipoArmas.index')" :active="request()->routeIs('tipoArmas')"
+                        <x-dropdown-link :href="route('especializaciones.index')" :active="request()->routeIs('especializaciones')"
                             class="block text-xs sm:text-sm hover:text-orange-500">
-                            {{ __('Tipos de arma') }}
+                            {{ __('Especializaciones') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="route('familias.index')" :active="request()->routeIs('familias')"
+                            class="block text-xs sm:text-sm hover:text-orange-500">
+                            {{ __('Familias') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <button wire:click="logout" class="w-full text-start">
                             <x-dropdown-link class="hover:bg-red-500">

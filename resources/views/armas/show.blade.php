@@ -28,7 +28,7 @@
                 <td class="w-32">{{$arma->valorIlegal}}</td>
                 <td class="w-32">{{$arma->fd}}</td>
                 <td class="w-32">{{$arma->epoca}}</td>
-                <td class="w-32">{{$arma->tipo_arma_id}}</td>
+                <td class="w-32">{{$arma->tipo_arma->nombre}}</td>
                 <td class="w-32">{{$arma->especializacion_id}}</td>
             </tr>
         </tbody>
